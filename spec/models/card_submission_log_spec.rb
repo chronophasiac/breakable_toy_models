@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe CardSubmissionLog do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:card_submission) }
+
+  it { should validate_presence_of(:answer_correct) }
+  it { validate_presence_of(:time_taken) }
 end
