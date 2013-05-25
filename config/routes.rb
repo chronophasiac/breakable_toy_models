@@ -1,4 +1,11 @@
 BreakableToyModels::Application.routes.draw do
+
+  devise_for :users
+
+  root to: 'main_pages#home'
+
+  get "main_pages/about"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
