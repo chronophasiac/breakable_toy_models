@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525155533) do
+ActiveRecord::Schema.define(:version => 20130525155743) do
 
   create_table "answers", :force => true do |t|
     t.integer  "start_position", :null => false
@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(:version => 20130525155533) do
     t.string   "title",        :null => false
     t.text     "instructions", :null => false
     t.text     "problem",      :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "challenge_decks", :force => true do |t|
+    t.integer  "challenge_id"
+    t.integer  "card_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -95,6 +102,9 @@ ActiveRecord::Schema.define(:version => 20130525155533) do
 
   add_foreign_key "card_submissions", "cards", :name => "card_submissions_card_id_fk"
   add_foreign_key "card_submissions", "users", :name => "card_submissions_user_id_fk"
+
+  add_foreign_key "challenge_decks", "cards", :name => "challenge_decks_card_id_fk"
+  add_foreign_key "challenge_decks", "challenges", :name => "challenge_decks_challenge_id_fk"
 
   add_foreign_key "challenges", "lessons", :name => "challenges_lesson_id_fk"
 
