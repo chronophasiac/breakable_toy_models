@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525152240) do
+ActiveRecord::Schema.define(:version => 20130525154549) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "start_position", :null => false
+    t.integer  "end_position",   :null => false
+    t.integer  "card_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "assignments", :force => true do |t|
     t.string   "title",           :null => false
@@ -55,5 +63,7 @@ ActiveRecord::Schema.define(:version => 20130525152240) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  add_foreign_key "answers", "cards", :name => "answers_card_id_fk"
 
 end

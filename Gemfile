@@ -7,12 +7,13 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 
+gem 'devise'
+
+gem 'foreigner'
+
 group :development, :test do
   gem 'rspec-rails'
 end
-
-gem 'devise'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
