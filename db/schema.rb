@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525160822) do
+ActiveRecord::Schema.define(:version => 20130525162118) do
 
   create_table "answers", :force => true do |t|
     t.integer  "start_position", :null => false
@@ -93,6 +93,14 @@ ActiveRecord::Schema.define(:version => 20130525160822) do
     t.datetime "updated_at",                       :null => false
   end
 
+  create_table "enrollments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "lesson_id"
+    t.datetime "last_accessed_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "lesson_assignments", :force => true do |t|
     t.integer  "lesson_id"
     t.integer  "assignment_id"
@@ -147,6 +155,9 @@ ActiveRecord::Schema.define(:version => 20130525160822) do
 
   add_foreign_key "courseworks", "assignments", :name => "courseworks_assignment_id_fk"
   add_foreign_key "courseworks", "users", :name => "courseworks_user_id_fk"
+
+  add_foreign_key "enrollments", "lessons", :name => "enrollments_lesson_id_fk"
+  add_foreign_key "enrollments", "users", :name => "enrollments_user_id_fk"
 
   add_foreign_key "lesson_assignments", "assignments", :name => "lesson_assignments_assignment_id_fk"
   add_foreign_key "lesson_assignments", "lessons", :name => "lesson_assignments_lesson_id_fk"
