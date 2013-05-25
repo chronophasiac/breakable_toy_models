@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Answer do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should validate_presence_of(:start_position) }
+  it { should validate_presence_of(:end_position) }
+
+  it { should belong_to(:card) }
 end
