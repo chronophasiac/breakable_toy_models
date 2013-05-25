@@ -34,6 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.string :authentication_token
 
       t.string :username
+      t.string :role, :null => false, :default => "student"
 
       t.timestamps
     end
