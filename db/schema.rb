@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525154549) do
+ActiveRecord::Schema.define(:version => 20130525154924) do
 
   create_table "answers", :force => true do |t|
     t.integer  "start_position", :null => false
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(:version => 20130525154549) do
     t.text     "problem",      :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "challenges", :force => true do |t|
+    t.string   "title",      :null => false
+    t.integer  "position",   :null => false
+    t.integer  "lesson_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "lessons", :force => true do |t|
@@ -65,5 +73,7 @@ ActiveRecord::Schema.define(:version => 20130525154549) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   add_foreign_key "answers", "cards", :name => "answers_card_id_fk"
+
+  add_foreign_key "challenges", "lessons", :name => "challenges_lesson_id_fk"
 
 end
