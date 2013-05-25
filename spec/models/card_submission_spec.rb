@@ -6,4 +6,5 @@ describe CardSubmission do
 
   it { should belong_to(:user) }
   it { should belong_to(:card) }
+  it { should have_many(:card_submission_logs) }
 end

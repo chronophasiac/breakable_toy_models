@@ -4,6 +4,9 @@ class ChallengeDeck < ActiveRecord::Base
   validates_presence_of :card_id
   validates_presence_of :challenge_id
 
-  belongs_to :card
-  belongs_to :challenge
+  belongs_to  :card,
+              inverse_of: :challenge_deck
+
+  belongs_to  :challenge,
+              inverse_of: :challenge_deck
 end

@@ -46,12 +46,12 @@ ActiveRecord::Schema.define(:version => 20130525162527) do
   end
 
   create_table "card_submission_logs", :force => true do |t|
-    t.boolean  "answer_correct",     :null => false
+    t.boolean  "answer_correct",     :default => false, :null => false
     t.integer  "rated_difficulty"
-    t.integer  "time_taken",         :null => false
+    t.integer  "time_taken",                            :null => false
     t.integer  "card_submission_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "card_submissions", :force => true do |t|

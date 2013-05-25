@@ -17,7 +17,8 @@ class Card < ActiveRecord::Base
             inverse_of: :cards
 
   has_many  :card_prerequisites,
-            inverse_of: :card
+            inverse_of: :card,
+            dependent: :destroy
 
   has_many  :assignments,
             through: :card_prerequisites,

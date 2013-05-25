@@ -9,4 +9,8 @@ class CardSubmission < ActiveRecord::Base
 
   belongs_to  :user,
               inverse_of: :card_submission
+
+  has_many  :card_submission_logs,
+            inverse_of: :card_submission,
+            dependent: :destroy
 end

@@ -8,7 +8,6 @@ class Coursework < ActiveRecord::Base
   belongs_to  :user,
               inverse_of: :coursework
 
-
   belongs_to  :assignment,
               inverse_of: :coursework
 end

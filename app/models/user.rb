@@ -9,7 +9,12 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
+  ROLES = %w[admin student]
+
   validates_presence_of :role
+  validates_inclusion_of :role, :in => ROLES
+
+  validates_uniqueness_of :username
 
   has_many  :card_submissions,
             inverse_of: :user,
@@ -28,7 +33,8 @@ class User < ActiveRecord::Base
             inverse_of: :users
 
   has_many  :assignment_ratings,
-            inverse_of: :user
+            inverse_of: :user,
+            dependent: :destroy
 
   has_many  :enrollments,
             inverse_of: :user,

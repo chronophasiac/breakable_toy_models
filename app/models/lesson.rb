@@ -5,7 +5,8 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :summary
 
   has_many  :lesson_assignments,
-            inverse_of: :lesson
+            inverse_of: :lesson,
+            dependent: :destroy
 
   has_many  :assignments,
             through: :lesson_assignments,
