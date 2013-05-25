@@ -4,6 +4,7 @@ class Challenge < ActiveRecord::Base
   validates_presence_of :lesson_id
   validates_presence_of :title
   validates_presence_of :position
+  validates_presence_of :lesson
 
   has_many  :challenge_progressions,
             inverse_of: :challenge
@@ -13,7 +14,7 @@ class Challenge < ActiveRecord::Base
             inverse_of: :challenges
 
   belongs_to  :lesson,
-              inverse_of: :challenge
+              inverse_of: :challenges
 
   has_many  :challenge_decks,
             inverse_of: :challenge

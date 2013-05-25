@@ -3,12 +3,14 @@ class CardSubmission < ActiveRecord::Base
 
   validates_presence_of :card_id
   validates_presence_of :user_id
+  validates_presence_of :user
+  validates_presence_of :card
 
   belongs_to  :card,
-              inverse_of: :card_submission
+              inverse_of: :card_submissions
 
   belongs_to  :user,
-              inverse_of: :card_submission
+              inverse_of: :card_submissions
 
   has_many  :card_submission_logs,
             inverse_of: :card_submission,

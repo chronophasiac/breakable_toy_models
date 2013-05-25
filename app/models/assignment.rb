@@ -6,6 +6,7 @@ class Assignment < ActiveRecord::Base
   validates_presence_of :title 
   validates_presence_of :instructions 
   validates_presence_of :assignment_type 
+  validates_presence_of :lessons 
 
   validates :url, :url => { allow_blank: true }
 

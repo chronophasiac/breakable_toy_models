@@ -4,6 +4,7 @@ describe Challenge do
   it { should validate_presence_of(:lesson_id) }
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:position) }
+  it { should validate_presence_of(:lesson) }
 
   it { should have_many(:challenge_progressions) }
   it { should have_many(:users) }

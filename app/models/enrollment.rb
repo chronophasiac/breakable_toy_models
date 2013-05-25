@@ -4,10 +4,12 @@ class Enrollment < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :lesson_id
   validates_presence_of :last_accessed_at
+  validates_presence_of :user
+  validates_presence_of :lesson
 
   belongs_to  :user,
-              inverse_of: :enrollment
+              inverse_of: :enrollments
 
   belongs_to  :lesson,
-              inverse_of: :enrollment
+              inverse_of: :enrollments
 end

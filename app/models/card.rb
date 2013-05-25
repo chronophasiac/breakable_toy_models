@@ -4,6 +4,7 @@ class Card < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :instructions
   validates_presence_of :problem
+  validates_presence_of :assignments
 
   has_many  :answers,
             inverse_of: :card,

@@ -4,6 +4,7 @@ class Answer < ActiveRecord::Base
   validates_presence_of :card_id
   validates_presence_of :start_position
   validates_presence_of :end_position
+  validates_presence_of :card
 
   belongs_to  :card,
               inverse_of: :answers
