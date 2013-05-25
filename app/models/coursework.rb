@@ -1,6 +1,8 @@
 class Coursework < ActiveRecord::Base
   attr_accessible :assignment_id, :completed, :user_id
 
+  validates_presence_of :user_id
+  validates_presence_of :assignment_id
   validates_presence_of :completed
 
   belongs_to  :user,
