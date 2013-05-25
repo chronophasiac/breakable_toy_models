@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525160013) do
+ActiveRecord::Schema.define(:version => 20130525160235) do
 
   create_table "answers", :force => true do |t|
     t.integer  "start_position", :null => false
@@ -77,6 +77,14 @@ ActiveRecord::Schema.define(:version => 20130525160013) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "lesson_assignments", :force => true do |t|
+    t.integer  "lesson_id"
+    t.integer  "assignment_id"
+    t.integer  "position",      :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "lessons", :force => true do |t|
     t.string   "title",      :null => false
     t.text     "summary",    :null => false
@@ -117,5 +125,8 @@ ActiveRecord::Schema.define(:version => 20130525160013) do
   add_foreign_key "challenge_decks", "challenges", :name => "challenge_decks_challenge_id_fk"
 
   add_foreign_key "challenges", "lessons", :name => "challenges_lesson_id_fk"
+
+  add_foreign_key "lesson_assignments", "assignments", :name => "lesson_assignments_assignment_id_fk"
+  add_foreign_key "lesson_assignments", "lessons", :name => "lesson_assignments_lesson_id_fk"
 
 end
