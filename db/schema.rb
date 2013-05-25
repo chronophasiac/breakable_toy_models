@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525160502) do
+ActiveRecord::Schema.define(:version => 20130525160822) do
 
   create_table "answers", :force => true do |t|
     t.integer  "start_position", :null => false
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(:version => 20130525160502) do
     t.integer  "card_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "assignment_ratings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "assignment_id"
+    t.boolean  "helpful",       :default => false, :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   create_table "assignments", :force => true do |t|
@@ -120,6 +128,9 @@ ActiveRecord::Schema.define(:version => 20130525160502) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   add_foreign_key "answers", "cards", :name => "answers_card_id_fk"
+
+  add_foreign_key "assignment_ratings", "assignments", :name => "assignment_ratings_assignment_id_fk"
+  add_foreign_key "assignment_ratings", "users", :name => "assignment_ratings_user_id_fk"
 
   add_foreign_key "card_prerequisites", "assignments", :name => "card_prerequisites_assignment_id_fk"
   add_foreign_key "card_prerequisites", "cards", :name => "card_prerequisites_card_id_fk"
