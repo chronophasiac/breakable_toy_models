@@ -14,7 +14,7 @@ describe Answer do
       expect(answer).to be_valid
     end
 
-    let(:answer) { FactoryGirl.build(:answer, :start_equals_end) }
+    let(:answer) { FactoryGirl.build(:answer, end_position: 1) }
 
     it 'is valid when start is greater than end' do
       expect(answer).to be_valid
@@ -22,7 +22,7 @@ describe Answer do
   end
 
   context 'with an invalid start and end position' do
-    let(:answer) { FactoryGirl.build(:answer, :start_greater_than_end) }
+    let(:answer) { FactoryGirl.build(:answer, start_position: 3) }
 
     it 'is is invalid when start is greater than end position' do
       expect(answer).to be_invalid

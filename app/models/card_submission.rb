@@ -1,8 +1,6 @@
 class CardSubmission < ActiveRecord::Base
   attr_accessible :card_id, :helpful, :user_id
 
-  validates_presence_of :card_id
-  validates_presence_of :user_id
   validates_presence_of :user
   validates_presence_of :card
 

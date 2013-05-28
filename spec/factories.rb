@@ -3,16 +3,6 @@ FactoryGirl.define do
     card
     start_position  1
     end_position    2
-
-    trait :start_equals_end do
-      start_position  1
-      end_position 1
-    end
-
-    trait :start_greater_than_end do
-      start_position  2
-      end_position 1
-    end
   end
 
   factory :card do
@@ -29,33 +19,17 @@ FactoryGirl.define do
     instructions    "These are assignment instructions"
     url             "https://thisisanassignmenturl.com"
     assignment_type "text"
-    syllabus = Syllabus.new
     before(:create) do |assignment|
-      lesson = FactoryGirl.create(:lesson) 
-      syllabus.lesson = lesson
-      syllabus.assignment = assignment
-      syllabus.position = 1
-      syllabus.save!
-      assignment.syllabuses << syllabus
-    end
-    after(:create) do |assignment|
-      syllabus.assignment = assignment
-      syllabus.save!
+      assignment.syllabuses.new do |syllabus|
+        syllabus.lesson = FactoryGirl.create(:lesson)
+        syllabus.position = 1
+      end
     end
   end
 
   factory :lesson do
     title "This is a lesson title"
     summary "This is a lesson summary"
-
-    # factory :lesson_with_assignment do
-    #   after(:create) do |lesson|
-    #     assignment = FactoryGirl.build(:assignment)
-    #     lesson_assignment = LessonAssignment.new(lesson: lesson, assignment: assignment, position: 1)
-    #     lesson_assignment.save!
-    #   end    
-    # end
-
   end
 
 end
