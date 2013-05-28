@@ -1,7 +1,6 @@
 class Challenge < ActiveRecord::Base
   attr_accessible :lesson_id, :position, :title
 
-  validates_presence_of :lesson_id
   validates_presence_of :title
   validates_presence_of :position
   validates_presence_of :lesson

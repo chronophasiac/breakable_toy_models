@@ -1,8 +1,6 @@
 class ChallengeProgression < ActiveRecord::Base
   attr_accessible :challenge_id, :score, :user_id
 
-  validates_presence_of :user_id
-  validates_presence_of :challenge_id
   validates_presence_of :score
   validates_presence_of :user
   validates_presence_of :challenge

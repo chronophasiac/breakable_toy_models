@@ -1,8 +1,6 @@
 class Enrollment < ActiveRecord::Base
   attr_accessible :last_accessed_at, :lesson_id, :user_id
 
-  validates_presence_of :user_id
-  validates_presence_of :lesson_id
   validates_presence_of :last_accessed_at
   validates_presence_of :user
   validates_presence_of :lesson

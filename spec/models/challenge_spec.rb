@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Challenge do
-  it { should validate_presence_of(:lesson_id) }
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:position) }
   it { should validate_presence_of(:lesson) }
