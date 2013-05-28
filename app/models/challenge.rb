@@ -5,6 +5,8 @@ class Challenge < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :position
   validates_presence_of :lesson
+  
+  validates :position, numericality: { only_integer: true, greater_than_or_equal_to: 0}
 
   has_many  :challenge_progressions,
             inverse_of: :challenge

@@ -7,6 +7,8 @@ class Enrollment < ActiveRecord::Base
   validates_presence_of :user
   validates_presence_of :lesson
 
+  validates_datetime :last_accessed_at, on_or_before: lambda { DateTime.now }
+
   belongs_to  :user,
               inverse_of: :enrollments
 

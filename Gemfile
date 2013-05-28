@@ -9,6 +9,7 @@ gem 'pg'
 gem 'devise'
 gem 'foreigner'
 gem 'validate_url'
+gem 'validates_timeliness'
 
 group :development, :test do
   gem 'rspec-rails'

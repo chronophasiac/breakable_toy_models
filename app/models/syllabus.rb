@@ -5,6 +5,8 @@ class Syllabus < ActiveRecord::Base
   validates_presence_of :lesson
   validates_presence_of :assignment
 
+  validates :position, numericality: { only_integer: true, greater_than_or_equal_to: 0}
+
   belongs_to  :assignment,
               inverse_of: :syllabuses
 
