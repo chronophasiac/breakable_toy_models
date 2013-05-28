@@ -32,4 +32,21 @@ FactoryGirl.define do
     summary "This is a lesson summary"
   end
 
+  factory :card_submission_log do
+    answer_correct  true
+    time_taken      30
+    card_submission
+  end
+
+  factory :card_submission do
+    user
+    card
+  end
+
+  factory :user do
+    sequence(:email)      {|n| "email#{n}@example.com" }
+    password              "foobar123"
+    password_confirmation "foobar123"
+  end
+
 end

@@ -13,4 +13,12 @@ describe Card do
   it { should have_many(:assignments) }
   it { should have_many(:challenge_decks) }
   it { should have_many(:challenges) }
+
+  context 'with valid attributes' do
+    let(:card) { FactoryGirl.create(:card) }
+
+    it 'is valid' do
+      expect(card).to be_valid
+    end
+  end
 end

@@ -24,4 +24,12 @@ describe Assignment do
   
   it { should have_many(:syllabuses) }
   it { should have_many(:lessons) }
+
+  context 'with valid attributes' do
+    let(:assignment) { FactoryGirl.create(:assignment) }
+
+    it 'is valid' do
+      expect(assignment).to be_valid
+    end
+  end
 end
