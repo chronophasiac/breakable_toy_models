@@ -4,7 +4,7 @@ describe Assignment do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:instructions) }
   it { should validate_presence_of(:assignment_type) }
-  it { should validate_presence_of(:lessons) }
+  it { should validate_presence_of(:lesson_assignments) }
 
   it { should allow_value("http://google.com").for(:url) }
   it { should_not allow_value("invalid url").for(:url) }

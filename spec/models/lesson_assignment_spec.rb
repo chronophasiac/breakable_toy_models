@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe LessonAssignment do
-  it { should validate_presence_of(:lesson_id) }
-  it { should validate_presence_of(:assignment_id) }
   it { should validate_presence_of(:position) }
   it { should validate_presence_of(:lesson) }
   it { should validate_presence_of(:assignment) }

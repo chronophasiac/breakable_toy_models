@@ -13,6 +13,8 @@ gem 'validate_url'
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'pry'
 end
 # Gems used only for assets and not required
 # in production environments by default.

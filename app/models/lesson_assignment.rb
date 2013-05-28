@@ -1,8 +1,6 @@
 class LessonAssignment < ActiveRecord::Base
   attr_accessible :assignment_id, :lesson_id, :position
 
-  validates_presence_of :lesson_id
-  validates_presence_of :assignment_id
   validates_presence_of :position
   validates_presence_of :lesson
   validates_presence_of :assignment
