@@ -4,7 +4,7 @@ describe Lesson do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:summary) }
 
-  it { should have_many(:lesson_assignments) }
+  it { should have_many(:syllabuses) }
   it { should have_many(:assignments) }
 
   it { should have_many(:enrollments) }

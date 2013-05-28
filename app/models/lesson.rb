@@ -4,12 +4,12 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :summary
 
-  has_many  :lesson_assignments,
+  has_many  :syllabuses,
             inverse_of: :lesson,
             dependent: :destroy
 
   has_many  :assignments,
-            through: :lesson_assignments,
+            through: :syllabuses,
             inverse_of: :lessons
 
   has_many  :enrollments,

@@ -6,7 +6,7 @@ class Assignment < ActiveRecord::Base
   validates_presence_of :title 
   validates_presence_of :instructions 
   validates_presence_of :assignment_type 
-  validates_presence_of :lesson_assignments
+  validates_presence_of :syllabuses
 
   validates :url, :url => { allow_blank: true }
 
@@ -30,10 +30,10 @@ class Assignment < ActiveRecord::Base
   has_many  :assignment_ratings,
             inverse_of: :assignment
 
-  has_many  :lesson_assignments,
+  has_many  :syllabuses,
             inverse_of: :assignment
 
   has_many  :lessons,
-            through: :lesson_assignments,
+            through: :syllabuses,
             inverse_of: :assignments
 end

@@ -1,4 +1,4 @@
-class LessonAssignment < ActiveRecord::Base
+class Syllabus < ActiveRecord::Base
   attr_accessible :assignment_id, :lesson_id, :position
 
   validates_presence_of :position
@@ -6,8 +6,8 @@ class LessonAssignment < ActiveRecord::Base
   validates_presence_of :assignment
 
   belongs_to  :assignment,
-              inverse_of: :lesson_assignments
+              inverse_of: :syllabuses
 
   belongs_to  :lesson,
-              inverse_of: :lesson_assignments
+              inverse_of: :syllabuses
 end

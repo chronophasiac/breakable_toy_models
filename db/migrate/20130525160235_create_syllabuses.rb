@@ -1,6 +1,6 @@
-class CreateLessonAssignments < ActiveRecord::Migration
+class CreateSyllabuses < ActiveRecord::Migration
   def change
-    create_table :lesson_assignments do |t|
+    create_table :syllabuses do |t|
       t.integer :lesson_id
       t.foreign_key :lessons
       t.integer :assignment_id
