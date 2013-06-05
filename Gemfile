@@ -13,6 +13,8 @@ gem 'validates_timeliness'
 
 group :development do
   gem 'annotate'
+  gem 'guard-rspec'
+  gem 'zeus'
 end
 
 group :development, :test do
@@ -23,9 +25,10 @@ end
 group :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'fivemat'
 end
-# Gems used only for assets and not required
-# in production environments by default.
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

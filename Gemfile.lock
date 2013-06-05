@@ -33,6 +33,12 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
+    capybara (2.1.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -55,8 +61,20 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    ffi (1.8.1)
+    fivemat (1.2.1)
     foreigner (1.4.1)
       activerecord (>= 3.0.0)
+    formatador (0.2.4)
+    guard (1.8.0)
+      formatador (>= 0.2.4)
+      listen (>= 1.0.0)
+      lumberjack (>= 1.0.2)
+      pry (>= 0.9.10)
+      thor (>= 0.14.6)
+    guard-rspec (3.0.1)
+      guard (>= 1.8)
+      rspec (~> 2.13)
     hike (1.2.2)
     i18n (0.6.1)
     journey (1.0.4)
@@ -64,12 +82,18 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
+    listen (1.1.6)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+      rb-kqueue (>= 0.2)
+    lumberjack (1.0.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.23)
     multi_json (1.7.3)
+    nokogiri (1.5.9)
     orm_adapter (0.4.0)
     pg (0.15.1)
     polyglot (0.3.3)
@@ -100,8 +124,17 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.4)
+    rb-fsevent (0.9.3)
+    rb-inotify (0.9.0)
+      ffi (>= 0.5.0)
+    rb-kqueue (0.2.0)
+      ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    rspec (2.13.0)
+      rspec-core (~> 2.13.0)
+      rspec-expectations (~> 2.13.0)
+      rspec-mocks (~> 2.13.0)
     rspec-core (2.13.1)
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -142,16 +175,23 @@ GEM
       timeliness (~> 0.3.6)
     warden (1.2.1)
       rack (>= 1.0)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
+    zeus (0.13.3)
+      method_source (>= 0.6.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   annotate
+  capybara
   coffee-rails (~> 3.2.1)
   devise
   factory_girl_rails
+  fivemat
   foreigner
+  guard-rspec
   jquery-rails
   pg
   pry
@@ -162,3 +202,4 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   validate_url
   validates_timeliness
+  zeus
