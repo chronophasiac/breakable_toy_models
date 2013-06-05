@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: challenges
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)      not null
+#  position   :integer          not null
+#  lesson_id  :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Challenge do

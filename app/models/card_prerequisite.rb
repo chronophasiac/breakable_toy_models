@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: card_prerequisites
+#
+#  id            :integer          not null, primary key
+#  card_id       :integer
+#  assignment_id :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class CardPrerequisite < ActiveRecord::Base
   attr_accessible :assignment_id, :card_id
 

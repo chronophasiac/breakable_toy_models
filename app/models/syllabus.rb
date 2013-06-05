@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: syllabuses
+#
+#  id            :integer          not null, primary key
+#  lesson_id     :integer
+#  assignment_id :integer
+#  position      :integer          not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class Syllabus < ActiveRecord::Base
   attr_accessible :assignment_id, :lesson_id, :position
 

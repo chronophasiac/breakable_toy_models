@@ -11,6 +11,10 @@ gem 'foreigner'
 gem 'validate_url'
 gem 'validates_timeliness'
 
+group :development do
+  gem 'annotate'
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry'

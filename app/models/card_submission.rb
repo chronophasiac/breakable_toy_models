@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: card_submissions
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  card_id    :integer
+#  helpful    :boolean
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class CardSubmission < ActiveRecord::Base
   attr_accessible :card_id, :helpful, :user_id
 

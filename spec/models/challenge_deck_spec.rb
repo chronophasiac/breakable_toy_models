@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: challenge_decks
+#
+#  id           :integer          not null, primary key
+#  challenge_id :integer
+#  card_id      :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 require 'spec_helper'
 
 describe ChallengeDeck do

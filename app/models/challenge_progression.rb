@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: challenge_progressions
+#
+#  id           :integer          not null, primary key
+#  user_id      :integer
+#  challenge_id :integer
+#  score        :integer          default(0), not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class ChallengeProgression < ActiveRecord::Base
   attr_accessible :challenge_id, :score, :user_id
 

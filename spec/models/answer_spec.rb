@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: answers
+#
+#  id             :integer          not null, primary key
+#  start_position :integer          not null
+#  end_position   :integer          not null
+#  card_id        :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Answer do
