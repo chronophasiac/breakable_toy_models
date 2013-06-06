@@ -42,4 +42,10 @@ describe User do
 
   it { should have_many(:challenge_progressions) }
   it { should have_many(:challenges) }
+
+  it "allows multiple users to be saved" do
+    FactoryGirl.create(:user)
+    other_user = FactoryGirl.create(:user)
+    expect(other_user).to be_valid
+  end
 end

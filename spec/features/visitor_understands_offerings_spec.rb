@@ -11,6 +11,9 @@ feature 'Visitor understands offerings', %{
     expect(page).to have_content("Learn stuff")
   end
 
-  scenario "Visitor sees a brief summary on the main page"
+  scenario "Visitor sees a brief summary on the main page" do
+    visit root_path
+    expect(page).to have_content("We make learning easy by repeatedly injecting content into your brain")
+  end
   
 end
