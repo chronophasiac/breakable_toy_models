@@ -15,6 +15,8 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :summary
 
+  scope :ascending_by_title, order("title ASC")
+
   has_many  :syllabuses,
             inverse_of: :lesson,
             dependent: :destroy

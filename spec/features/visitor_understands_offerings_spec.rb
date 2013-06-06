@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-feature 'Visitor understands offerings', %{
+feature "Visitor understands offerings", %{
   As a visitor
   I want to understand what the site is offering
-  so I can decide whether to use the app
+  so I can decide whether to use the app.
 } do
 
   scenario "Visitor sees a tagline on the main page" do

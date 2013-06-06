@@ -1,0 +1,8 @@
+<ul>
+  <%- @lessons.ascending_by_title.each do |lesson| -%>
+    <li>
+      <div class="lesson-title"><h3><%= lesson.title %></h3></div>
+      <div class="lesson-summary"><p><%= lesson.summary %></p></div>
+    </li>
+  <%- end -%>
+</ul>

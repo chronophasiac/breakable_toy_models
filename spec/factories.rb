@@ -28,8 +28,8 @@ FactoryGirl.define do
   end
 
   factory :lesson do
-    title "This is a lesson title"
-    summary "This is a lesson summary"
+    sequence(:title)  { |n| "This is a lesson title #{n}" }
+    summary           "This is a lesson summary"
   end
 
   factory :card_submission_log do

@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-feature 'User signs in', %{
+feature "User signs in", %{
   As a visitor,
   I want to sign in
-  so I can resume where I left off
+  so I can resume where I left off.
 } do
 
   scenario "User sees a sign in link on the index" do

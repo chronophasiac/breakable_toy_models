@@ -9,6 +9,7 @@ gem 'validate_url'
 gem 'validates_timeliness'
 gem 'thin'
 gem 'simple_form'
+gem 'inherited_resources'
 
 group :development do
   gem 'annotate'
@@ -28,6 +29,7 @@ group :test do
   gem 'capybara'
   gem 'fivemat'
   gem 'show_me_the_cookies'
+  gem 'poltergeist'
 end
 
 group :assets do

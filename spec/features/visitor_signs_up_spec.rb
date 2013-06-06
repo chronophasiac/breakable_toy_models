@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-feature 'Visitor signs up', %{
+feature "Visitor signs up", %{
   As a visitor,
   I want to sign up
-  so I can save my progress and receive updates
+  so I can save my progress and receive updates.
 } do
 
   scenario "Visitor sees a sign up link on the index" do
