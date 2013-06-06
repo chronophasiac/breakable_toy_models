@@ -1,0 +1,5 @@
+<ul>
+  <%- @lesson.assignments.each do |assignment| -%>
+    <li><%= "#{assignment.title}: #{assignment.instructions}" %></li>
+  <%- end -%>
+</ul>
