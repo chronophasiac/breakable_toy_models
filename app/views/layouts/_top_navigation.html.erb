@@ -5,12 +5,25 @@
     </li>
   </ul>
   <section class="top-bar-section">
+    <%- if user_signed_in? -%>
+      <ul class="left">
+        <li class="divider"></li>
+        <li class="has-dropdown hover">
+          <a href="#"><%= current_user.email %></a>
+          <ul class="dropdown">
+            <li><label>Manage Account</label></li>
+            <li><%= link_to("Change password/email", edit_user_registration_path) %></li>
+          </ul>
+        </li>
+      </ul>
+    <%- end -%>
     <ul class="right">
       <li class="divider"></li>
       <%- if user_signed_in? -%>
-        <li><%= link_to("Logout", destroy_user_session_path, method: 'delete') %></li>
+        <li><%= link_to("Sign Out", destroy_user_session_path, method: 'delete') %></li>
       <%- else -%>
-        <li><%= link_to("Sign Up", new_user_registration_path) %></li>
+        <li><%= link_to("Sign In", new_user_session_path) %></li>
+        <li><%= link_to("Sign Up", new_user_registration_path, class: "small button") %></li>
       <%- end -%>
     </ul>
   </section>
