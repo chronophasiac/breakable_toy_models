@@ -19,7 +19,7 @@ feature "Visitor signs up", %{
     expect(page).to have_field("Password confirmation")  
   end
 
-  scenario "Visitor should be required to provide a unique email" do
+  scenario "Visitor is required to provide a unique email" do
     user = FactoryGirl.create(:user)
     prev_user_count = User.count
     visit new_user_registration_path
@@ -31,7 +31,7 @@ feature "Visitor signs up", %{
     expect(page).to have_content("has already been taken")
   end
 
-  scenario "Visitor should be required to provide a strong password" do
+  scenario "Visitor is required to provide a strong password" do
     prev_user_count = User.count
     visit new_user_registration_path
     fill_in("Email", with: "foo@bar.com")
@@ -42,7 +42,7 @@ feature "Visitor signs up", %{
     expect(page).to have_content("is too short")
   end
 
-  scenario "Visitor should be required to confirm their password" do
+  scenario "Visitor is required to confirm their password" do
     prev_user_count = User.count
     visit new_user_registration_path
     fill_in("Email", with: "foo@bar.com")
@@ -53,7 +53,7 @@ feature "Visitor signs up", %{
     expect(page).to have_content("doesn't match")
   end
 
-  scenario "Visitor should be signed in after completing the form" do
+  scenario "Visitor is signed in after completing the form" do
     prev_user_count = User.count
     visit new_user_registration_path
     expect(page).to_not have_content("Logout")
@@ -65,5 +65,5 @@ feature "Visitor signs up", %{
     expect(page).to have_content("signed up successfully")
   end
 
-  scenario "Visitor should see a sign up link after doing challenges"
+  scenario "Visitor sees a sign up link after doing challenges"
 end

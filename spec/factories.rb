@@ -5,15 +5,6 @@ FactoryGirl.define do
     end_position    2
   end
 
-  factory :card do
-    title         "This is a card title"
-    instructions  "These are card instructions"
-    problem       "This is a card problem"
-    before(:create) do |card|
-      card.assignments << FactoryGirl.create(:assignment)
-    end
-  end
-
   factory :assignment do
     title           "This is an assignment title"
     instructions    "These are assignment instructions"
@@ -27,9 +18,18 @@ FactoryGirl.define do
     end
   end
 
-  factory :lesson do
-    sequence(:title)  { |n| "This is a lesson title #{n}" }
-    summary           "This is a lesson summary"
+  factory :card do
+    title         "This is a card title"
+    instructions  "These are card instructions"
+    problem       "This is a card problem"
+    before(:create) do |card|
+      card.assignments << FactoryGirl.create(:assignment)
+    end
+  end
+
+  factory :card_submission do
+    user
+    card
   end
 
   factory :card_submission_log do
@@ -38,9 +38,15 @@ FactoryGirl.define do
     card_submission
   end
 
-  factory :card_submission do
-    user
-    card
+  factory :lesson do
+    sequence(:title)  { |n| "This is a lesson title #{n}" }
+    summary           "This is a lesson summary"
+  end
+
+  factory :syllabus do
+    position   1
+    lesson
+    assignment
   end
 
   factory :user do

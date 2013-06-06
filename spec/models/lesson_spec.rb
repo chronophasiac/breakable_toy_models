@@ -22,4 +22,12 @@ describe Lesson do
   it { should have_many(:users) }
 
   it { should have_many(:challenges) }
+
+  context 'with valid attributes' do
+    let(:lesson) { FactoryGirl.create(:lesson) }
+
+    it 'is valid' do
+      expect(lesson).to be_valid
+    end
+  end
 end
