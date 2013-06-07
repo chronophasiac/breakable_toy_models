@@ -6,15 +6,6 @@ feature "User explores lessons", %{
   so I can choose what to learn.
 } do
 
-  # given(:user) { FactoryGirl.create(:user, password: "password", password_confirmation: "password") }
-
-  # background do
-  #   visit new_user_session_path
-  #   fill_in("Email", with: user.email)
-  #   fill_in("Password", with: "password")
-  #   click_button("Sign in")
-  # end
-
   scenario "User sees a list of lessons" do
     lesson = FactoryGirl.create(:lesson)
     visit root_path

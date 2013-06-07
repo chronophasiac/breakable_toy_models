@@ -15,7 +15,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: breakable_toy_models_development
+  database: memworks_development
   host: localhost
   pool: 5
 
@@ -40,13 +40,13 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: breakable_toy_models_test
+  database: memworks_test
   host: localhost
   pool: 5
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: breakable_toy_models_production
+  database: memworks_production
   host: localhost
   pool: 5

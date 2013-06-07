@@ -24,19 +24,27 @@
 
     <%= render 'layouts/top_navigation' %>
 
-    <%- if flash[:error] -%>
-      <div data-alert class="alert-box alert"><%= flash[:error] %><a href="#" class="close">&times;</a></div>
-    <%- end %>
+    <div class="row">
+      <%- if flash[:error] -%>
+        <div data-alert class="large-12 columns alert-box alert"><%= flash[:error] %><a href="#" class="close">&times;</a></div>
+      <%- end %>
 
-    <%- if flash[:notice] -%>
-      <div data-alert class="alert-box success"><%= flash[:notice] %><a href="#" class="close">&times;</a></div>
-    <%- end %>
+      <%- if flash[:notice] -%>
+        <div data-alert class="large-12 columns alert-box success"><%= flash[:notice] %><a href="#" class="close">&times;</a></div>
+      <%- end %>
 
-    <%- if flash[:alert] -%>
-      <div data-alert class="alert-box"><%= flash[:alert] %><a href="#" class="close">&times;</a></div>
-    <%- end -%>
+      <%- if flash[:alert] -%>
+        <div data-alert class="large-12 columns alert-box"><%= flash[:alert] %><a href="#" class="close">&times;</a></div>
+      <%- end -%>
+    </div>
     
-    <%= yield %>
+    <div class="row">
+      <div class="large-12 columns">
+
+        <%= yield %>
+
+      </div>
+    </div>
 
     <%= javascript_include_tag "application" %>
   </body>

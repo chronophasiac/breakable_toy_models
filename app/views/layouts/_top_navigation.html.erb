@@ -1,29 +1,31 @@
-<nav class="top-bar">
-  <ul class="title-area">
-    <li class="name">
-      <h1><%= link_to("Memworks",root_path) %></h1>
-    </li>
-  </ul>
-  <section class="top-bar-section">
-    <ul class="left">
-      <li class="divider"></li>
-      <li><%= link_to("Explore Lessons", lessons_path) %></li>
+<div class="fixed">
+  <nav class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <h1><%= link_to("Memworks",root_path) %></h1>
+      </li>
     </ul>
-    <ul class="right">
-      <li class="divider"></li>
-      <%- if user_signed_in? -%>
-        <li class="has-dropdown hover">
-          <a href="#"><%= current_user.email %></a>
-          <ul class="dropdown">
-            <li><label>Manage Account</label></li>
-            <li><%= link_to("Change password/email", edit_user_registration_path) %></li>
-            <li><%= link_to("Sign Out", destroy_user_session_path, method: 'delete') %></li>
-          </ul>
-        </li>
-      <%- else -%>
-        <li><%= link_to("Sign In", new_user_session_path) %></li>
-        <li><%= link_to("Sign Up", new_user_registration_path, class: "small button") %></li>
-      <%- end -%>
-    </ul>
-  </section>
-</nav>
+    <section class="top-bar-section">
+      <ul class="left">
+        <li class="divider"></li>
+        <li><%= link_to("Explore Lessons", lessons_path) %></li>
+      </ul>
+      <ul class="right">
+        <li class="divider"></li>
+        <%- if user_signed_in? -%>
+          <li class="has-dropdown hover">
+            <a href="#"><%= current_user.email %></a>
+            <ul class="dropdown">
+              <li><label>Manage Account</label></li>
+              <li><%= link_to("Change password/email", edit_user_registration_path) %></li>
+              <li><%= link_to("Sign Out", destroy_user_session_path, method: 'delete') %></li>
+            </ul>
+          </li>
+        <%- else -%>
+          <li><%= link_to("Sign In", new_user_session_path) %></li>
+          <li><%= link_to("Sign Up", new_user_registration_path, class: "small button") %></li>
+        <%- end -%>
+      </ul>
+    </section>
+  </nav>
+</div>

@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-BreakableToyModels::Application.config.session_store :cookie_store, key: '_breakable_toy_models_session'
+BreakableToyModels::Application.config.session_store :cookie_store, key: '_memworks_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information

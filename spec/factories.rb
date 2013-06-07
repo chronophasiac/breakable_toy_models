@@ -6,10 +6,10 @@ FactoryGirl.define do
   end
 
   factory :assignment do
-    title           "This is an assignment title"
-    instructions    "These are assignment instructions"
-    url             "https://thisisanassignmenturl.com"
-    assignment_type "text"
+    sequence(:title)  { |n| "This is a #{n} assignment title" }
+    instructions      "These are assignment instructions"
+    url               "https://thisisanassignmenturl.com"
+    assignment_type   "text"
     before(:create) do |assignment|
       assignment.syllabuses.new do |syllabus|
         syllabus.lesson = FactoryGirl.create(:lesson)
@@ -38,8 +38,14 @@ FactoryGirl.define do
     card_submission
   end
 
+  factory :challenge do
+    title         "This is a challenge title"
+    position      1
+    lesson
+  end
+
   factory :lesson do
-    sequence(:title)  { |n| "This is a lesson title #{n}" }
+    sequence(:title)  { |n| "This is a #{n} lesson title" }
     summary           "This is a lesson summary"
   end
 

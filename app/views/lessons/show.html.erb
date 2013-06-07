@@ -1,5 +1,9 @@
 <ul>
-  <%- @lesson.assignments.each do |assignment| -%>
-    <li><%= "#{assignment.title}: #{assignment.instructions}" %></li>
+  <%- @lesson.curriculum.each do |curriculum_item| -%>
+    <%- if curriculum_item[:assignment] -%>
+      <li class="assignment"><%= "#{curriculum_item[:assignment].title}: #{curriculum_item[:assignment].instructions}" %></li>
+    <%- elsif curriculum_item[:challenge] -%>
+      <li class="challenge"><%= "#{curriculum_item[:challenge].title}" %></li>
+    <%- end -%>
   <%- end -%>
 </ul>

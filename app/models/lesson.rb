@@ -35,4 +35,22 @@ class Lesson < ActiveRecord::Base
   has_many  :challenges,
             inverse_of: :lesson,
             dependent: :destroy
+
+  def curriculum
+    curriculum = []
+
+    self.syllabuses.each do |syllabus|
+      entry = {assignment: syllabus.assignment}
+      entry[:position] = syllabus.position
+      curriculum << entry
+    end
+
+    self.challenges.each do |challenge|
+      entry = {challenge: challenge}
+      entry[:position] = challenge.position
+      curriculum << entry
+    end
+
+    curriculum.sort_by { |entry| entry[:position] }
+  end
 end

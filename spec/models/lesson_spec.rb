@@ -24,10 +24,32 @@ describe Lesson do
   it { should have_many(:challenges) }
 
   context 'with valid attributes' do
-    let(:lesson) { FactoryGirl.create(:lesson) }
+    let!(:lesson) { FactoryGirl.create(:lesson) }
+    let!(:challenge) { FactoryGirl.create(:challenge, lesson: lesson, position: 2) }
+    let!(:assignment2) { FactoryGirl.create(:assignment) }
+    let!(:assignment) { FactoryGirl.create(:assignment) }
+
+    before(:each) do
+      FactoryGirl.create(:syllabus, lesson: lesson, assignment: assignment2, position: 2)
+      FactoryGirl.create(:syllabus, lesson: lesson, assignment: assignment, position: 1)
+    end
 
     it 'is valid' do
       expect(lesson).to be_valid
     end
+
+    it "has a curriculum" do
+      expect(lesson.curriculum).to be_a(Array)
+    end
+
+    it "has a curriculum with curriculum items" do
+      expect(lesson.curriculum).to include( {assignment: assignment, position: 1} )
+      expect(lesson.curriculum).to include( {challenge: challenge, position: 2} )
+    end
+
+    it "has a curriculum sorted by position" do
+      expect(lesson.curriculum.first).to include(assignment: assignment)
+    end
   end
+
 end
