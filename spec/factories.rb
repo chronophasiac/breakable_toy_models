@@ -1,4 +1,10 @@
 FactoryGirl.define do
+  factory :activity do
+    lesson
+    association :completable, factory: :assignment
+    position 1
+  end
+  
   factory :answer do
     card
     start_position  1
