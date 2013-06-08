@@ -15,9 +15,10 @@ class Activity < ActiveRecord::Base
   belongs_to  :completable,
               polymorphic: true,
               inverse_of: :activities
-
   belongs_to  :lesson,
               inverse_of: :activities
+
+  scope :descending_position, order("position")
 
   validates_presence_of :completable, :completable_type, :lesson, :position
 

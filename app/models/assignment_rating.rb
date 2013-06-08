@@ -11,15 +11,13 @@
 #
 
 class AssignmentRating < ActiveRecord::Base
-  attr_accessible :assignment_id, :helpful, :user_id
-
-  validates_presence_of :helpful
-  validates_presence_of :user
-  validates_presence_of :assignment
-
   belongs_to  :user,
               inverse_of: :assignment_ratings
 
   belongs_to  :assignment,
               inverse_of: :assignment_ratings
+
+  validates_presence_of :helpful, :user, :assignment
+
+  attr_accessible :assignment_id, :helpful, :user_id
 end

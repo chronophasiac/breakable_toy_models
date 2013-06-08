@@ -1,5 +1,5 @@
 <ul>
-  <%- @lesson.activities.order("position").each do |activity| -%>
+  <%- @lesson.activities.descending_position.each do |activity| -%>
     <%- if activity.completable_type == "Assignment" -%>
       <li class="assignment"><%= "#{activity.completable.title}: #{activity.completable.instructions}" %></li>
     <%- elsif activity.completable_type == "Challenge" -%>
