@@ -8,5 +8,7 @@ class CreateActivities < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :activities, [:position, :lesson_id], unique: true
   end
 end

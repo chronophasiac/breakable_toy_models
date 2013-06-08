@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20130608204132) do
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "activities", ["position", "lesson_id"], :name => "index_activities_on_position_and_lesson_id", :unique => true
+
   create_table "answers", :force => true do |t|
     t.integer  "start_position", :null => false
     t.integer  "end_position",   :null => false
