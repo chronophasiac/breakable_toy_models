@@ -29,8 +29,6 @@ feature "User chooses a lesson", %{
   end 
 
   scenario "User sees a list in the correct order" do
-    puts assignment1.title
-    puts assignment2.title
     within ".assignment:first-child" do
       expect(page).to have_content(assignment1.title)
     end

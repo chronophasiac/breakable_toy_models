@@ -38,7 +38,7 @@ class Lesson < ActiveRecord::Base
 
   def curriculum
     curriculum = []
-
+    # joins(:slylabuses => :assignment)
     self.syllabuses.each do |syllabus|
       entry = {assignment: syllabus.assignment}
       entry[:position] = syllabus.position
