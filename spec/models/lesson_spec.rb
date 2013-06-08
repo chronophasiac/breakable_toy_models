@@ -24,14 +24,16 @@ describe Lesson do
   it { should have_many(:challenges) }
 
   context 'with valid attributes' do
-    let!(:lesson) { FactoryGirl.create(:lesson) }
-    let!(:challenge) { FactoryGirl.create(:challenge, lesson: lesson, position: 2) }
-    let!(:assignment2) { FactoryGirl.create(:assignment) }
-    let!(:assignment) { FactoryGirl.create(:assignment) }
+    let!(:lesson)       { FactoryGirl.create(:lesson) }
+    let!(:challenge)    { FactoryGirl.create(:challenge, lesson: lesson, position: 3) }
+    let!(:assignment2)  { FactoryGirl.build(:assignment) }
+    let!(:assignment)   { FactoryGirl.build(:assignment) }
 
     before(:each) do
-      FactoryGirl.create(:syllabus, lesson: lesson, assignment: assignment2, position: 2)
-      FactoryGirl.create(:syllabus, lesson: lesson, assignment: assignment, position: 1)
+      s1 = FactoryGirl.build(:syllabus, lesson: lesson, assignment: assignment2, position: 2)
+      s1.save!
+      s2 = FactoryGirl.build(:syllabus, lesson: lesson, assignment: assignment, position: 1)
+      s2.save!
     end
 
     it 'is valid' do
@@ -43,12 +45,13 @@ describe Lesson do
     end
 
     it "has a curriculum with curriculum items" do
-      expect(lesson.curriculum).to include( {assignment: assignment, position: 1} )
-      expect(lesson.curriculum).to include( {challenge: challenge, position: 2} )
+      expect(lesson.curriculum).to include(assignment)
+      expect(lesson.curriculum).to include(assignment2)
+      expect(lesson.curriculum).to include(challenge)
     end
 
     it "has a curriculum sorted by position" do
-      expect(lesson.curriculum.first).to include(assignment: assignment)
+      expect(lesson.curriculum.first).to eql(assignment)
     end
   end
 

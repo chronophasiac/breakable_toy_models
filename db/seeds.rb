@@ -8,5 +8,5 @@ user = FactoryGirl.create(:user)
     assignment2 = FactoryGirl.create(:assignment)
     FactoryGirl.create(:syllabus, lesson: lesson, assignment: assignment2, position: 2)
     FactoryGirl.create(:syllabus, lesson: lesson, assignment: assignment, position: 1)
-    challenge = FactoryGirl.create(:challenge, lesson: lesson, position: 2)
+    challenge = FactoryGirl.create(:challenge, lesson: lesson, position: 3)
 end

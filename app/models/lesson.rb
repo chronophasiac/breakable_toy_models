@@ -37,20 +37,21 @@ class Lesson < ActiveRecord::Base
             dependent: :destroy
 
   def curriculum
-    curriculum = []
-    # joins(:slylabuses => :assignment)
-    self.syllabuses.each do |syllabus|
-      entry = {assignment: syllabus.assignment}
-      entry[:position] = syllabus.position
-      curriculum << entry
+    lesson = Lesson.includes(:challenges, :assignments).find(self.id)
+    curriculum = {}
+    lesson.syllabuses.each do |syllabus|
+      curriculum[syllabus.position] = syllabus.assignment
     end
 
-    self.challenges.each do |challenge|
-      entry = {challenge: challenge}
-      entry[:position] = challenge.position
-      curriculum << entry
+    lesson.challenges.each do |challenge|
+      curriculum[challenge.position] = challenge
     end
 
-    curriculum.sort_by { |entry| entry[:position] }
+    curriculum = curriculum.sort_by { |key| key }
+    c = []
+    curriculum.each do |item|
+      c << item[1]
+    end
+    c
   end
 end

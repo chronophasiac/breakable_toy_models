@@ -1,9 +1,9 @@
 <ul>
   <%- @lesson.curriculum.each do |curriculum_item| -%>
-    <%- if curriculum_item[:assignment] -%>
-      <li class="assignment"><%= "#{curriculum_item[:assignment].title}: #{curriculum_item[:assignment].instructions}" %></li>
-    <%- elsif curriculum_item[:challenge] -%>
-      <li class="challenge"><%= "#{curriculum_item[:challenge].title}" %></li>
+    <%- if curriculum_item.class == Assignment -%>
+      <li class="assignment"><%= "#{curriculum_item.title}: #{curriculum_item.instructions}" %></li>
+    <%- elsif curriculum_item.class == Challenge -%>
+      <li class="challenge"><%= "#{curriculum_item.title}" %></li>
     <%- end -%>
   <%- end -%>
 </ul>
