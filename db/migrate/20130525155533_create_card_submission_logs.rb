@@ -4,7 +4,7 @@ class CreateCardSubmissionLogs < ActiveRecord::Migration
       t.boolean :answer_correct, null: false, default: false
       t.integer :rated_difficulty
       t.integer :time_taken, null: false
-      t.integer :card_submission_id
+      t.integer :card_submission_id, null: false
       t.foreign_key :card_submissions
 
       t.timestamps

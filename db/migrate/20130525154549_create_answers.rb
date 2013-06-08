@@ -3,7 +3,7 @@ class CreateAnswers < ActiveRecord::Migration
     create_table :answers do |t|
       t.integer :start_position, null: false
       t.integer :end_position, null: false
-      t.integer :card_id
+      t.integer :card_id, null: false
       t.foreign_key :cards
 
       t.timestamps

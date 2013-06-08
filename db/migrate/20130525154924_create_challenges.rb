@@ -3,7 +3,7 @@ class CreateChallenges < ActiveRecord::Migration
     create_table :challenges do |t|
       t.string :title, null: false
       t.integer :position, null: false
-      t.integer :lesson_id
+      t.integer :lesson_id, null: false
       t.foreign_key :lessons
 
       t.timestamps

@@ -1,9 +1,9 @@
 class CreateEnrollments < ActiveRecord::Migration
   def change
     create_table :enrollments do |t|
-      t.integer :user_id
+      t.integer :user_id, null: false
       t.foreign_key :users
-      t.integer :lesson_id
+      t.integer :lesson_id, null: false
       t.foreign_key :lessons
       t.datetime :last_accessed_at, null: false
 

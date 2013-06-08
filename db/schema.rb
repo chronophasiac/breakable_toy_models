@@ -16,14 +16,14 @@ ActiveRecord::Schema.define(:version => 20130525162527) do
   create_table "answers", :force => true do |t|
     t.integer  "start_position", :null => false
     t.integer  "end_position",   :null => false
-    t.integer  "card_id"
+    t.integer  "card_id",        :null => false
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
 
   create_table "assignment_ratings", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "assignment_id"
+    t.integer  "user_id",                          :null => false
+    t.integer  "assignment_id",                    :null => false
     t.boolean  "helpful",       :default => false, :null => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(:version => 20130525162527) do
   end
 
   create_table "card_prerequisites", :force => true do |t|
-    t.integer  "card_id"
-    t.integer  "assignment_id"
+    t.integer  "card_id",       :null => false
+    t.integer  "assignment_id", :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -49,14 +49,14 @@ ActiveRecord::Schema.define(:version => 20130525162527) do
     t.boolean  "answer_correct",     :default => false, :null => false
     t.integer  "rated_difficulty"
     t.integer  "time_taken",                            :null => false
-    t.integer  "card_submission_id"
+    t.integer  "card_submission_id",                    :null => false
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
   end
 
   create_table "card_submissions", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "card_id"
+    t.integer  "user_id",    :null => false
+    t.integer  "card_id",    :null => false
     t.boolean  "helpful"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -71,15 +71,15 @@ ActiveRecord::Schema.define(:version => 20130525162527) do
   end
 
   create_table "challenge_decks", :force => true do |t|
-    t.integer  "challenge_id"
-    t.integer  "card_id"
+    t.integer  "challenge_id", :null => false
+    t.integer  "card_id",      :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
 
   create_table "challenge_progressions", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "challenge_id"
+    t.integer  "user_id",                     :null => false
+    t.integer  "challenge_id",                :null => false
     t.integer  "score",        :default => 0, :null => false
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
@@ -88,22 +88,22 @@ ActiveRecord::Schema.define(:version => 20130525162527) do
   create_table "challenges", :force => true do |t|
     t.string   "title",      :null => false
     t.integer  "position",   :null => false
-    t.integer  "lesson_id"
+    t.integer  "lesson_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "courseworks", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "assignment_id"
+    t.integer  "user_id",                          :null => false
+    t.integer  "assignment_id",                    :null => false
     t.boolean  "completed",     :default => false, :null => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end
 
   create_table "enrollments", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "lesson_id"
+    t.integer  "user_id",          :null => false
+    t.integer  "lesson_id",        :null => false
     t.datetime "last_accessed_at", :null => false
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
@@ -117,8 +117,8 @@ ActiveRecord::Schema.define(:version => 20130525162527) do
   end
 
   create_table "syllabuses", :force => true do |t|
-    t.integer  "lesson_id"
-    t.integer  "assignment_id"
+    t.integer  "lesson_id",     :null => false
+    t.integer  "assignment_id", :null => false
     t.integer  "position",      :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
