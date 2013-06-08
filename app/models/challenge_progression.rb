@@ -3,8 +3,8 @@
 # Table name: challenge_progressions
 #
 #  id           :integer          not null, primary key
-#  user_id      :integer
-#  challenge_id :integer
+#  user_id      :integer          not null
+#  challenge_id :integer          not null
 #  score        :integer          default(0), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null

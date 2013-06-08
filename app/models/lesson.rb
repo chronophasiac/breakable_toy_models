@@ -17,13 +17,19 @@ class Lesson < ActiveRecord::Base
 
   scope :ascending_by_title, order("title ASC")
 
-  has_many  :syllabuses,
+  has_many  :activities,
             inverse_of: :lesson,
             dependent: :destroy
 
   has_many  :assignments,
-            through: :syllabuses,
-            inverse_of: :lessons
+            through: :activities,
+            source: :completable,
+            source_type: "Assignment"
+
+  has_many  :challenges,
+            through: :activities,
+            source: :completable,
+            source_type: "Challenge"
 
   has_many  :enrollments,
             inverse_of: :lesson
@@ -32,26 +38,7 @@ class Lesson < ActiveRecord::Base
             through: :enrollments,
             inverse_of: :lessons
 
-  has_many  :challenges,
-            inverse_of: :lesson,
-            dependent: :destroy
-
   def curriculum
-    lesson = Lesson.includes(:challenges, :assignments).find(self.id)
-    curriculum = {}
-    lesson.syllabuses.each do |syllabus|
-      curriculum[syllabus.position] = syllabus.assignment
-    end
-
-    lesson.challenges.each do |challenge|
-      curriculum[challenge.position] = challenge
-    end
-
-    curriculum = curriculum.sort_by { |key| key }
-    c = []
-    curriculum.each do |item|
-      c << item[1]
-    end
-    c
   end
+
 end

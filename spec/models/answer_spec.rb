@@ -5,7 +5,7 @@
 #  id             :integer          not null, primary key
 #  start_position :integer          not null
 #  end_position   :integer          not null
-#  card_id        :integer
+#  card_id        :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #

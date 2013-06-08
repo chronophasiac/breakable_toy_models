@@ -4,21 +4,15 @@
 #
 #  id         :integer          not null, primary key
 #  title      :string(255)      not null
-#  position   :integer          not null
-#  lesson_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 class Challenge < ActiveRecord::Base
-  attr_accessible :lesson_id, :position, :title
+  attr_accessible :title
 
   validates_presence_of :title
-  validates_presence_of :position
-  validates_presence_of :lesson
   
-  validates :position, numericality: { only_integer: true, greater_than_or_equal_to: 0}
-
   has_many  :challenge_progressions,
             inverse_of: :challenge
 
@@ -26,8 +20,13 @@ class Challenge < ActiveRecord::Base
             through: :challenge_progressions,
             inverse_of: :challenges
 
-  belongs_to  :lesson,
-              inverse_of: :challenges
+  has_many  :activities,
+            as: :completable,
+            dependent: :destroy
+
+  has_many  :lessons,
+            through: :activities,
+            inverse_of: :challenges
 
   has_many  :challenge_decks,
             inverse_of: :challenge

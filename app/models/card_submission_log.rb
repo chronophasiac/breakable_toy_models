@@ -6,7 +6,7 @@
 #  answer_correct     :boolean          default(FALSE), not null
 #  rated_difficulty   :integer
 #  time_taken         :integer          not null
-#  card_submission_id :integer
+#  card_submission_id :integer          not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

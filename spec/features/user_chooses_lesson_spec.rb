@@ -7,13 +7,29 @@ feature "User chooses a lesson", %{
 } do
 
   given!(:lesson) { FactoryGirl.create(:lesson) }
-  given!(:challenge) { FactoryGirl.create(:challenge, lesson: lesson, position: 3) }
-  given!(:assignment2) { FactoryGirl.create(:assignment) }
+  given!(:challenge) { FactoryGirl.create(:challenge) }
   given!(:assignment1) { FactoryGirl.create(:assignment) }
+  given!(:assignment2) { FactoryGirl.create(:assignment) }
 
   background do
-    FactoryGirl.create(:syllabus, lesson: lesson, assignment: assignment2, position: 2)
-    FactoryGirl.create(:syllabus, lesson: lesson, assignment: assignment1, position: 1)
+    a = Activity.new
+    a.lesson = lesson
+    a.completable = challenge
+    a.position = 3
+    a.save!
+    a = Activity.new
+    a.lesson = lesson
+    a.completable = assignment2
+    a.position = 2
+    a.save!
+    a = Activity.new
+    a.lesson = lesson
+    a.completable = assignment1
+    a.position = 1
+    a.save!
+  end
+
+  background do
     visit lessons_path
     click_link(lesson.title)
   end

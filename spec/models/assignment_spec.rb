@@ -17,7 +17,6 @@ describe Assignment do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:instructions) }
   it { should validate_presence_of(:assignment_type) }
-  it { should validate_presence_of(:syllabuses) }
 
   it { should allow_value("http://google.com").for(:url) }
   it { should_not allow_value("invalid url").for(:url) }
@@ -35,7 +34,7 @@ describe Assignment do
 
   it { should have_many(:assignment_ratings) }
   
-  it { should have_many(:syllabuses) }
+  it { should have_many(:activities) }
   it { should have_many(:lessons) }
 
   context 'with valid attributes' do

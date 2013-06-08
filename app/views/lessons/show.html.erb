@@ -1,9 +1,9 @@
 <ul>
-  <%- @lesson.curriculum.each do |curriculum_item| -%>
-    <%- if curriculum_item.class == Assignment -%>
-      <li class="assignment"><%= "#{curriculum_item.title}: #{curriculum_item.instructions}" %></li>
-    <%- elsif curriculum_item.class == Challenge -%>
-      <li class="challenge"><%= "#{curriculum_item.title}" %></li>
+  <%- @lesson.activities.order("position").each do |activity| -%>
+    <%- if activity.completable_type == "Assignment" -%>
+      <li class="assignment"><%= "#{activity.completable.title}: #{activity.completable.instructions}" %></li>
+    <%- elsif activity.completable_type == "Challenge" -%>
+      <li class="challenge"><%= "#{activity.completable.title}" %></li>
     <%- end -%>
   <%- end -%>
 </ul>

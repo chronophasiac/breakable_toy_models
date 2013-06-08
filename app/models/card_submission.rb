@@ -3,8 +3,8 @@
 # Table name: card_submissions
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer
-#  card_id    :integer
+#  user_id    :integer          not null
+#  card_id    :integer          not null
 #  helpful    :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

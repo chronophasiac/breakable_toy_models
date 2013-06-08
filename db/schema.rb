@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525162527) do
+ActiveRecord::Schema.define(:version => 20130608204132) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "lesson_id",        :null => false
+    t.integer  "completable_id",   :null => false
+    t.string   "completable_type", :null => false
+    t.integer  "position",         :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "answers", :force => true do |t|
     t.integer  "start_position", :null => false
@@ -87,8 +96,6 @@ ActiveRecord::Schema.define(:version => 20130525162527) do
 
   create_table "challenges", :force => true do |t|
     t.string   "title",      :null => false
-    t.integer  "position",   :null => false
-    t.integer  "lesson_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -116,14 +123,6 @@ ActiveRecord::Schema.define(:version => 20130525162527) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "syllabuses", :force => true do |t|
-    t.integer  "lesson_id",     :null => false
-    t.integer  "assignment_id", :null => false
-    t.integer  "position",      :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",        :null => false
     t.string   "encrypted_password",     :default => "",        :null => false
@@ -144,6 +143,8 @@ ActiveRecord::Schema.define(:version => 20130525162527) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+  add_foreign_key "activities", "lessons", :name => "activities_lesson_id_fk"
+
   add_foreign_key "answers", "cards", :name => "answers_card_id_fk"
 
   add_foreign_key "assignment_ratings", "assignments", :name => "assignment_ratings_assignment_id_fk"
@@ -163,15 +164,10 @@ ActiveRecord::Schema.define(:version => 20130525162527) do
   add_foreign_key "challenge_progressions", "challenges", :name => "challenge_progressions_challenge_id_fk"
   add_foreign_key "challenge_progressions", "users", :name => "challenge_progressions_user_id_fk"
 
-  add_foreign_key "challenges", "lessons", :name => "challenges_lesson_id_fk"
-
   add_foreign_key "courseworks", "assignments", :name => "courseworks_assignment_id_fk"
   add_foreign_key "courseworks", "users", :name => "courseworks_user_id_fk"
 
   add_foreign_key "enrollments", "lessons", :name => "enrollments_lesson_id_fk"
   add_foreign_key "enrollments", "users", :name => "enrollments_user_id_fk"
-
-  add_foreign_key "syllabuses", "assignments", :name => "syllabuses_assignment_id_fk"
-  add_foreign_key "syllabuses", "lessons", :name => "syllabuses_lesson_id_fk"
 
 end
