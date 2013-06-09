@@ -16,11 +16,13 @@ class Lesson < ActiveRecord::Base
   has_many  :assignments,
             through: :activities,
             source: :completable,
-            source_type: "Assignment"
+            source_type: "Assignment",
+            readonly: true
   has_many  :challenges,
             through: :activities,
             source: :completable,
-            source_type: "Challenge"
+            source_type: "Challenge",
+            readonly: true
   has_many  :enrollments,
             inverse_of: :lesson
   has_many  :users,
