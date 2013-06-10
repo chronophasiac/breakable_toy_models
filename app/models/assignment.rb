@@ -7,6 +7,7 @@
 #  instructions    :text             not null
 #  url             :string(255)
 #  assignment_type :string(255)      not null
+#  summary         :text             not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -32,7 +33,7 @@ class Assignment < ActiveRecord::Base
             through: :activities,
             inverse_of: :assignments
 
-  validates_presence_of :title, :instructions, :assignment_type 
+  validates_presence_of :title, :instructions, :assignment_type, :summary
 
   validates :url, :url => { allow_blank: true }
 
@@ -40,5 +41,5 @@ class Assignment < ActiveRecord::Base
 
   validates_inclusion_of :assignment_type, :in => ASSIGNMENT_TYPE
 
-  attr_accessible :assignment_type, :instructions, :title, :url
+  attr_accessible :assignment_type, :instructions, :summary, :title, :url
 end

@@ -5,7 +5,7 @@
         <div class="assignment panel">
           <span class="label right">Assignment</span> 
           <h5><%= activity.completable.title %></h5>
-          <h5 class="subheader"><%= activity.completable.instructions %></h5>
+          <h5 class="subheader"><%= activity.completable.summary %></h5>
         </div>
       <%- elsif activity.completable_type == "Challenge" -%>
         <div class="challenge panel callout">

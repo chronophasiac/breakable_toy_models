@@ -7,6 +7,7 @@
 #  instructions    :text             not null
 #  url             :string(255)
 #  assignment_type :string(255)      not null
+#  summary         :text             not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -15,6 +16,7 @@ require 'spec_helper'
 
 describe Assignment do
   it { should validate_presence_of(:title) }
+  it { should validate_presence_of(:summary) }
   it { should validate_presence_of(:instructions) }
   it { should validate_presence_of(:assignment_type) }
 

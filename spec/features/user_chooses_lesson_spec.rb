@@ -28,7 +28,7 @@ feature "User chooses a lesson", %{
 
   scenario "User sees a list of assignments and challenges" do
     expect(page).to have_content(assignment1.title)
-    expect(page).to have_content(assignment1.instructions)
+    expect(page).to have_content(assignment1.summary)
     expect(page).to have_content(challenge.title)
   end 
 

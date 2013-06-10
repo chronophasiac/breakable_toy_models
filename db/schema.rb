@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.text     "instructions",    :null => false
     t.string   "url"
     t.string   "assignment_type", :null => false
+    t.text     "summary",         :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end

@@ -7,6 +7,7 @@ FactoryGirl.define do
   
   factory :assignment do
     sequence(:title)  { |n| "This is a #{n} assignment title" }
+    summary           "This is an assignment summary"
     instructions      "These are assignment instructions"
     url               "https://thisisanassignmenturl.com"
     assignment_type   "text"

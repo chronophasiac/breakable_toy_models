@@ -5,6 +5,7 @@ class CreateAssignments < ActiveRecord::Migration
       t.text    :instructions,    null: false
       t.string  :url
       t.string  :assignment_type, null: false
+      t.text    :summary,         null: false
 
       t.timestamps
     end
