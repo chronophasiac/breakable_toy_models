@@ -12,7 +12,7 @@
 #
 
 class Card < ActiveRecord::Base
-  has_many  :solution_indices,
+  has_many  :solution_positions,
             inverse_of: :card,
             dependent: :destroy
   has_many  :solution_strings,
@@ -37,7 +37,7 @@ class Card < ActiveRecord::Base
 
   validates_presence_of :title, :instructions, :problem, :assignments, :solution_type
 
-  SOLUTION_TYPES = %w[index string]
+  SOLUTION_TYPES = %w[position string]
 
   validates_inclusion_of :solution_type, :in => SOLUTION_TYPES
 

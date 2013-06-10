@@ -141,15 +141,15 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "solution_indices", :force => true do |t|
-    t.integer  "start_index", :null => false
-    t.integer  "end_index",   :null => false
-    t.integer  "card_id",     :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+  create_table "solution_positions", :force => true do |t|
+    t.integer  "start_position", :null => false
+    t.integer  "end_position",   :null => false
+    t.integer  "card_id",        :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
-  add_index "solution_indices", ["card_id"], :name => "index_solution_indices_on_card_id"
+  add_index "solution_positions", ["card_id"], :name => "index_solution_positions_on_card_id"
 
   create_table "solution_strings", :force => true do |t|
     t.string   "regex",      :null => false
@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
   add_foreign_key "enrollments", "lessons", :name => "enrollments_lesson_id_fk"
   add_foreign_key "enrollments", "users", :name => "enrollments_user_id_fk"
 
-  add_foreign_key "solution_indices", "cards", :name => "solution_indices_card_id_fk"
+  add_foreign_key "solution_positions", "cards", :name => "solution_positions_card_id_fk"
 
   add_foreign_key "solution_strings", "cards", :name => "solution_strings_card_id_fk"
 

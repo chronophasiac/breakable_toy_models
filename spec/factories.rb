@@ -5,12 +5,6 @@ FactoryGirl.define do
     position 1
   end
   
-  factory :solution_index do
-    card
-    start_index  1
-    end_index    2
-  end
-
   factory :assignment do
     sequence(:title)  { |n| "This is a #{n} assignment title" }
     instructions      "These are assignment instructions"
@@ -18,7 +12,17 @@ FactoryGirl.define do
     assignment_type   "text"
   end
 
-  factory :card do
+  factory :card_position_solution, class: Card do
+    title         "This is a card title"
+    instructions  "These are card instructions"
+    problem       "This is a card problem"
+    solution_type "position"
+    before(:create) do |card|
+      card.assignments << FactoryGirl.create(:assignment)
+    end
+  end
+
+  factory :card_string_solution, class: Card do
     title         "This is a card title"
     instructions  "These are card instructions"
     problem       "This is a card problem"
@@ -30,7 +34,7 @@ FactoryGirl.define do
 
   factory :card_submission do
     user
-    card
+    association :card, factory: :card_position_solution
   end
 
   factory :card_submission_log do
@@ -46,6 +50,17 @@ FactoryGirl.define do
   factory :lesson do
     sequence(:title)  { |n| "This is a #{n} lesson title" }
     summary           "This is a lesson summary"
+  end
+
+  factory :solution_position do
+    association :card, factory: :card_position_solution
+    start_position  1
+    end_position    2
+  end
+
+  factory :solution_string do
+    association :card, factory: :card_string_solution
+    regex "foo"
   end
 
   factory :user do
