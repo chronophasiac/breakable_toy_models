@@ -1,9 +1,18 @@
-<ul>
-  <%- @lesson.activities.descending_position.each do |activity| -%>
-    <%- if activity.completable_type == "Assignment" -%>
-      <li class="assignment"><%= "#{activity.completable.title}: #{activity.completable.instructions}" %></li>
-    <%- elsif activity.completable_type == "Challenge" -%>
-      <li class="challenge"><%= "#{activity.completable.title}" %></li>
-    <%- end -%>
-  <%- end -%>
-</ul>
+<%- @lesson.activities.descending_position.each do |activity| -%>
+  <div class="row">
+    <div class="large-12 columns">
+      <%- if activity.completable_type == "Assignment" -%>
+        <div class="assignment panel">
+          <span class="label right">Assignment</span> 
+          <h5><%= activity.completable.title %></h5>
+          <h5 class="subheader"><%= activity.completable.instructions %></h5>
+        </div>
+      <%- elsif activity.completable_type == "Challenge" -%>
+        <div class="challenge panel callout">
+          <span class="secondary label right">Challenge</span> 
+          <h5><%= activity.completable.title %></h5>
+        </div>
+      <%- end -%>
+    </div>
+  </div>
+<%- end -%>

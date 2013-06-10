@@ -12,21 +12,9 @@ feature "User chooses a lesson", %{
   given!(:assignment2) { FactoryGirl.create(:assignment) }
 
   background do
-    a = Activity.new
-    a.lesson = lesson
-    a.completable = challenge
-    a.position = 3
-    a.save!
-    a = Activity.new
-    a.lesson = lesson
-    a.completable = assignment2
-    a.position = 2
-    a.save!
-    a = Activity.new
-    a.lesson = lesson
-    a.completable = assignment1
-    a.position = 1
-    a.save!
+    FactoryGirl.create(:activity, lesson: lesson, completable: challenge, position: 3)
+    FactoryGirl.create(:activity, lesson: lesson, completable: assignment1, position: 1)
+    FactoryGirl.create(:activity, lesson: lesson, completable: assignment2, position: 2)
   end
 
   background do
@@ -45,7 +33,7 @@ feature "User chooses a lesson", %{
   end 
 
   scenario "User sees a list in the correct order" do
-    within ".assignment:first-child" do
+    within first(".assignment") do
       expect(page).to have_content(assignment1.title)
     end
   end

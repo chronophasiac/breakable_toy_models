@@ -21,46 +21,33 @@
   </head>
 
   <body>
-    <div class="masthead">
-      <h1 class="logo">Memworks </h1><h2 class="logo subheader">Ceaseless Learning</h2>
-      <%= link_to("Get Started", new_user_registration_path, :class =>"button success radius right get-started") %>
-    </div>
-    <div class="panel callout" id="main-banner">
-      <div class="row">
-        <div class="large-4 columns">
-          <h4>Learn Faster</h4>
-        </div>
-        <div class="large-4 columns">
-          <h4>Retain Longer</h4>
-        </div>
-        <div class="large-4 columns">
-          <h4>Track Your Progress</h4>
-        </div>
-      </div>
-    </div>
-
+    <%= @big_header ? render('layouts/big_header') : render('layouts/small_header') %>
     <%= render 'layouts/top_navigation' %>
 
-    <div class="row">
       <%- if flash[:error] -%>
-        <div data-alert class="large-12 columns alert-box alert"><%= flash[:error] %><a href="#" class="close">&times;</a></div>
+        <div class="row">
+          <div class="large-12 columns">
+            <div data-alert class="large-12 columns alert-box alert"><%= flash[:error] %><a href="#" class="close">&times;</a></div>
+          </div>
       <%- end %>
 
       <%- if flash[:notice] -%>
-        <div data-alert class="large-12 columns alert-box success"><%= flash[:notice] %><a href="#" class="close">&times;</a></div>
+        <div class="row">
+          <div class="large-12 columns">
+            <div data-alert class="large-12 columns alert-box success"><%= flash[:notice] %><a href="#" class="close">&times;</a></div>
+          </div>
       <%- end %>
 
       <%- if flash[:alert] -%>
-        <div data-alert class="large-12 columns alert-box"><%= flash[:alert] %><a href="#" class="close">&times;</a></div>
+        <div class="row">
+          <div class="large-12 columns">
+            <div data-alert class="large-12 columns alert-box"><%= flash[:alert] %><a href="#" class="close">&times;</a></div>
+          </div>
       <%- end -%>
     </div>
     
-    <div class="row">
-      <div class="large-12 columns">
+      <%= yield %>
 
-        <%= yield %>
-
-      </div>
     </div>
 
     <%= javascript_include_tag "application" %>

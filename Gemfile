@@ -14,6 +14,7 @@ gem 'inherited_resources'
 group :development do
   gem 'annotate'
   gem 'guard-rspec'
+  gem 'guard-livereload'
   gem 'zeus'
   gem 'launchy'
 end
