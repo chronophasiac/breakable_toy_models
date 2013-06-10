@@ -1,8 +1,8 @@
 class CreateSolutionStrings < ActiveRecord::Migration
   def change
     create_table :solution_strings do |t|
-      t.string :regex, null: false
-      t.integer :card_id, null: false
+      t.string      :regex,   null: false
+      t.integer     :card_id, null: false
       t.foreign_key :cards
 
       t.timestamps

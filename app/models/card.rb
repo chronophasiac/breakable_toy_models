@@ -2,12 +2,13 @@
 #
 # Table name: cards
 #
-#  id           :integer          not null, primary key
-#  title        :string(255)      not null
-#  instructions :text             not null
-#  problem      :text             not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id            :integer          not null, primary key
+#  title         :string(255)      not null
+#  instructions  :text             not null
+#  problem       :text             not null
+#  solution_type :string(255)      not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class Card < ActiveRecord::Base

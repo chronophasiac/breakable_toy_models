@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.datetime "updated_at",                       :null => false
   end
 
+  add_index "assignment_ratings", ["assignment_id"], :name => "index_assignment_ratings_on_assignment_id"
+  add_index "assignment_ratings", ["user_id"], :name => "index_assignment_ratings_on_user_id"
+
   create_table "assignments", :force => true do |t|
     t.string   "title",           :null => false
     t.text     "instructions",    :null => false
@@ -48,6 +51,9 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.datetime "updated_at",    :null => false
   end
 
+  add_index "card_prerequisites", ["assignment_id"], :name => "index_card_prerequisites_on_assignment_id"
+  add_index "card_prerequisites", ["card_id"], :name => "index_card_prerequisites_on_card_id"
+
   create_table "card_submission_logs", :force => true do |t|
     t.boolean  "correct",            :default => false, :null => false
     t.integer  "rated_difficulty"
@@ -57,6 +63,8 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.datetime "updated_at",                            :null => false
   end
 
+  add_index "card_submission_logs", ["card_submission_id"], :name => "index_card_submission_logs_on_card_submission_id"
+
   create_table "card_submissions", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.integer  "card_id",    :null => false
@@ -64,6 +72,9 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "card_submissions", ["card_id"], :name => "index_card_submissions_on_card_id"
+  add_index "card_submissions", ["user_id"], :name => "index_card_submissions_on_user_id"
 
   create_table "cards", :force => true do |t|
     t.string   "title",         :null => false
@@ -81,6 +92,9 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.datetime "updated_at",   :null => false
   end
 
+  add_index "challenge_decks", ["card_id"], :name => "index_challenge_decks_on_card_id"
+  add_index "challenge_decks", ["challenge_id"], :name => "index_challenge_decks_on_challenge_id"
+
   create_table "challenge_progressions", :force => true do |t|
     t.integer  "user_id",                     :null => false
     t.integer  "challenge_id",                :null => false
@@ -88,6 +102,9 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
   end
+
+  add_index "challenge_progressions", ["challenge_id"], :name => "index_challenge_progressions_on_challenge_id"
+  add_index "challenge_progressions", ["user_id"], :name => "index_challenge_progressions_on_user_id"
 
   create_table "challenges", :force => true do |t|
     t.string   "title",      :null => false
@@ -103,6 +120,9 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.datetime "updated_at",                       :null => false
   end
 
+  add_index "courseworks", ["assignment_id"], :name => "index_courseworks_on_assignment_id"
+  add_index "courseworks", ["user_id"], :name => "index_courseworks_on_user_id"
+
   create_table "enrollments", :force => true do |t|
     t.integer  "user_id",          :null => false
     t.integer  "lesson_id",        :null => false
@@ -110,6 +130,9 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
+
+  add_index "enrollments", ["lesson_id"], :name => "index_enrollments_on_lesson_id"
+  add_index "enrollments", ["user_id"], :name => "index_enrollments_on_user_id"
 
   create_table "lessons", :force => true do |t|
     t.string   "title",      :null => false
@@ -125,6 +148,8 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "solution_indices", ["card_id"], :name => "index_solution_indices_on_card_id"
 
   create_table "solution_strings", :force => true do |t|
     t.string   "regex",      :null => false
