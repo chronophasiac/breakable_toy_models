@@ -2,6 +2,10 @@ BreakableToyModels::Application.routes.draw do
 
   devise_for :users
 
+  resources :users do
+    resources :enrollments
+  end
+
   resources :lessons, only: [:index, :show]
 
   root to: 'main_pages#home'

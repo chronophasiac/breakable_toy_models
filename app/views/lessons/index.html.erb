@@ -1,12 +1,23 @@
 <%- @lessons.ascending_by_title.each do |lesson| -%>
   <div class="row">
-    <div class="large-12 columns panel">
+    <div class="large-12 columns panel lesson-entry">
         <div class="large-8 columns">
           <div class="lesson-title"><h4><%= link_to( lesson.title, lesson_path(lesson) ) %></h4></div>
           <div class="lesson-summary"><h4 class="subheader"><%= lesson.summary %></h4></div>
         </div>
         <div class="large-4 columns">
-          <%= link_to("Start!", lesson_path(lesson), :class => "large button success") %>
+          <%- if user_signed_in? -%>
+            <%- if current_user.lessons.include?(lesson) -%>
+              <%= link_to("Continue", lesson_path(lesson), :class => "large button") %>
+            <%- else -%>
+              <%= simple_form_for([current_user, @enrollment]) do |f| %>
+                <%= f.hidden_field :lesson_id, value: lesson.id %>
+                <%= f.submit "Start", class: "large button success" %>
+              <% end %>
+            <%- end -%>
+          <%- else -%>
+            <%= link_to("Start", lesson_path(lesson), :class => "large button success") %>
+          <%- end -%>
         </div>
     </div>
   </div>
