@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608204132) do
+ActiveRecord::Schema.define(:version => 20130610174505) do
 
   create_table "activities", :force => true do |t|
     t.integer  "lesson_id",        :null => false
@@ -23,14 +23,6 @@ ActiveRecord::Schema.define(:version => 20130608204132) do
   end
 
   add_index "activities", ["position", "lesson_id"], :name => "index_activities_on_position_and_lesson_id", :unique => true
-
-  create_table "answers", :force => true do |t|
-    t.integer  "start_position", :null => false
-    t.integer  "end_position",   :null => false
-    t.integer  "card_id",        :null => false
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
 
   create_table "assignment_ratings", :force => true do |t|
     t.integer  "user_id",                          :null => false
@@ -57,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20130608204132) do
   end
 
   create_table "card_submission_logs", :force => true do |t|
-    t.boolean  "answer_correct",     :default => false, :null => false
+    t.boolean  "correct",            :default => false, :null => false
     t.integer  "rated_difficulty"
     t.integer  "time_taken",                            :null => false
     t.integer  "card_submission_id",                    :null => false
@@ -125,6 +117,23 @@ ActiveRecord::Schema.define(:version => 20130608204132) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "solution_indices", :force => true do |t|
+    t.integer  "start_index", :null => false
+    t.integer  "end_index",   :null => false
+    t.integer  "card_id",     :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "solution_strings", :force => true do |t|
+    t.string   "regex",      :null => false
+    t.integer  "card_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "solution_strings", ["card_id"], :name => "index_solution_strings_on_card_id"
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",        :null => false
     t.string   "encrypted_password",     :default => "",        :null => false
@@ -146,8 +155,6 @@ ActiveRecord::Schema.define(:version => 20130608204132) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   add_foreign_key "activities", "lessons", :name => "activities_lesson_id_fk"
-
-  add_foreign_key "answers", "cards", :name => "answers_card_id_fk"
 
   add_foreign_key "assignment_ratings", "assignments", :name => "assignment_ratings_assignment_id_fk"
   add_foreign_key "assignment_ratings", "users", :name => "assignment_ratings_user_id_fk"
@@ -171,5 +178,9 @@ ActiveRecord::Schema.define(:version => 20130608204132) do
 
   add_foreign_key "enrollments", "lessons", :name => "enrollments_lesson_id_fk"
   add_foreign_key "enrollments", "users", :name => "enrollments_user_id_fk"
+
+  add_foreign_key "solution_indices", "cards", :name => "solution_indices_card_id_fk"
+
+  add_foreign_key "solution_strings", "cards", :name => "solution_strings_card_id_fk"
 
 end

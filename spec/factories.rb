@@ -5,10 +5,10 @@ FactoryGirl.define do
     position 1
   end
   
-  factory :answer do
+  factory :solution_index do
     card
-    start_position  1
-    end_position    2
+    start_index  1
+    end_index    2
   end
 
   factory :assignment do
@@ -33,7 +33,7 @@ FactoryGirl.define do
   end
 
   factory :card_submission_log do
-    answer_correct  true
+    correct         true
     time_taken      30
     card_submission
   end

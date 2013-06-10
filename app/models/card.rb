@@ -11,7 +11,10 @@
 #
 
 class Card < ActiveRecord::Base
-  has_many  :answers,
+  has_many  :solution_indices,
+            inverse_of: :card,
+            dependent: :destroy
+  has_many  :solution_strings,
             inverse_of: :card,
             dependent: :destroy
   has_many  :card_submissions,

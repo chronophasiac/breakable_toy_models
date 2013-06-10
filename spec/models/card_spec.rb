@@ -18,7 +18,8 @@ describe Card do
   it { should validate_presence_of(:problem) }
   it { should validate_presence_of(:assignments) }
 
-  it { should have_many(:answers) }
+  it { should have_many(:solution_indices) }
+  it { should have_many(:solution_strings) }
   it { should have_many(:card_submissions) }
   it { should have_many(:users) }
   it { should have_many(:card_prerequisites) }

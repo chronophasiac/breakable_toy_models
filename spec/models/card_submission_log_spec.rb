@@ -1,20 +1,7 @@
-# == Schema Information
-#
-# Table name: card_submission_logs
-#
-#  id                 :integer          not null, primary key
-#  answer_correct     :boolean          default(FALSE), not null
-#  rated_difficulty   :integer
-#  time_taken         :integer          not null
-#  card_submission_id :integer          not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#
-
 require 'spec_helper'
 
 describe CardSubmissionLog do
-  it { should validate_presence_of(:answer_correct) }
+  it { should validate_presence_of(:correct) }
   it { should validate_presence_of(:time_taken) }
   it { should validate_presence_of(:card_submission) }
 

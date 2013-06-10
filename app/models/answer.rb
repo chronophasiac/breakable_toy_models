@@ -1,22 +1,10 @@
-# == Schema Information
-#
-# Table name: answers
-#
-#  id             :integer          not null, primary key
-#  start_position :integer          not null
-#  end_position   :integer          not null
-#  card_id        :integer          not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#
-
-class Answer < ActiveRecord::Base
+class SolutionString < ActiveRecord::Base
   belongs_to  :card,
-              inverse_of: :answers
+              inverse_of: :solution_strings
 
-  validates_presence_of :start_position, :end_position, :card
+  validates_presence_of :start_index, :end_index, :card
 
   validates :end_position, numericality: { only_integer: true, greater_than_or_equal_to: :start_position }
 
-  attr_accessible :card_id, :end_position, :start_position
+  attr_accessible :card_id, :end_index, :start_index
 end
