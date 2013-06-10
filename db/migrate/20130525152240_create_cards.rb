@@ -4,6 +4,7 @@ class CreateCards < ActiveRecord::Migration
       t.string :title, null: false
       t.text :instructions, null: false
       t.text :problem, null: false
+      t.string :solution_type, null:false
 
       t.timestamps
     end

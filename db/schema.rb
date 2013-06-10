@@ -66,11 +66,12 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
   end
 
   create_table "cards", :force => true do |t|
-    t.string   "title",        :null => false
-    t.text     "instructions", :null => false
-    t.text     "problem",      :null => false
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "title",         :null => false
+    t.text     "instructions",  :null => false
+    t.text     "problem",       :null => false
+    t.string   "solution_type", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "challenge_decks", :force => true do |t|

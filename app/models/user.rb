@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   ROLES = %w[admin student]
 
   validates_presence_of  :role
-  validates_inclusion_of :role, in: ROLES
+  validates_inclusion_of :role, :in => ROLES
 
   validates_uniqueness_of :username, allow_blank: true
 end
