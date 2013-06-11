@@ -18,4 +18,28 @@ describe Coursework do
   
   it { should belong_to(:user) }
   it { should belong_to(:assignment) }
+
+  context "with two courseworks" do
+
+    let!(:user)        { FactoryGirl.create(:user) }
+    let!(:assignment)  { FactoryGirl.create(:assignment) }
+    let!(:coursework)  { FactoryGirl.create(:coursework, user: user, assignment: assignment) }
+
+    it "is valid with different users on the same assignment" do
+      other_coursework = FactoryGirl.build(:coursework, assignment: assignment)
+      expect(other_coursework).to be_valid
+    end
+
+    it "is valid with the same user on different assignments" do
+      other_coursework = FactoryGirl.build(:coursework, user: user)
+      expect(other_coursework).to be_valid
+    end
+
+    it "is not valid with the same user and the same assignment" do
+      other_coursework = FactoryGirl.build(:coursework, user: user, assignment: assignment)
+      expect(other_coursework).to_not be_valid
+    end
+
+  end
+  
 end

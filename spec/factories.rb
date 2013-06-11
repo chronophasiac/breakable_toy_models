@@ -48,6 +48,17 @@ FactoryGirl.define do
     title         "This is a challenge title"
   end
 
+  factory :coursework do
+    user
+    assignment
+  end
+
+  factory :enrollment do
+    user
+    lesson
+    last_accessed_at DateTime.now
+  end
+
   factory :lesson do
     sequence(:title)  { |n| "This is a #{n} lesson title" }
     summary           "This is a lesson summary"

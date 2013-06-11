@@ -20,5 +20,7 @@ class Enrollment < ActiveRecord::Base
 
   validates_datetime :last_accessed_at, on_or_before: lambda { DateTime.now }
 
+  validates_uniqueness_of :lesson_id, scope: :user_id
+
   attr_accessible :last_accessed_at, :lesson_id, :user_id
 end

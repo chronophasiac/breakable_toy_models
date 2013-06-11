@@ -18,5 +18,7 @@ class Coursework < ActiveRecord::Base
 
   validates_presence_of :user, :assignment
 
+  validates_uniqueness_of :assignment_id, scope: :user_id
+
   attr_accessible :assignment_id, :completed, :user_id
 end
