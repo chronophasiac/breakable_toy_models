@@ -8,7 +8,7 @@ class EnrollmentsController < InheritedResources::Base
       if @enrollment.save
         format.html { redirect_to(lesson_path(@enrollment.lesson)) }
       else
-        redirect_to(lessons_path, error: "An error occurred. Please try again later.")
+        format.html { redirect_to(lessons_path, alert: "An error occurred. Please try again later.") }
       end
     end
   end

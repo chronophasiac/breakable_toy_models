@@ -7,4 +7,10 @@ class LessonsController < InheritedResources::Base
     end
   end
 
+  def show
+    show! do
+      @coursework = Coursework.new
+    end
+  end
+
 end

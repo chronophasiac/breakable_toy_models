@@ -42,7 +42,7 @@ feature "User explores lessons", %{
       click_button("Start")
     end
     visit lessons_path
-    expect(page.first('.lesson-entry')).to have_content("Continue")
+    expect(page.first('.lesson-entry')).to have_button("Continue")
     Warden.test_reset!
   end
 

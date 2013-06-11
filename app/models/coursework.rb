@@ -16,7 +16,7 @@ class Coursework < ActiveRecord::Base
   belongs_to  :assignment,
               inverse_of: :courseworks
 
-  validates_presence_of :completed, :user, :assignment
+  validates_presence_of :user, :assignment
 
   attr_accessible :assignment_id, :completed, :user_id
 end
