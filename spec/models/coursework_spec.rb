@@ -18,6 +18,7 @@ describe Coursework do
   
   it { should belong_to(:user) }
   it { should belong_to(:assignment) }
+  it { should belong_to(:lesson) }
 
   context "with two courseworks" do
 

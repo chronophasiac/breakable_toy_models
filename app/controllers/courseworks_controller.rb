@@ -6,7 +6,7 @@ class CourseworksController < InheritedResources::Base
       @coursework = current_user.courseworks.new(params[:coursework])
       @coursework.completed = false
       if @coursework.save
-        format.html { redirect_to(assignment_path(@coursework.assignment)) }
+        format.html { redirect_to(lesson_assignment_path(@coursework.lesson, @coursework.assignment)) }
       else
         format.html { redirect_to(lessons_path, alert: "An error occurred. Please try again later.") }
       end
@@ -18,7 +18,7 @@ class CourseworksController < InheritedResources::Base
 
     respond_to do |format|
       if @coursework.update_attributes(params[:coursework])
-        format.html { redirect_to(lesson_path()) }
+        format.html { redirect_to(lesson_path(@coursework.lesson)) }
       else
         format.html { redirect_to(lessons_path, alert: "An error occurred. Please try again later.") }
       end

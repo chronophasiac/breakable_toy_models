@@ -15,6 +15,8 @@ class Lesson < ActiveRecord::Base
             dependent: :destroy
   has_many  :enrollments,
             inverse_of: :lesson
+  has_many  :courseworks,
+            inverse_of: :lesson
   has_many  :users,
             through: :enrollments,
             inverse_of: :lessons

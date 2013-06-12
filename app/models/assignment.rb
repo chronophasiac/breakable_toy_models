@@ -30,8 +30,7 @@ class Assignment < ActiveRecord::Base
             as: :completable,
             dependent: :destroy
   has_many  :lessons,
-            through: :activities,
-            inverse_of: :assignments
+            through: :activities
 
   validates_presence_of :title, :instructions, :assignment_type, :summary
 

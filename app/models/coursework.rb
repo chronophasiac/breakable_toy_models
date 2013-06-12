@@ -15,10 +15,12 @@ class Coursework < ActiveRecord::Base
               inverse_of: :courseworks
   belongs_to  :assignment,
               inverse_of: :courseworks
+  belongs_to  :lesson,
+              inverse_of: :courseworks
 
-  validates_presence_of :user, :assignment
+  validates_presence_of :user, :assignment, :lesson
 
   validates_uniqueness_of :assignment_id, scope: :user_id
 
-  attr_accessible :assignment_id, :completed, :user_id
+  attr_accessible :assignment_id, :completed, :user_id, :lesson_id
 end

@@ -18,8 +18,7 @@ class Challenge < ActiveRecord::Base
             as: :completable,
             dependent: :destroy
   has_many  :lessons,
-            through: :activities,
-            inverse_of: :challenges
+            through: :activities
   has_many  :challenge_decks,
             inverse_of: :challenge
   has_many  :cards,

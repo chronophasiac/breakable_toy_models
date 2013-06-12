@@ -7,9 +7,9 @@ BreakableToyModels::Application.routes.draw do
     resources :courseworks
   end
 
-  resources :lessons, only: [:index, :show]
-
-  resources :assignments, only: [:show]
+  resources :lessons, only: [:index, :show] do
+    resources :assignments, only: [:show]
+  end
 
   root to: 'main_pages#home'
   match '/about' => 'main_pages#about'

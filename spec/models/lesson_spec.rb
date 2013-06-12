@@ -17,6 +17,6 @@ describe Lesson do
 
   it { should have_many(:enrollments) }
   it { should have_many(:users) }
-
+  it { should have_many(:courseworks) }
   it { should have_many(:activities) }
 end

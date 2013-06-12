@@ -10,6 +10,7 @@
     <%- if user_signed_in? -%>
       <%= simple_form_for([current_user, @coursework]) do |f| %>
         <%= f.hidden_field :completed, value: true %>
+        <%= f.hidden_field :lesson_id, value: params[:lesson_id] %>
         <%= f.submit "Done", class: "button success" %>
       <% end %>
     <%- end -%>

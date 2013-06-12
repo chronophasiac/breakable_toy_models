@@ -10,18 +10,19 @@
           <%- if user_signed_in? -%>
             <%- if current_user.assignments.include?(activity.completable) -%>
               <%- if current_user.courseworks.where("assignment_id = ?", activity.completable.id).first.completed %> 
-                <%= button_to("Review", assignment_path(activity.completable), class: "button secondary", method: "get") %>
+                <%= button_to("Review", lesson_assignment_path(@lesson, activity.completable), class: "button secondary", method: "get") %>
               <%- else -%>
-                <%= button_to("Continue", assignment_path(activity.completable), class: "button success", method: "get") %>
+                <%= button_to("Continue", lesson_assignment_path(@lesson, activity.completable), class: "button success", method: "get") %>
               <%- end -%>
             <%- else -%>
               <%= simple_form_for([current_user, @coursework]) do |f| %>
                 <%= f.hidden_field :assignment_id, value: activity.completable.id %>
+                <%= f.hidden_field :lesson_id, value: @lesson.id %>
                 <%= f.submit "Start", class: "large button" %>
               <% end %>
             <%- end -%>
           <%- else -%>
-            <%= button_to("Start", assignment_path(activity.completable), class: "button success", method: "get") %>
+            <%= button_to("Start", lesson_assignment_path(@lesson, activity.completable), class: "button success", method: "get") %>
           <%- end -%>
         </div>
       </div>

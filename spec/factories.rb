@@ -51,6 +51,7 @@ FactoryGirl.define do
   factory :coursework do
     user
     assignment
+    lesson
   end
 
   factory :enrollment do

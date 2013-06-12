@@ -116,12 +116,14 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
   create_table "courseworks", :force => true do |t|
     t.integer  "user_id",                          :null => false
     t.integer  "assignment_id",                    :null => false
+    t.integer  "lesson_id",                        :null => false
     t.boolean  "completed",     :default => false, :null => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end
 
   add_index "courseworks", ["assignment_id"], :name => "index_courseworks_on_assignment_id"
+  add_index "courseworks", ["lesson_id"], :name => "index_courseworks_on_lesson_id"
   add_index "courseworks", ["user_id"], :name => "index_courseworks_on_user_id"
 
   create_table "enrollments", :force => true do |t|
@@ -201,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
   add_foreign_key "challenge_progressions", "users", :name => "challenge_progressions_user_id_fk"
 
   add_foreign_key "courseworks", "assignments", :name => "courseworks_assignment_id_fk"
+  add_foreign_key "courseworks", "lessons", :name => "courseworks_lesson_id_fk"
   add_foreign_key "courseworks", "users", :name => "courseworks_user_id_fk"
 
   add_foreign_key "enrollments", "lessons", :name => "enrollments_lesson_id_fk"
