@@ -5,7 +5,7 @@ feature "User starts assignment", %{
   As a user,
   I want to see relevant learning material when I've started an assignment
   so I can prepare myself for the challenge.
-} do
+  } do
 
   given!(:lesson) { FactoryGirl.create(:lesson) }
   given!(:assignment1) { FactoryGirl.create(:assignment) }
@@ -14,9 +14,6 @@ feature "User starts assignment", %{
   background do
     FactoryGirl.create(:activity, lesson: lesson, completable: assignment1, position: 1)
     FactoryGirl.create(:activity, lesson: lesson, completable: assignment2, position: 2)
-  end
-
-  background do
     visit lesson_path(lesson)
   end
 
@@ -31,7 +28,7 @@ feature "User starts assignment", %{
     expect(page).to have_content(assignment1.instructions)
   end
 
-  let!(:user) { FactoryGirl.create(:user) }
+  given(:user) { FactoryGirl.create(:user) }
 
   scenario "User sees a start button if they haven't started an assignment" do
     Warden.test_mode!
@@ -53,6 +50,5 @@ feature "User starts assignment", %{
     expect(page.first(".assignment")).to have_button("Continue")
     Warden.test_reset!
   end
-
 
 end

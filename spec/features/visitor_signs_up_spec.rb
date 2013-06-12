@@ -4,7 +4,7 @@ feature "Visitor signs up", %{
   As a visitor,
   I want to sign up
   so I can save my progress and receive updates.
-} do
+  } do
 
   scenario "Visitor sees a sign up link on the index" do
     visit root_path

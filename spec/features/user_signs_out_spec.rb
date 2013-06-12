@@ -4,7 +4,7 @@ feature "User signs out", %{
   As a user,
   I want to log out
   so I don't accidentally share my account.
-} do
+  } do
 
   given(:user) { FactoryGirl.create(:user, password: "password", password_confirmation: "password") }
 

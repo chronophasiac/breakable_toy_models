@@ -6,7 +6,7 @@ feature "User explores lessons", %{
   As a user,
   I want to see a list of lessons
   so I can choose what to learn.
-} do
+  } do
 
   scenario "User sees a list of lessons" do
     lesson = FactoryGirl.create(:lesson)

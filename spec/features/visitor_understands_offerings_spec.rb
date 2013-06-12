@@ -4,7 +4,7 @@ feature "Visitor understands offerings", %{
   As a visitor
   I want to understand what the site is offering
   so I can decide whether to use the app.
-} do
+  } do
 
   scenario "Visitor sees a tagline on the main page" do
     visit root_path

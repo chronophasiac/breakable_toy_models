@@ -1,8 +1,18 @@
 <div class="row">
-  <div class="large-12 columns">
+  <div class="large-12 columns panel">
     <h4><%= @assignment.title %></h4>
     <h4 class="subheader"><%= @assignment.summary %></h4>
     <p><%= @assignment.instructions %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="large-2 large-offset-10 columns panel">
+    <%- if user_signed_in? -%>
+      <%= simple_form_for([current_user, @coursework]) do |f| %>
+        <%= f.hidden_field :completed, value: true %>
+        <%= f.submit "Done", class: "button success" %>
+      <% end %>
+    <%- end -%>
   </div>
 </div>
 

@@ -4,7 +4,7 @@ feature "User chooses a lesson", %{
   As a user,
   I want to see an overview of the assignments and challenges in a lesson
   so I can take in what is involved in a lesson with a glance.
-} do
+  } do
 
   given!(:lesson) { FactoryGirl.create(:lesson) }
   given!(:challenge) { FactoryGirl.create(:challenge) }

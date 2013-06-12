@@ -13,4 +13,16 @@ class CourseworksController < InheritedResources::Base
     end
   end
 
+  def update
+    @coursework = current_user.courseworks.find(params[:id])
+
+    respond_to do |format|
+      if @coursework.update_attributes(params[:coursework])
+        format.html { redirect_to(lesson_path()) }
+      else
+        format.html { redirect_to(lessons_path, alert: "An error occurred. Please try again later.") }
+      end
+    end
+  end
+
 end
