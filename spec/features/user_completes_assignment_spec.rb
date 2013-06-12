@@ -37,6 +37,16 @@ feature "User completes assignment", %{
     Warden.test_reset!
   end
 
-  scenario "User does not see a 'done' button if assignment is already completed"
+  scenario "User does not see a 'done' button if assignment is already completed" do
+    within first(".assignment") do
+      click_button("Start")
+    end
+    click_button("Done")
+    within first(".assignment") do
+      click_button("Review")
+    end
+    expect(page).to_not have_button("Done")
+    Warden.test_reset!
+  end
 
 end
