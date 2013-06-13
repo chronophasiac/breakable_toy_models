@@ -1,31 +1,31 @@
 <%- @lesson.activities.descending_position.each do |activity| -%>
   <div class="row">
     <%- if activity.completable_type == "Assignment" -%>
+      <%- assignment = activity.completable -%>
       <div class="large-12 columns assignment panel">
         <div class="large-8 columns">
           <h5 class="assignment-title"><%= "#{activity.completable.title} " %></h5><span class="label">Assignment</span>
-          <h5 class="subheader"><%= activity.completable.summary %></h5>
+          <h5 class="subheader"><%= assignment.summary %></h5>
         </div>
         <div class="large-3 columns">
           <%- if user_signed_in? -%>
-            <%- if current_user.assignments.include?(activity.completable) -%>
-              <%- coursework = current_user.courseworks.where("assignment_id = ?", activity.completable.id).first %> 
+            <%- if current_user.assignments.include?(assignment) -%>
+              <%- coursework = current_user.assignment_progress(assignment) -%>
               <%- if coursework.completed %> 
-                <%= button_to("Review", lesson_assignment_path(@lesson, activity.completable), class: "button secondary", method: "get") %>
+                <%= button_to("Review", lesson_assignment_path(@lesson, assignment), class: "button secondary", method: "get") %>
                 <small><%= "Completed in #{coursework.lesson.title}" unless coursework.lesson == @lesson %></small>
               <%- else -%>
-                <%= button_to("Continue", lesson_assignment_path(@lesson, activity.completable), class: "button success", method: "get") %>
+                <%= button_to("Continue", lesson_assignment_path(@lesson, assignment), class: "button success", method: "get") %>
               <%- end -%>
             <%- else -%>
-              <%= "foo" %>
               <%= simple_form_for([current_user, @coursework]) do |f| %>
-                <%= f.hidden_field :assignment_id, value: activity.completable.id %>
+                <%= f.hidden_field :assignment_id, value: assignment.id %>
                 <%= f.hidden_field :lesson_id, value: @lesson.id %>
                 <%= f.submit "Start", class: "large button" %>
-              <% end %>
+              <%- end -%>
             <%- end -%>
           <%- else -%>
-            <%= button_to("Start", lesson_assignment_path(@lesson, activity.completable), class: "button success", method: "get") %>
+            <%= button_to("Start", lesson_assignment_path(@lesson, assignment), class: "button success", method: "get") %>
           <%- end -%>
         </div>
       </div>

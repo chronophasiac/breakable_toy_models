@@ -1,4 +1,5 @@
 require 'spec_helper'
+include Warden::Test::Helpers
 
 feature "User chooses a lesson", %{
   As a user,
@@ -6,22 +7,26 @@ feature "User chooses a lesson", %{
   so I can take in what is involved in a lesson with a glance.
   } do
 
-  given!(:lesson) { FactoryGirl.create(:lesson) }
-  given!(:challenge) { FactoryGirl.create(:challenge) }
-  given!(:assignment1) { FactoryGirl.create(:assignment) }
-  given!(:assignment2) { FactoryGirl.create(:assignment) }
+  given!(:lesson)       { FactoryGirl.create(:lesson) }
+  given!(:challenge)    { FactoryGirl.create(:challenge) }
+  given!(:assignment1)  { FactoryGirl.create(:assignment) }
+  given!(:assignment2)  { FactoryGirl.create(:assignment) }
+  given(:user)          { FactoryGirl.create(:user) }
 
   background do
     FactoryGirl.create(:activity, lesson: lesson, completable: challenge, position: 3)
     FactoryGirl.create(:activity, lesson: lesson, completable: assignment1, position: 1)
     FactoryGirl.create(:activity, lesson: lesson, completable: assignment2, position: 2)
-  end
-
-  background do
+    Warden.test_mode!
+    login_as(user, scope: :user)
     visit lessons_path
     within first(".lesson-entry") do
       click_button("Start")
     end
+  end
+
+  after :each do
+    Warden.test_reset!
   end
 
   scenario "User selects a lesson" do

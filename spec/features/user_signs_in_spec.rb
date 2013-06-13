@@ -6,6 +6,9 @@ feature "User signs in", %{
   so I can resume where I left off.
   } do
 
+  given(:password) { "password" }
+  given(:user) { FactoryGirl.create(:user, password: password, password_confirmation: password) }
+
   scenario "User sees a sign in link on the index" do
     visit root_path
     expect(page).to have_link("Sign In")
@@ -33,9 +36,6 @@ feature "User signs in", %{
     click_button("Sign in")
     expect(page).to have_content("Invalid email or password")
   end
-
-  given(:password) { "password" }
-  given(:user) { FactoryGirl.create(:user, password: password, password_confirmation: password) }
 
   background do
     visit new_user_session_path

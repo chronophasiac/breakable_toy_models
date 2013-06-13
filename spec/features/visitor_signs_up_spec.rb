@@ -65,5 +65,7 @@ feature "Visitor signs up", %{
     expect(page).to have_content("signed up successfully")
   end
 
+  scenario "Visitor sees a sign up link after doing assignments"
+
   scenario "Visitor sees a sign up link after doing challenges"
 end

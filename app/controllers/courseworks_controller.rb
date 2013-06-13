@@ -1,5 +1,5 @@
 class CourseworksController < InheritedResources::Base
-  actions :create
+  actions :create, :update
 
   def create
     create! do |format|

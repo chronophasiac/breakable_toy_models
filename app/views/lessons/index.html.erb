@@ -14,7 +14,7 @@
                 <%= simple_form_for([current_user, @enrollment]) do |f| %>
                   <%= f.hidden_field :lesson_id, value: lesson.id %>
                   <%= f.submit "Start", class: "large button success" %>
-                <% end %>
+                <%- end -%>
               <%- end -%>
             <%- else -%>
               <%= button_to("Start", lesson_path(lesson), class: "large button success", method: "get") %>

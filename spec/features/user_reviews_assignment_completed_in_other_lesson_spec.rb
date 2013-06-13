@@ -24,16 +24,18 @@ feature "User reviews assignment completed in other lesson", %{
     click_button("Done")
   end
 
+  after :each do
+    Warden.test_reset!
+  end
+
   scenario "User sees a 'Review' button on assignments if they've already completed that assignment in another lesson" do
     visit lesson_path(lesson2)
     expect(page.first(".assignment")).to have_button("Review")
-    Warden.test_reset!
   end
 
   scenario "User sees the title of the lesson in which they originally completed the assignment" do
     visit lesson_path(lesson2)
     expect(page.first(".assignment")).to have_content("Completed in #{lesson1.title}")
-    Warden.test_reset!
   end
 
   scenario "User does not see the title of the lesson if they are in the originally completed lesson" do

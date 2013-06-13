@@ -18,18 +18,13 @@ FactoryGirl.define do
     instructions  "These are card instructions"
     problem       "This is a card problem"
     solution_type "position"
+
     before(:create) do |card|
       card.assignments << FactoryGirl.create(:assignment)
     end
-  end
 
-  factory :card_string_solution, class: Card do
-    title         "This is a card title"
-    instructions  "These are card instructions"
-    problem       "This is a card problem"
-    solution_type "string"
-    before(:create) do |card|
-      card.assignments << FactoryGirl.create(:assignment)
+    factory :card_string_solution, class: Card do
+      solution_type "string"
     end
   end
 

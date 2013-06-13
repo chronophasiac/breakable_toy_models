@@ -20,6 +20,10 @@ feature "User starts assignment", %{
     visit lesson_path(lesson)
   end
 
+  after :each do
+    Warden.test_reset!
+  end
+
   scenario "User sees a start button on an assignment" do
     expect(page.first(".assignment")).to have_button("Start")
   end
@@ -33,20 +37,16 @@ feature "User starts assignment", %{
 
 
   scenario "User sees a start button if they haven't started an assignment" do
-    visit lesson_path(lesson)
     expect(page.first(".assignment")).to have_button("Start")
-    Warden.test_reset!
   end
 
   scenario "User sees a continue button if they have started an assignment" do
-    visit lesson_path(lesson)
     within first(".assignment") do
       click_button("Start")
     end
     visit lesson_path(lesson)
     expect(user.assignments).to include(assignment1)
     expect(page.first(".assignment")).to have_button("Continue")
-    Warden.test_reset!
   end
 
 end

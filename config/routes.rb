@@ -3,8 +3,8 @@ BreakableToyModels::Application.routes.draw do
   devise_for :users
 
   resources :users do
-    resources :enrollments
-    resources :courseworks
+    resources :enrollments, only: [:create]
+    resources :courseworks, only: [:create, :update]
   end
 
   resources :lessons, only: [:index, :show] do
