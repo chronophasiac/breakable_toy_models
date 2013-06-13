@@ -19,7 +19,9 @@ feature "User chooses a lesson", %{
 
   background do
     visit lessons_path
-    click_link(lesson.title)
+    within first(".lesson-entry") do
+      click_button("Start")
+    end
   end
 
   scenario "User selects a lesson" do

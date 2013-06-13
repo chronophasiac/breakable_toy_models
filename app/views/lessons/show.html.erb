@@ -9,12 +9,15 @@
         <div class="large-3 columns">
           <%- if user_signed_in? -%>
             <%- if current_user.assignments.include?(activity.completable) -%>
-              <%- if current_user.courseworks.where("assignment_id = ?", activity.completable.id).first.completed %> 
+              <%- coursework = current_user.courseworks.where("assignment_id = ?", activity.completable.id).first %> 
+              <%- if coursework.completed %> 
                 <%= button_to("Review", lesson_assignment_path(@lesson, activity.completable), class: "button secondary", method: "get") %>
+                <small><%= "Completed in #{coursework.lesson.title}" unless coursework.lesson == @lesson %></small>
               <%- else -%>
                 <%= button_to("Continue", lesson_assignment_path(@lesson, activity.completable), class: "button success", method: "get") %>
               <%- end -%>
             <%- else -%>
+              <%= "foo" %>
               <%= simple_form_for([current_user, @coursework]) do |f| %>
                 <%= f.hidden_field :assignment_id, value: activity.completable.id %>
                 <%= f.hidden_field :lesson_id, value: @lesson.id %>
@@ -33,3 +36,8 @@
     <%- end -%>
   </div>
 <%- end -%>
+<div class="row">
+  <div class="large-2 columns panel">
+    <%= link_to("Back to lessons", lessons_path, class: "button") %>
+  </div>
+</div>

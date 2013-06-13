@@ -7,13 +7,16 @@ feature "User starts assignment", %{
   so I can prepare myself for the challenge.
   } do
 
-  given!(:lesson) { FactoryGirl.create(:lesson) }
-  given!(:assignment1) { FactoryGirl.create(:assignment) }
-  given!(:assignment2) { FactoryGirl.create(:assignment) }
+  given!(:lesson)       { FactoryGirl.create(:lesson) }
+  given!(:assignment1)  { FactoryGirl.create(:assignment) }
+  given!(:assignment2)  { FactoryGirl.create(:assignment) }
+  given(:user)          { FactoryGirl.create(:user) }
 
   background do
     FactoryGirl.create(:activity, lesson: lesson, completable: assignment1, position: 1)
     FactoryGirl.create(:activity, lesson: lesson, completable: assignment2, position: 2)
+    Warden.test_mode!
+    login_as(user, scope: :user)
     visit lesson_path(lesson)
   end
 
@@ -28,19 +31,14 @@ feature "User starts assignment", %{
     expect(page).to have_content(assignment1.instructions)
   end
 
-  given(:user) { FactoryGirl.create(:user) }
 
   scenario "User sees a start button if they haven't started an assignment" do
-    Warden.test_mode!
-    login_as(user, scope: :user)
     visit lesson_path(lesson)
     expect(page.first(".assignment")).to have_button("Start")
     Warden.test_reset!
   end
 
   scenario "User sees a continue button if they have started an assignment" do
-    Warden.test_mode!
-    login_as(user, scope: :user)
     visit lesson_path(lesson)
     within first(".assignment") do
       click_button("Start")
