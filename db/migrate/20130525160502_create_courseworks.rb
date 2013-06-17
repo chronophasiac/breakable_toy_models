@@ -12,7 +12,7 @@ class CreateCourseworks < ActiveRecord::Migration
       t.timestamps
     end
     add_index :courseworks, :user_id
-    add_index :courseworks, :assignment_id
+    add_index :courseworks, [:assignment_id, :user_id], unique: true
     add_index :courseworks, :lesson_id
   end
 end

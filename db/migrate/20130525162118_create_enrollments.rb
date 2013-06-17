@@ -10,6 +10,6 @@ class CreateEnrollments < ActiveRecord::Migration
       t.timestamps
     end
     add_index :enrollments, :user_id
-    add_index :enrollments, :lesson_id
+    add_index :enrollments, [:lesson_id, :user_id], unique: true
   end
 end

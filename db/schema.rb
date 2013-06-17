@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.datetime "updated_at",                       :null => false
   end
 
-  add_index "courseworks", ["assignment_id"], :name => "index_courseworks_on_assignment_id"
+  add_index "courseworks", ["assignment_id", "user_id"], :name => "index_courseworks_on_assignment_id_and_user_id", :unique => true
   add_index "courseworks", ["lesson_id"], :name => "index_courseworks_on_lesson_id"
   add_index "courseworks", ["user_id"], :name => "index_courseworks_on_user_id"
 
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(:version => 20130610174505) do
     t.datetime "updated_at",       :null => false
   end
 
-  add_index "enrollments", ["lesson_id"], :name => "index_enrollments_on_lesson_id"
+  add_index "enrollments", ["lesson_id", "user_id"], :name => "index_enrollments_on_lesson_id_and_user_id", :unique => true
   add_index "enrollments", ["user_id"], :name => "index_enrollments_on_user_id"
 
   create_table "lessons", :force => true do |t|
