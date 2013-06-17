@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-BreakableToyModels::Application.load_tasks
+Memworks::Application.load_tasks

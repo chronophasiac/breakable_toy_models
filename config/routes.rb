@@ -1,4 +1,4 @@
-BreakableToyModels::Application.routes.draw do
+Memworks::Application.routes.draw do
 
   devise_for :users
 

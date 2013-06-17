@@ -11,7 +11,7 @@
           <%- if user_signed_in? -%>
             <%- if current_user.assignments.include?(assignment) -%>
               <%- coursework = current_user.assignment_progress(assignment) -%>
-              <%- if coursework.completed %> 
+              <%- if coursework.completed? %> 
                 <%= button_to("Review", lesson_assignment_path(@lesson, assignment), class: "button secondary", method: "get") %>
                 <small><%= "Completed in #{coursework.lesson.title}" unless coursework.lesson == @lesson %></small>
               <%- else -%>
