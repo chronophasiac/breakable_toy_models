@@ -61,8 +61,10 @@ feature "Visitor signs up", %{
     fill_in("user_password", with: "password")
     fill_in("user_password_confirmation", with: "password")
     click_button("Sign up")
+    confirmation_link = "/users/confirmation?confirmation_token=#{User.last.confirmation_token}"
+    visit confirmation_link
     expect(User.count).to eql(prev_user_count + 1)
-    expect(page).to have_content("signed up successfully")
+    expect(page).to have_content("You are now signed in")
   end
 
   scenario "Visitor sees a sign up link after doing assignments"

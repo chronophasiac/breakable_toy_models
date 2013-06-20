@@ -47,6 +47,9 @@ feature "User manages account", %{
     fill_in("user_current_password", with: password)
     click_button("Update")
     user.reload
+    confirmation_link = "/users/confirmation?confirmation_token=#{user.confirmation_token}"
+    visit confirmation_link
+    user.reload
     expect(user.email).to eql(new_email)
   end
 
@@ -62,7 +65,7 @@ feature "User manages account", %{
     expect(user.encrypted_password).to_not eql(prev_encrypted_password)
   end
 
-  scenario "User can delete their accountChange password/email" do
+  scenario "User can delete their account" do
     click_link("Manage Account")
     fill_in("user_current_password", with: password)
     click_link("Cancel my account")

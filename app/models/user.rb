@@ -49,7 +49,8 @@ class User < ActiveRecord::Base
             inverse_of: :users
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable
 
   ROLES = %w[admin student]
 

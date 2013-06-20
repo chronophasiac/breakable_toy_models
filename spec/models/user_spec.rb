@@ -23,7 +23,6 @@ require 'spec_helper'
 
 describe User do
   it { should validate_presence_of(:role) }
-  it { should validate_uniqueness_of(:username) }
 
   it { should allow_value("student").for(:role) }
   it { should allow_value("admin").for(:role) }
@@ -47,5 +46,12 @@ describe User do
     FactoryGirl.create(:user)
     other_user = FactoryGirl.create(:user)
     expect(other_user).to be_valid
+  end
+
+  it "validates uniqueness of username" do
+    FactoryGirl.create(:user, username: "duplicate")
+    duplicate_user = FactoryGirl.build(:user, username: "duplicate")
+    expect(duplicate_user.save).to be_false
+    expect(duplicate_user.errors[:username]).to include("has already been taken")
   end
 end
