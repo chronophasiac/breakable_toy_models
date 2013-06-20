@@ -54,13 +54,13 @@ class User < ActiveRecord::Base
   ROLES = %w[admin student]
 
   validates_presence_of  :role
-  validates_inclusion_of :role, :in => ROLES
+  validates_inclusion_of :role, in: ROLES
 
   validates_uniqueness_of :username, allow_blank: true
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   def assignment_progress(assignment)
-    courseworks.where("assignment_id = ?", assignment.id).first
+    courseworks.where(assignment_id: assignment.id).first
   end
 end

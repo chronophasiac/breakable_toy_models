@@ -14,7 +14,7 @@ class CourseworksController < InheritedResources::Base
   end
 
   def update
-    @coursework = current_user.courseworks.find(params[:id])
+    @coursework = current_user.courseworks.where(id: params[:id]).first
 
     respond_to do |format|
       if @coursework.update_attributes(params[:coursework])
