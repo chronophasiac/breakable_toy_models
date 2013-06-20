@@ -13,12 +13,10 @@ require 'spec_helper'
 describe Challenge do
   it { should validate_presence_of(:title) }
 
-  it { should have_many(:challenge_progressions) }
+  it { should have_many(:challenge_progressions).dependent(:destroy) }
   it { should have_many(:users) }
-
-  it { should have_many(:activities) }
+  it { should have_many(:activities).dependent(:destroy) }
   it { should have_many(:lessons) }
-
-  it { should have_many(:challenge_decks) }
+  it { should have_many(:challenge_decks).dependent(:destroy) }
   it { should have_many(:cards) }
 end

@@ -10,7 +10,8 @@
 
 class Challenge < ActiveRecord::Base
   has_many  :challenge_progressions,
-            inverse_of: :challenge
+            inverse_of: :challenge,
+            dependent: :destroy
   has_many  :users,
             through: :challenge_progressions,
             inverse_of: :challenges
@@ -20,7 +21,8 @@ class Challenge < ActiveRecord::Base
   has_many  :lessons,
             through: :activities
   has_many  :challenge_decks,
-            inverse_of: :challenge
+            inverse_of: :challenge,
+            dependent: :destroy
   has_many  :cards,
             through: :challenge_decks,
             inverse_of: :challenges

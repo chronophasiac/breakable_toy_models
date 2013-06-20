@@ -19,7 +19,8 @@ class Card < ActiveRecord::Base
             inverse_of: :card,
             dependent: :destroy
   has_many  :card_submissions,
-            inverse_of: :card
+            inverse_of: :card,
+            dependent: :destroy
   has_many  :users,
             through: :card_submissions,
             inverse_of: :cards

@@ -28,18 +28,18 @@ describe User do
   it { should allow_value("admin").for(:role) }
   it { should_not allow_value("foobar").for(:role) }
 
-  it { should have_many(:card_submissions) }
+  it { should have_many(:card_submissions).dependent(:destroy) }
   it { should have_many(:cards) }
 
-  it { should have_many(:courseworks) }
+  it { should have_many(:courseworks).dependent(:destroy) }
   it { should have_many(:assignments) }
 
-  it { should have_many(:assignment_ratings) }
+  it { should have_many(:assignment_ratings).dependent(:destroy) }
 
-  it { should have_many(:enrollments) }
+  it { should have_many(:enrollments).dependent(:destroy) }
   it { should have_many(:lessons) }
 
-  it { should have_many(:challenge_progressions) }
+  it { should have_many(:challenge_progressions).dependent(:destroy) }
   it { should have_many(:challenges) }
 
   it "allows multiple users to be saved" do

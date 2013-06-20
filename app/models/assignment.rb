@@ -20,12 +20,14 @@ class Assignment < ActiveRecord::Base
             through: :card_prerequisites,
             inverse_of: :assignments
   has_many  :courseworks,
-            inverse_of: :assignment
+            inverse_of: :assignment,
+            dependent: :destroy
   has_many  :users,
             through: :courseworks,
             inverse_of: :assignments
   has_many  :assignment_ratings,
-            inverse_of: :assignment
+            inverse_of: :assignment,
+            dependent: :destroy
   has_many  :activities,
             as: :completable,
             dependent: :destroy

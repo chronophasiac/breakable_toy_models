@@ -20,11 +20,11 @@ describe Card do
   it { should validate_presence_of(:assignments) }
   it { should validate_presence_of(:solution_type) }
 
-  it { should have_many(:solution_positions) }
-  it { should have_many(:solution_strings) }
-  it { should have_many(:card_submissions) }
+  it { should have_many(:solution_positions).dependent(:destroy) }
+  it { should have_many(:solution_strings).dependent(:destroy) }
+  it { should have_many(:card_submissions).dependent(:destroy) }
   it { should have_many(:users) }
-  it { should have_many(:card_prerequisites) }
+  it { should have_many(:card_prerequisites).dependent(:destroy) }
   it { should have_many(:assignments) }
   it { should have_many(:challenge_decks) }
   it { should have_many(:challenges) }

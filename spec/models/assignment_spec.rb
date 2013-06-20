@@ -28,15 +28,15 @@ describe Assignment do
   it { should allow_value("audio").for(:assignment_type) }
   it { should_not allow_value("foo").for(:assignment_type) }
 
-  it { should have_many(:card_prerequisites) }
+  it { should have_many(:card_prerequisites).dependent(:destroy) }
   it { should have_many(:cards) }
 
-  it { should have_many(:courseworks) }
+  it { should have_many(:courseworks).dependent(:destroy) }
   it { should have_many(:users) }
 
-  it { should have_many(:assignment_ratings) }
+  it { should have_many(:assignment_ratings).dependent(:destroy) }
   
-  it { should have_many(:activities) }
+  it { should have_many(:activities).dependent(:destroy) }
   it { should have_many(:lessons) }
 
   context 'with valid attributes' do
