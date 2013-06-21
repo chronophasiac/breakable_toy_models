@@ -26,5 +26,5 @@ class Activity < ActiveRecord::Base
 
   validates_uniqueness_of :position, scope: :lesson_id
 
-  attr_accessible :completable_id, :completable_type, :lesson_id, :position
+  attr_accessible :completable_id, :position
 end

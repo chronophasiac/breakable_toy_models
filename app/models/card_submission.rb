@@ -21,5 +21,5 @@ class CardSubmission < ActiveRecord::Base
 
   validates_presence_of :user, :card
 
-  attr_accessible :card_id, :helpful, :user_id
+  attr_accessible :card_id, :helpful
 end

@@ -20,5 +20,5 @@ class ChallengeProgression < ActiveRecord::Base
 
   validates :score, numericality: { only_integer: true, greater_than_or_equal_to: 0}
 
-  attr_accessible :challenge_id, :score, :user_id
+  attr_accessible :challenge_id, :score
 end

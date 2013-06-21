@@ -22,5 +22,5 @@ class Coursework < ActiveRecord::Base
 
   validates_uniqueness_of :assignment_id, scope: :user_id
 
-  attr_accessible :assignment_id, :completed, :user_id, :lesson_id
+  attr_accessible :assignment_id, :completed, :lesson_id
 end

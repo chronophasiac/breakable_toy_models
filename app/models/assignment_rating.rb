@@ -19,5 +19,5 @@ class AssignmentRating < ActiveRecord::Base
 
   validates_presence_of :helpful, :user, :assignment
 
-  attr_accessible :assignment_id, :helpful, :user_id
+  attr_accessible :helpful
 end

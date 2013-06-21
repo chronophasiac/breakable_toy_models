@@ -16,6 +16,4 @@ class ChallengeDeck < ActiveRecord::Base
               inverse_of: :challenge_decks
 
   validates_presence_of :card, :challenge
-
-  attr_accessible :card_id, :challenge_id
 end

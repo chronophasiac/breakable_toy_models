@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :username, allow_blank: true
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username
 
   def assignment_progress(assignment)
     courseworks.where(assignment_id: assignment.id).first

@@ -21,5 +21,5 @@ class CardSubmissionLog < ActiveRecord::Base
 
   validates :time_taken, numericality: { only_integer: true, greater_than: 0 }
 
-  attr_accessible :correct, :card_submission_id, :rated_difficulty, :time_taken
+  attr_accessible :correct, :rated_difficulty, :time_taken
 end

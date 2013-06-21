@@ -17,5 +17,5 @@ class CardPrerequisite < ActiveRecord::Base
 
   validates_presence_of :card, :assignment
 
-  attr_accessible :assignment_id, :card_id
+  attr_accessible :assignment_id
 end

@@ -22,5 +22,5 @@ class Enrollment < ActiveRecord::Base
 
   validates_uniqueness_of :lesson_id, scope: :user_id
 
-  attr_accessible :last_accessed_at, :lesson_id, :user_id
+  attr_accessible :last_accessed_at, :lesson_id
 end
