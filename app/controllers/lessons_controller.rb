@@ -1,4 +1,5 @@
-class LessonsController < InheritedResources::Base
+class LessonsController < ApplicationController
+  inherit_resources
   actions :index, :show
 
   def index

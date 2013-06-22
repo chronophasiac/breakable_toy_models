@@ -42,5 +42,5 @@ class Card < ActiveRecord::Base
 
   validates_inclusion_of :solution_type, :in => SOLUTION_TYPES
 
-  attr_accessible :instructions, :problem, :title
+  attr_accessible :instructions, :problem, :solution_type, :title
 end

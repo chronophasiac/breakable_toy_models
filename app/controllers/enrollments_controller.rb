@@ -1,4 +1,5 @@
-class EnrollmentsController < InheritedResources::Base
+class EnrollmentsController < ApplicationController
+  inherit_resources
   actions :create
 
   def create

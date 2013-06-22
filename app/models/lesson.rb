@@ -25,7 +25,11 @@ class Lesson < ActiveRecord::Base
 
   validates_presence_of :title, :summary
 
-  scope :ascending_by_title, order("title ASC")
-
   attr_accessible :summary, :title
+
+  class << self
+    def ascending_by_title
+      order("title ASC")
+    end
+  end
 end

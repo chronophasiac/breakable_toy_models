@@ -1,6 +1,17 @@
-class CourseworksController < InheritedResources::Base
+class CourseworksController < ApplicationController
+  inherit_resources
   actions :create, :update
 
+  # TODO /courseworks/<id>/completions
+  # def create
+  #   @coursework = Coursework.find(params[:coursework_id])
+  #   if @coursework.complete
+
+  #   else
+
+  #   end
+  # end
+  # nest index under users, others do not nest
   def create
     create! do |format|
       @coursework = current_user.courseworks.new(params[:coursework])
