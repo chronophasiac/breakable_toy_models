@@ -1,6 +1,7 @@
 Memworks::Application.routes.draw do
 
   devise_for :users
+  mount RailsAdmin::Engine => '/superadmin', :as => 'rails_admin'
 
   resources :users do
     resources :enrollments, only: [:create]

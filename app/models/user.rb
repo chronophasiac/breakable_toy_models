@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  ROLES = %w[admin student]
+  ROLES = %w[superadmin student]
 
   validates_presence_of  :role
   validates_inclusion_of :role, in: ROLES
@@ -63,5 +63,9 @@ class User < ActiveRecord::Base
 
   def assignment_progress(assignment)
     courseworks.where(assignment_id: assignment.id).first
+  end
+
+  def superadmin?
+    role == "superadmin"
   end
 end

@@ -10,6 +10,8 @@ gem 'validates_timeliness'
 gem 'thin'
 gem 'simple_form'
 gem 'inherited_resources'
+gem 'cancan'
+gem 'rails_admin'
 
 group :development do
   gem 'annotate'
@@ -17,11 +19,15 @@ group :development do
   gem 'guard-livereload'
   gem 'zeus'
   gem 'launchy'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'debugger'
+  gem 'pry-rails'
+  gem 'pry-debugger'
+  gem 'pry-stack_explorer'
 end
 
 group :test do

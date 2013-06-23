@@ -24,9 +24,10 @@ require 'spec_helper'
 describe User do
   it { should validate_presence_of(:role) }
 
-  it { should allow_value("student").for(:role) }
-  it { should allow_value("admin").for(:role) }
-  it { should_not allow_value("foobar").for(:role) }
+  User::ROLES.each do |role|
+    it { should allow_value(role).for(:role) }
+  end
+  it { should_not allow_value("notarole").for(:role) }
 
   it { should have_many(:card_submissions).dependent(:destroy) }
   it { should have_many(:cards) }
@@ -53,5 +54,21 @@ describe User do
     duplicate_user = FactoryGirl.build(:user, username: "duplicate")
     expect(duplicate_user.save).to be_false
     expect(duplicate_user.errors[:username]).to include("has already been taken")
+  end
+
+  context "when student" do
+    let(:student) { FactoryGirl.create(:user) }
+
+    it "returns the correct disposition of the user" do
+      expect(student.superadmin?).to be_false
+    end
+  end
+
+  context "when superadmin" do
+    let(:superadmin) { FactoryGirl.create(:superadmin) }
+
+    it "returns the correct disposition of the user" do
+      expect(superadmin.superadmin?).to be_true
+    end
   end
 end

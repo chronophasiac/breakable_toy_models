@@ -76,6 +76,9 @@ FactoryGirl.define do
     password              "123qweasd"
     password_confirmation "123qweasd"
     confirmed_at          DateTime.now
+    factory :superadmin do
+      role                "superadmin"
+    end
   end
 
 end
