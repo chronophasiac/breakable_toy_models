@@ -6,7 +6,6 @@ feature "User signs in as super-admin", %{
   so I can manage all data on the site
   } do
 
-  given!(:user)         { FactoryGirl.create(:user) }
   given!(:superadmin)   { FactoryGirl.create(:superadmin) }
 
   background do
