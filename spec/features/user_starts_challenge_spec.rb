@@ -35,21 +35,21 @@ feature "User starts challenge", %{
     expect(page).to have_content(challenge.title)
   end
 
-  scenario "User sees a card with a title" do
+  scenario "User sees a card with a title", js: true do
     within first(".challenge") do
       click_button("Start")
     end
     expect(page).to have_content(card.title)
   end
 
-  scenario "User sees a card with instructions on how to submit a response" do
+  scenario "User sees a card with instructions on how to submit a response", js: true do
     within first(".challenge") do
       click_button("Start")
     end
     expect(page).to have_content("Instructions: #{card.instructions}")
   end
 
-  scenario "User sees a card with a problem" do
+  scenario "User sees a card with a problem", js: true do
     within first(".challenge") do
       click_button("Start")
     end

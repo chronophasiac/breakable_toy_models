@@ -39,6 +39,7 @@ group :test do
   gem 'fivemat'
   gem 'show_me_the_cookies'
   gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 group :assets do

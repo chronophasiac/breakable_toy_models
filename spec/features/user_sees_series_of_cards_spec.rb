@@ -31,11 +31,11 @@ feature "User sees a series of cards", %{
     Warden.test_reset!
   end
 
-  scenario "User sees the current card content" do
+  scenario "User sees the current card content", js: true do
     expect(page).to have_content(card1.title)
   end
 
-  scenario "User does not see the next card content" do
+  scenario "User does not see the next card content", js: true do
     expect(page).to_not have_content(card2.title)
   end
 
