@@ -13,6 +13,7 @@ gem 'inherited_resources'
 gem 'cancan'
 gem 'rails_admin'
 gem 'active_model_serializers'
+gem 'backbone-on-rails'
 
 group :development do
   gem 'annotate'
@@ -45,6 +46,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation'
+  gem 'handlebars_assets'
 end
 
 gem 'jquery-rails'
