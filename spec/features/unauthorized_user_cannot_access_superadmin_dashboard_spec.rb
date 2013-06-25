@@ -6,9 +6,10 @@ feature "Unauthorized user cannot access superadmin dashboard", %{
   so I cannot tamper with the site.
   } do
 
-  given!(:user) { FactoryGirl.create(:user) }
+  given(:user) { FactoryGirl.create(:user) }
 
   background do
+    User.destroy_all
     visit new_user_session_path
     fill_in("Email", with: user.email)
     fill_in("Password", with: user.password)

@@ -12,6 +12,7 @@ gem 'simple_form'
 gem 'inherited_resources'
 gem 'cancan'
 gem 'rails_admin'
+gem 'active_model_serializers'
 
 group :development do
   gem 'annotate'
