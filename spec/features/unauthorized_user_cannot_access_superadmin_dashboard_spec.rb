@@ -21,7 +21,6 @@ feature "Unauthorized user cannot access superadmin dashboard", %{
 
   scenario "User sees an 'Unauthorized' message they attempt to access the Superadmin dashboard" do
     visit rails_admin_path
-    expect(page)
     expect(page).to_not have_css("h1", text: "Site administration")
     expect(page).to have_content("You are not authorized to access this page")
   end

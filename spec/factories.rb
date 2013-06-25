@@ -21,10 +21,19 @@ FactoryGirl.define do
 
     before(:create) do |card|
       card.assignments << FactoryGirl.create(:assignment)
+      card.solution_strings << FactoryGirl.create(:solution_string, card: card)
     end
+  end
 
-    factory :card_string_solution, class: Card do
-      solution_type "string"
+  factory :card_string_solution, class: Card do
+    title         "This is a card title"
+    instructions  "These are card instructions"
+    problem       "This is a card problem"
+    solution_type "string"
+
+    before(:create) do |card|
+      card.assignments << FactoryGirl.create(:assignment)
+      card.solution_positions << FactoryGirl.create(:solution_position, card: card)
     end
   end
 
@@ -41,6 +50,11 @@ FactoryGirl.define do
 
   factory :challenge do
     title         "This is a challenge title"
+  end
+
+  factory :challenge_deck do
+    association :card, factory: :card_position_solution
+    challenge
   end
 
   factory :coursework do

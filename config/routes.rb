@@ -10,6 +10,7 @@ Memworks::Application.routes.draw do
 
   resources :lessons, only: [:index, :show] do
     resources :assignments, only: [:show]
+    resources :challenges, only: [:show]
   end
 
   root to: 'main_pages#home'

@@ -13,7 +13,10 @@ module Seeders
           lessons << lesson
           FactoryGirl.create(:activity, lesson: lesson)
           FactoryGirl.create(:activity, lesson: lesson, position: 2)
-          FactoryGirl.create(:activity, lesson: lesson, position: 3, completable: FactoryGirl.create(:challenge))
+          activity = FactoryGirl.create(:activity, lesson: lesson, position: 3, completable: FactoryGirl.create(:challenge))
+          5.times do
+            FactoryGirl.create(:challenge_deck, challenge: activity.completable)
+          end
           FactoryGirl.create(:activity, lesson: lesson, position: 4, completable: shared_assignment)
         end
         lessons

@@ -17,15 +17,27 @@ describe Seeders::Lessons do
   end
 
   it 'seeds associated assignments' do
+    assignments_count = Assignment.count
     lessons = seeder.seed
     assignments = lessons.first.activities.where(completable_type: "Assignment")
+    expect(Assignment.count).to be >(assignments_count)
     expect(assignments.count).to be >(0)
   end
 
   it 'seeds associated challenges' do
+    challenges_count = Challenge.count
     lessons = seeder.seed
     challenges = lessons.first.activities.where(completable_type: "Challenge")
+    expect(Challenge.count).to be >(challenges_count)
     expect(challenges.count).to be >(0)
+  end
+
+  it 'seeds cards associated with challenges' do
+    cards_count = Card.count
+    lessons = seeder.seed
+    cards = lessons.first.activities.where(completable_type: "Challenge").first.completable.cards
+    expect(Card.count).to be >(cards_count)
+    expect(cards.count).to be >(0)
   end
 
   it 'can be run multiple times without duplication' do

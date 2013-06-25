@@ -30,8 +30,14 @@
         </div>
       </div>
     <%- elsif activity.completable_type == "Challenge" -%>
+      <%- challenge = activity.completable -%>
       <div class="large-12 columns challenge panel callout">
-        <h5 class="challenge-title"><%= "#{activity.completable.title} " %></h5><span class="secondary label">Challenge</span> 
+        <div class="large-8 columns">
+          <h5 class="challenge-title"><%= "#{challenge.title} " %></h5><span class="secondary label">Challenge</span> 
+        </div>
+        <div class="large-3 columns">
+          <%= button_to("Start", lesson_challenge_path(@lesson, challenge), class: "large button success", method: "get") %>
+        </div>
       </div>
     <%- end -%>
   </div>
