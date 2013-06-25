@@ -1,9 +1,10 @@
-class Memworks.Views.ChallengesIndex extends Backbone.View
+class Memworks.Views.ChallengesShow extends Backbone.View
 
-  template: Handlebars.compile['challenges/show']
-
-  render: ->
-    $(@el).html(template)
+  template: HandlebarsTemplates['challenges/show']
 
   initialize: ->
-    alert("Blah!")
+    @model.on('change', @render, this)
+
+  render: ->
+    $(@el).html(@template(model: @model))
+    this
