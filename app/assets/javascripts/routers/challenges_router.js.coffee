@@ -4,11 +4,10 @@ class Memworks.Routers.Challenges extends Backbone.Router
     'lessons/:lessonID/challenges/:challengeID': 'show'
 
   initialize: =>
-    @model = new Memworks.Models.Challenge()
+    @collection = new Memworks.Collections.Cards()
 
-  show: (lessonID, challengeID) =>
-    @model.lessonID = lessonID
-    @model.challengeID = challengeID
-    @model.fetch()
-    view = new Memworks.Views.ChallengesShow(model: @model)
+  show: (challengeID) =>
+    @collection.challengeID = challengeID
+    @collection.fetch()
+    view = new Memworks.Views.ChallengesShow(collection: @collection)
     $('.card-container').html(view.render().el)

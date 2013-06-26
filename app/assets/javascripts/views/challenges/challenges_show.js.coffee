@@ -3,8 +3,8 @@ class Memworks.Views.ChallengesShow extends Backbone.View
   template: HandlebarsTemplates['challenges/show']
 
   initialize: ->
-    @model.on('change', @render, this)
+    @collection.on('sync', @render)
 
-  render: ->
-    $(@el).html(@template(model: @model))
+  render: =>
+    $(@el).html(@template(cards: @collection.toJSON()))
     this

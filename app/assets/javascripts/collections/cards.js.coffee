@@ -1,6 +1,6 @@
 class Memworks.Collections.Cards extends Backbone.Collection
 
-  initialize: (model, options={}) ->
+  initialize: (options={}) ->
     @challengeID = options.challengeID || null
 
   url: ->
