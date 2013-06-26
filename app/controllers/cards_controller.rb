@@ -5,7 +5,7 @@ class CardsController < ApplicationController
   def index
     if params[:challenge_id]
       challenge = Challenge.find(params[:challenge_id])
-      respond_with challenge.cards.all
+      respond_with challenge.cards.all, root: false
     else
       respond_with Card.all
     end
