@@ -26,7 +26,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', "~> 2.14.0.rc1"
   gem 'pry-rails'
   gem 'pry-debugger'
   gem 'pry-stack_explorer'
