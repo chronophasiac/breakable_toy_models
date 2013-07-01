@@ -13,6 +13,10 @@ Memworks::Application.routes.draw do
     resources :challenges, only: [:show]
   end
 
+  resources :challenges, only: [:index] do
+    resources :cards, only: [:index]
+  end
+
   root to: 'main_pages#home'
   match '/about' => 'main_pages#about'
 

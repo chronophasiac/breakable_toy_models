@@ -12,6 +12,8 @@ gem 'simple_form'
 gem 'inherited_resources'
 gem 'cancan'
 gem 'rails_admin'
+gem 'active_model_serializers'
+gem 'backbone-on-rails'
 
 group :development do
   gem 'annotate'
@@ -24,7 +26,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', "~> 2.14.0.rc1"
   gem 'pry-rails'
   gem 'pry-debugger'
   gem 'pry-stack_explorer'
@@ -37,6 +39,7 @@ group :test do
   gem 'fivemat'
   gem 'show_me_the_cookies'
   gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 group :assets do
@@ -44,6 +47,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation'
+  gem 'handlebars_assets'
 end
 
 gem 'jquery-rails'
