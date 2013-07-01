@@ -39,8 +39,18 @@ feature "User sees a series of cards", %{
     expect(page).to_not have_content(card2.title)
   end
 
-  scenario "User advances to the next card"
-  scenario "User sees the next card"
-  scenario "User does not see the previous card"
+  scenario "User advances to the next card", js: true do
+    expect(page).to have_button("Next")
+  end
+
+  scenario "User sees the next card", js: true do
+    click_button("Next")
+    expect(page).to_not have_content(card1.title)
+  end
+
+  scenario "User does not see the previous card", js: true do
+    click_button("Next")
+    expect(page).to_not have_content(card1.title)
+  end
 
 end

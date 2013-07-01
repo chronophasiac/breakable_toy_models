@@ -8,6 +8,8 @@ class Memworks.Routers.Challenges extends Backbone.Router
 
   show: (challengeID) =>
     @collection.challengeID = challengeID
-    @collection.fetch()
-    view = new Memworks.Views.ChallengesShow(collection: @collection)
-    $('.card-container').html(view.render().el)
+    @collection.fetch({
+      success: =>
+        view = new Memworks.Views.CardsShow(collection: @collection)
+        $('.card-container').html(view.render().el)
+      })
