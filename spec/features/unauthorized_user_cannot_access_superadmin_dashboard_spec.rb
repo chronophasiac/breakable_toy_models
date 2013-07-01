@@ -9,13 +9,15 @@ feature "Unauthorized user cannot access superadmin dashboard", %{
   given!(:user) { FactoryGirl.create(:user) }
 
   background do
+    user.role = 'student'
+    user.save!
     visit new_user_session_path
     fill_in("Email", with: user.email)
     fill_in("Password", with: user.password)
     click_button("Sign in")
   end
 
-  scenario "User does sees a 'Superadmin' link" do
+  scenario "User does not see a 'Superadmin' link" do
     expect(page).to_not have_link("Superadmin")
   end
 

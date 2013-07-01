@@ -5,9 +5,9 @@ class Ability
     user ||= User.new
     
     if user.superadmin?
-        can :manage, :all
-        can :access, :rails_admin
-        can :dashboard
+      can :manage, :all
+      can :access, :rails_admin
+      can :dashboard
     end
 
   end

@@ -9,9 +9,9 @@ feature "User sees a series of cards", %{
 
   given!(:lesson)     { FactoryGirl.create(:lesson) }
   given!(:challenge)  { FactoryGirl.create(:challenge)}
-  given!(:card1)       { FactoryGirl.create(:card_string_solution) }
-  given!(:card2)       { FactoryGirl.create(:card_string_solution) }
-  given!(:card3)       { FactoryGirl.create(:card_string_solution) }
+  given!(:card1)      { FactoryGirl.create(:card_string_solution) }
+  given!(:card2)      { FactoryGirl.create(:card_string_solution) }
+  given!(:card3)      { FactoryGirl.create(:card_string_solution) }
   given(:user)        { FactoryGirl.create(:user) }
 
   background do
