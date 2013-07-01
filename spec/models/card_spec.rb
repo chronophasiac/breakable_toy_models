@@ -40,4 +40,21 @@ describe Card do
       expect(card).to be_valid
     end
   end
+
+  describe 'has a correct answer' do
+    context 'with a string response' do
+      let(:correct_answer)  { "this is correct" }
+      let(:answer)          { FactoryGirl.create(:solution_string, regex: correct_answer) }
+      let(:card)            { answer.card }
+
+      it 'returns true if the answer is correct' do
+        expect(card.correct_answer?(correct_answer)).to be_true
+      end
+
+      it 'returns false if the answer is incorrect' do
+        expect(card.correct_answer?("not correct")).to be_false
+      end
+    end
+  end
+
 end

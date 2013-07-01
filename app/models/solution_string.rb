@@ -16,4 +16,8 @@ class SolutionString < ActiveRecord::Base
   validates_presence_of :regex, :card
 
   attr_accessible :card_id, :regex
+
+  def correct_response?(response)
+    !response.downcase.match(regex).nil?
+  end
 end

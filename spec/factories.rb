@@ -82,7 +82,7 @@ FactoryGirl.define do
 
   factory :solution_string do
     association :card, factory: :card_string_solution
-    regex "foo"
+    regex "^correct answer$"
   end
 
   factory :user do

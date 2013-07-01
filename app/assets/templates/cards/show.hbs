@@ -2,4 +2,13 @@
 <h4 class="subheader">Instructions: {{card.instructions}}</h4>
 <p>{{card.problem}}</p>
 
-<button id="next">Next</button>
+<form id="text-response-form">
+  <input type="text" name="user-answer" id="string-response">
+  <input type="submit" value="Submit">
+</form>
+{{#if card.correct}}
+  <div class="correct-indicator">
+    <h4>Correct!</h4>
+  </div>
+  <button id="next">Next</button>
+{{/if}}

@@ -43,4 +43,14 @@ class Card < ActiveRecord::Base
   validates_inclusion_of :solution_type, :in => SOLUTION_TYPES
 
   attr_accessible :instructions, :problem, :solution_type, :title
+
+  def correct_answer?(response)
+    if solution_type == "string"
+      solution_strings.each do |solution|
+        return true if solution.correct_response?(response)
+      end
+    end
+    return false
+  end
+
 end
