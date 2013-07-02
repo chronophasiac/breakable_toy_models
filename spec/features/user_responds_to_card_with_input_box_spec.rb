@@ -77,5 +77,14 @@ feature "User responds to challenge card with an input box", %{
     expect(log.correct).to be_false
   end
 
+  scenario "User advances to the next card", js: true do
+    fill_in("string-response", with: "this is wrong")
+    click_button("Submit")
+    click_button("Next")
+    expect(page).to have_content(card1.instructions)
+    expect(page).to_not have_button("Next")
+    card_id = CardSubmission.last.card_id
+    expect(page).to_not have_content(Card.find(card_id).title)
+  end
 
 end
