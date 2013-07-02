@@ -14,7 +14,6 @@
 require 'spec_helper'
 
 describe CardSubmissionLog do
-  it { should validate_presence_of(:correct) }
   it { should validate_presence_of(:time_taken) }
   it { should validate_presence_of(:card_submission) }
 
@@ -26,7 +25,7 @@ describe CardSubmissionLog do
   it { should_not allow_value(9000).for(:rated_difficulty) }
 
   it { should allow_value(30).for(:time_taken) }
-  it { should_not allow_value(0).for(:time_taken) }
+  it { should allow_value(0).for(:time_taken) }
   it { should_not allow_value(-30).for(:time_taken) }
 
   it { should belong_to(:card_submission) }

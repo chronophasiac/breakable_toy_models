@@ -23,7 +23,10 @@ describe Seeders::Users do
 
   it 'seeds students' do
     seeder.seed(count: 4)
-    expect(User.last.role).to eql("student")
+    User.first.destroy
+    User.all.each do |user|
+      expect(user.role).to eql("student")
+    end
   end
 
   it 'can be run multiple times without duplication' do

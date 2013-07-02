@@ -17,7 +17,7 @@ gem 'backbone-on-rails'
 
 group :development do
   gem 'annotate'
-  gem 'guard-rspec'
+  gem 'guard-rspec', git: 'git@github.com:chronophasiac/guard-rspec.git'
   gem 'guard-livereload'
   gem 'zeus'
   gem 'launchy'

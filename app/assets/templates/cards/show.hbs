@@ -4,11 +4,17 @@
 
 <form id="text-response-form">
   <input type="text" name="user-answer" id="string-response">
-  <input type="submit" value="Submit">
+  <input type="submit" id="string-submit" value="Submit">
 </form>
-{{#if card.correct}}
-  <div class="correct-indicator">
-    <h4>Correct!</h4>
-  </div>
+{{#if card.responded}}
   <button id="next">Next</button>
+  {{#if card.correct_answer}}
+    <div class="correct-indicator">
+      <h4>Correct!</h4>
+    </div>
+  {{else}}
+    <div class="incorrect-indicator">
+      <h4>Incorrect</h4>
+    </div>
+  {{/if}}
 {{/if}}

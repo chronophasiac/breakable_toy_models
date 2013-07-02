@@ -42,9 +42,9 @@ describe Card do
   end
 
   describe 'has a correct answer' do
-    context 'with a string response' do
+    context 'with an explicit string response' do
       let(:correct_answer)  { "this is correct" }
-      let(:answer)          { FactoryGirl.create(:solution_string, regex: correct_answer) }
+      let(:answer)          { FactoryGirl.create(:solution_string, regex: "^#{correct_answer}$") }
       let(:card)            { answer.card }
 
       it 'returns true if the answer is correct' do

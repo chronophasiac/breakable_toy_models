@@ -14,6 +14,7 @@ guard :rspec, zeus: true, cli: "--order rand:$RANDOM" do
 
   # Capybara features specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features" }
+  watch(%r{^app/assets/(.+)/.*\.(js|coffee)$})          { |m| "spec/features" }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})

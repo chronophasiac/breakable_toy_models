@@ -17,6 +17,10 @@ Memworks::Application.routes.draw do
     resources :cards, only: [:index]
   end
 
+  resources :cards, only: [] do
+    resources :card_submission_logs, only: [:create]
+  end
+
   root to: 'main_pages#home'
   match '/about' => 'main_pages#about'
 

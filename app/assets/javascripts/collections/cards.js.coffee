@@ -4,6 +4,8 @@ class Memworks.Collections.Cards extends Backbone.Collection
     @challengeID = options.challengeID || null
     @currentCard = 0
 
+  model: Memworks.Models.Card
+
   url: ->
    "/challenges/#{@challengeID}/cards"
 

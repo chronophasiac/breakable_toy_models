@@ -7,14 +7,16 @@ feature "User responds to challenge card with an input box", %{
   so I can verify if I know the answer to the challenge
   } do
 
+  given(:answer)      {"correctitude"}
+  given(:regex)       {"^#{answer}$"}
   given!(:lesson)     { FactoryGirl.create(:lesson) }
   given!(:challenge)  { FactoryGirl.create(:challenge)}
   given!(:card1)      { FactoryGirl.create(:card_string_solution) }
-  given!(:answer1)    { FactoryGirl.create(:solution_string, card: card1)}
+  given!(:answer1)    { FactoryGirl.create(:solution_string, card: card1, regex: regex)}
   given!(:card2)      { FactoryGirl.create(:card_string_solution) }
-  given!(:answer2)    { FactoryGirl.create(:solution_string, card: card2)}
+  given!(:answer2)    { FactoryGirl.create(:solution_string, card: card2, regex: regex)}
   given!(:card3)      { FactoryGirl.create(:card_string_solution) }
-  given!(:answer3)    { FactoryGirl.create(:solution_string, card: card3)}
+  given!(:answer3)    { FactoryGirl.create(:solution_string, card: card3, regex: regex)}
   given(:user)        { FactoryGirl.create(:user) }
 
   background do
@@ -47,10 +49,33 @@ feature "User responds to challenge card with an input box", %{
   end
 
   scenario "User sees that their answer is correct", js: true do
+    user_card_associations = user.cards.length
     expect(page).to_not have_css(".correct-indicator")
-    fill_in("string-response", with: answer1.regex)
+    fill_in("string-response", with: answer)
     click_button("Submit")
     expect(page).to have_css(".correct-indicator")
+    user.cards.reload
+    expect(user.cards.length).to eql(user_card_associations + 1)
+    submission = CardSubmission.last
+    log = CardSubmissionLog.last
+    expect(log.card_submission_id).to eql(submission.id)
+    expect(log.correct).to be_true
   end
+
+  scenario "User sees that their answer is incorrect", js: true do
+    user_card_associations = user.cards.length
+    expect(page).to_not have_css(".incorrect-indicator")
+    fill_in("string-response", with: "this is wrong")
+    click_button("Submit")
+    expect(page).to_not have_css(".correct-indicator")
+    expect(page).to have_css(".incorrect-indicator")
+    user.cards.reload
+    expect(user.cards.length).to eql(user_card_associations + 1)
+    submission = CardSubmission.last
+    log = CardSubmissionLog.last
+    expect(log.card_submission_id).to eql(submission.id)
+    expect(log.correct).to be_false
+  end
+
 
 end
