@@ -21,6 +21,10 @@ feature "User responds to challenge card with an input box", %{
     expect(page).to have_field("string-response")
   end
 
+  scenario "User does not see a clickable code snippet", js: true do
+    expect(page).to_not have_css('.clickable-snippet')
+  end
+
   scenario "User sees a submit button", js: true do
     expect(page).to have_button("Submit")
   end

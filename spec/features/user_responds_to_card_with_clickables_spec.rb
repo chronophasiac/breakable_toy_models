@@ -17,6 +17,14 @@ feature "User responds to challenge card by clicking on the card", %{
     associate_position_solution_cards_with_challenge_and_init
   end
 
+  scenario "User sees a clickable code snippet", js: true do
+    expect(page).to have_css('.clickable-snippet')
+  end
+
+  scenario "User does not see a text input field", js: true do
+    expect(page).to_not have_field("string-response")
+  end
+
   scenario "User does not see a 'Next' button", js: true do
     expect(page).to_not have_button("Next")
   end

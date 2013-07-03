@@ -3,7 +3,7 @@
 <p>{{card.problem}}</p>
 
 {{#if card.tokenized_snippet}}
-  <code>
+  <code class="clickable-snippet">
   {{#each card.tokenized_snippet}}
     {{#each .}}
       <span id="position{{@index}}" class="click-response">{{.}}</span>
@@ -17,13 +17,14 @@
   {{else}}
     <button id="position-submit" class="disabled">Submit</button>
   {{/if}}
+{{else}}
+  {{#unless card.submitted}}
+    <form id="text-response-form">
+      <input type="text" name="user-answer" id="string-response">
+      <input type="submit" id="string-submit" value="Submit">
+    </form>
+  {{/unless}}
 {{/if}}
-{{#unless card.submitted}}
-  <form id="text-response-form">
-    <input type="text" name="user-answer" id="string-response">
-    <input type="submit" id="string-submit" value="Submit">
-  </form>
-{{/unless}}
 {{#if card.submitted}}
   {{#if card.correct_answer}}
     <div class="correct-indicator">
