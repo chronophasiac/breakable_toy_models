@@ -16,6 +16,8 @@ describe SolutionPosition do
   it { should validate_presence_of(:start_position) }
   it { should validate_presence_of(:end_position) }
   it { should validate_presence_of(:card) }
+  it { should allow_value(0).for(:start_position) }
+  it { should_not allow_value(-1).for(:start_position) }
 
   it { should belong_to(:card) }
 

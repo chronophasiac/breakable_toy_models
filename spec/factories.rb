@@ -17,6 +17,7 @@ FactoryGirl.define do
     sequence(:title)  { |n| "This is a #{n} card title" }
     instructions      "These are card instructions"
     problem           "This is a card problem"
+    snippet           "This is a card snippet"
     solution_type     "position"
 
     before(:create) do |card|

@@ -57,4 +57,18 @@ describe Card do
     end
   end
 
+  describe 'has a tokenized html array' do
+    let(:snippet) { "Test for snippets" }
+    let(:card)    { FactoryGirl.create(:card_position_solution, snippet: snippet) }
+
+    it 'returns an array of arrays' do
+      expect(card.tokenized_snippet[0]).to be_an(Array)
+    end
+
+    it 'returns a tokenized array' do
+      expect(card.tokenized_snippet[0][0]).to include("Test")
+      expect(card.tokenized_snippet[0][0]).to_not include("for")
+    end
+  end
+
 end

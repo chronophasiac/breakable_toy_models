@@ -2,6 +2,11 @@
 <h4 class="subheader">Instructions: {{card.instructions}}</h4>
 <p>{{card.problem}}</p>
 
+{{#each card.tokenized_snippet}}
+  {{#each .}}
+    <span class="click-response">{{.}}</span>
+  {{/each}}
+{{/each}}
 <form id="text-response-form">
   <input type="text" name="user-answer" id="string-response">
   <input type="submit" id="string-submit" value="Submit">

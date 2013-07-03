@@ -4,7 +4,7 @@ include Warden::Test::Helpers
 feature "User responds to challenge card with an input box", %{
   As a user,
   I want to provide a response to a challenge card by typing in an input box
-  so I can verify if I know the answer to the challenge
+  so I can see if I know the answer to the challenge
   } do
 
   given(:answer)      {"correctitude"}

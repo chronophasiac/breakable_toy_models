@@ -42,7 +42,7 @@ class Card < ActiveRecord::Base
 
   validates_inclusion_of :solution_type, :in => SOLUTION_TYPES
 
-  attr_accessible :instructions, :problem, :solution_type, :title
+  attr_accessible :instructions, :problem, :snippet, :solution_type, :title
 
   def correct_answer?(response)
     if solution_type == "string"
@@ -51,6 +51,28 @@ class Card < ActiveRecord::Base
       end
     end
     return false
+  end
+
+  def snippet_lines
+    snippet.split(/\r\n/) 
+  end
+
+  def tokenized_snippet
+    tokenized_snippet = []
+
+    if snippet.present?
+      snippet_lines.each do |line|
+        tokenized_snippet << Card.tokenized_line(line)
+      end
+    end
+
+    tokenized_snippet
+  end
+
+  class << self
+    def tokenized_line(line)
+      line.split(/(\W)|(\s)/)
+    end
   end
 
 end

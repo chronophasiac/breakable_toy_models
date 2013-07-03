@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20130623195218) do
     t.text     "instructions",  :null => false
     t.text     "problem",       :null => false
     t.string   "solution_type", :null => false
+    t.text     "snippet"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

@@ -16,6 +16,8 @@ class SolutionPosition < ActiveRecord::Base
 
   validates_presence_of :start_position, :end_position, :card
 
+  validates :start_position, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
   validates :end_position, numericality: { only_integer: true, greater_than_or_equal_to: :start_position }
 
   attr_accessible :card_id, :end_position, :start_position
