@@ -56,6 +56,12 @@ FactoryGirl.define do
   factory :challenge_deck do
     association :card, factory: :card_string_solution
     challenge
+
+    trait :position do
+      association :card, factory: :card_position_solution
+    end
+    
+    factory :challenge_deck_position_solution, traits: [:position]
   end
 
   factory :coursework do

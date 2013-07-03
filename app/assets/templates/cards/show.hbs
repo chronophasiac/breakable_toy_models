@@ -2,17 +2,22 @@
 <h4 class="subheader">Instructions: {{card.instructions}}</h4>
 <p>{{card.problem}}</p>
 
-{{#each card.tokenized_snippet}}
-  {{#each .}}
-    <span class="click-response">{{.}}</span>
+{{#if card.tokenized_snippet}}
+  <code>
+  {{#each card.tokenized_snippet}}
+    {{#each .}}
+      <span class="click-response">{{.}}</span>
+    {{/each}}
   {{/each}}
-{{/each}}
-<form id="text-response-form">
-  <input type="text" name="user-answer" id="string-response">
-  <input type="submit" id="string-submit" value="Submit">
-</form>
+  </code>
+{{/if}}
+{{#unless card.responded}}
+  <form id="text-response-form">
+    <input type="text" name="user-answer" id="string-response">
+    <input type="submit" id="string-submit" value="Submit">
+  </form>
+{{/unless}}
 {{#if card.responded}}
-  <button id="next">Next</button>
   {{#if card.correct_answer}}
     <div class="correct-indicator">
       <h4>Correct!</h4>
@@ -22,4 +27,5 @@
       <h4>Incorrect</h4>
     </div>
   {{/if}}
+  <button id="next">Next</button>
 {{/if}}

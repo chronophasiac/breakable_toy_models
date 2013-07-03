@@ -1,40 +1,16 @@
 require 'spec_helper'
-include Warden::Test::Helpers
 
 feature "User responds to challenge card with an input box", %{
   As a user,
   I want to provide a response to a challenge card by typing in an input box
   so I can see if I know the answer to the challenge
   } do
+  
+  extend LoginHarness
+  extend LessonHarness
 
-  given(:answer)      {"correctitude"}
-  given(:regex)       {"^#{answer}$"}
-  given!(:lesson)     { FactoryGirl.create(:lesson) }
-  given!(:challenge)  { FactoryGirl.create(:challenge)}
-  given!(:card1)      { FactoryGirl.create(:card_string_solution) }
-  given!(:answer1)    { FactoryGirl.create(:solution_string, card: card1, regex: regex)}
-  given!(:card2)      { FactoryGirl.create(:card_string_solution) }
-  given!(:answer2)    { FactoryGirl.create(:solution_string, card: card2, regex: regex)}
-  given!(:card3)      { FactoryGirl.create(:card_string_solution) }
-  given!(:answer3)    { FactoryGirl.create(:solution_string, card: card3, regex: regex)}
-  given(:user)        { FactoryGirl.create(:user) }
-
-  background do
-    FactoryGirl.create(:challenge_deck, card: card1, challenge: challenge)
-    FactoryGirl.create(:challenge_deck, card: card2, challenge: challenge)
-    FactoryGirl.create(:challenge_deck, card: card3, challenge: challenge)
-    FactoryGirl.create(:activity, lesson: lesson, completable: challenge)
-    Warden.test_mode!
-    login_as(user, scope: :user)
-    visit lesson_path(lesson)
-    within first(".challenge") do
-      click_button("Start")
-    end
-  end
-
-  after :each do
-    Warden.test_reset!
-  end
+  login_as_user
+  setup_lesson_and_cards_with_string_solutions
 
   scenario "User sees an input box", js: true do
     expect(page).to have_field("string-response")
@@ -75,6 +51,18 @@ feature "User responds to challenge card with an input box", %{
     log = CardSubmissionLog.last
     expect(log.card_submission_id).to eql(submission.id)
     expect(log.correct).to be_false
+  end
+
+  scenario "User does not see an input field after providing an incorrect answer", js: true do
+    fill_in("string-response", with: "this is wrong")
+    click_button("Submit")
+    expect(page).to_not have_field("string-response")
+  end
+
+  scenario "User does not see an input field after providing a correct answer", js: true do
+    fill_in("string-response", with: answer)
+    click_button("Submit")
+    expect(page).to_not have_field("string-response")
   end
 
   scenario "User advances to the next card", js: true do

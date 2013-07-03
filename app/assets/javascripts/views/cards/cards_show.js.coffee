@@ -40,7 +40,6 @@ class Memworks.Views.CardsShow extends Backbone.View
     @logs.cardID = @card.id
     @logs.create attributes,
       wait: true
-      success: -> $("#text-response-form")[0].reset()
       error: -> @handleError
 
   handleError: (log, response) ->

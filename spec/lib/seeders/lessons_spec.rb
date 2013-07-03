@@ -2,7 +2,10 @@ require 'spec_helper'
 
 describe Seeders::Lessons do
 
-  let(:seeder) { Seeders::Lessons }
+  let(:seeder)      { Seeders::Lessons }
+  let(:lessons)     { seeder.seed }
+  let(:challenges)  { lessons.first.activities.where(completable_type: "Challenge") }
+  let(:cards)       { challenges.first.completable.cards }
 
   it 'seeds lessons' do
     lesson_count = Lesson.count
@@ -18,7 +21,6 @@ describe Seeders::Lessons do
 
   it 'seeds associated assignments' do
     assignments_count = Assignment.count
-    lessons = seeder.seed
     assignments = lessons.first.activities.where(completable_type: "Assignment")
     expect(Assignment.count).to be >(assignments_count)
     expect(assignments.count).to be >(0)
@@ -26,18 +28,22 @@ describe Seeders::Lessons do
 
   it 'seeds associated challenges' do
     challenges_count = Challenge.count
-    lessons = seeder.seed
-    challenges = lessons.first.activities.where(completable_type: "Challenge")
+    seeder.seed
     expect(Challenge.count).to be >(challenges_count)
     expect(challenges.count).to be >(0)
   end
 
   it 'seeds cards associated with challenges' do
     cards_count = Card.count
-    lessons = seeder.seed
-    cards = lessons.first.activities.where(completable_type: "Challenge").first.completable.cards
+    seeder.seed
     expect(Card.count).to be >(cards_count)
     expect(cards.count).to be >(0)
+  end
+
+  it 'seeds cards with text and clickable responses' do
+    seeder.seed
+    expect(cards[0].solution_type).to eql("string")
+    expect(cards[1].solution_type).to eql("position")
   end
 
   it 'can be run multiple times without duplication' do
