@@ -12,6 +12,15 @@ feature "User responds to challenge card by clicking on the card", %{
   login_as_user
   setup_lesson_and_cards_with_position_solutions
 
+  background do
+    extend LessonHarness
+    associate_position_solution_cards_with_challenge_and_init
+  end
+
+  scenario "User sees clickable areas on card", js: true do
+    expect(page).to have_css(".click-response")
+  end
+  
   scenario "User sees clickable areas on card", js: true do
     expect(page).to have_css(".click-response")
   end

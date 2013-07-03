@@ -11,6 +11,11 @@ feature "User sees a series of cards", %{
   
   login_as_user
   setup_lesson_and_cards_with_string_solutions
+  
+  background do
+    extend LessonHarness
+    associate_string_solution_cards_with_challenge_and_init
+  end
 
   scenario "User sees the current card content", js: true do
     expect(page).to have_content(card1.title)

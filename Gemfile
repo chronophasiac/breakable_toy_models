@@ -19,7 +19,7 @@ group :development do
   gem 'annotate'
   gem 'guard-rspec', git: 'git@github.com:chronophasiac/guard-rspec.git'
   gem 'guard-livereload'
-  gem 'zeus'
+  gem 'zeus', "~> 0.13.3.rc2"
   gem 'launchy'
   gem 'better_errors'
   gem 'binding_of_caller'
