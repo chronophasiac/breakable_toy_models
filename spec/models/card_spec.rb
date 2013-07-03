@@ -41,18 +41,84 @@ describe Card do
     end
   end
 
-  describe 'has a correct answer' do
+  describe 'has a kind' do
+    let(:card_string)   { FactoryGirl.create(:card_string_solution) }
+    let(:card_position) { FactoryGirl.create(:card_position_solution) }
+
+    it 'returns "type" if it has a string solution' do
+      expect(card_string.kind).to eql("type")
+    end
+
+    it 'returns "click" if it has a string solution' do
+      expect(card_position.kind).to eql("click")
+    end
+  end
+
+  describe 'tests a response' do
     context 'with an explicit string response' do
       let(:correct_answer)  { "this is correct" }
-      let(:answer)          { FactoryGirl.create(:solution_string, regex: "^#{correct_answer}$") }
-      let(:card)            { answer.card }
+      let(:solution)        { FactoryGirl.create(:solution_string,
+                              regex: "^#{correct_answer}$") }
+      let(:card)            { solution.card }
 
-      it 'returns true if the answer is correct' do
+      it 'returns true if the response is correct' do
         expect(card.correct_answer?(correct_answer)).to be_true
       end
 
-      it 'returns false if the answer is incorrect' do
+      it 'returns false if the response is incorrect' do
         expect(card.correct_answer?("not correct")).to be_false
+      end
+
+      it 'returns false if the response is nil' do
+        expect(card.correct_answer?(nil)).to be_false
+      end
+    end
+
+    context 'with an array of indices' do
+      let(:correct_answer)  { {start: '0', end: '1'} }
+      let(:solution)        { FactoryGirl.create(:solution_position,
+                              start_position: correct_answer[:start],
+                              end_position: correct_answer[:end]) }
+      let(:card)            { solution.card }
+
+      context 'with a single response' do
+        it 'returns true if the response is in the range of solutions' do
+          correct_response = [{position: correct_answer[:start]}]
+          expect(card.correct_answer?(correct_response)).to be_true
+          correct_response = [{position: correct_answer[:end]}]
+          expect(card.correct_answer?(correct_response)).to be_true
+        end
+
+        it 'returns false if the response is outside the range of solutions' do
+          incorrect_response = [{position: 9000}]
+          expect(card.correct_answer?(incorrect_response)).to be_false
+        end
+      end
+
+      context 'with many responses' do
+        it 'returns true if all the responses are in the range of solutions' do
+          correct_responses = [ {position: correct_answer[:start]},
+                                {position: correct_answer[:end]}]
+          expect(card.correct_answer?(correct_responses)).to be_true
+          correct_responses = [ {position: correct_answer[:end]},
+                                {position: correct_answer[:start]}]
+          expect(card.correct_answer?(correct_responses)).to be_true
+        end
+
+        it 'returns false if one of the responses are outside the range of solutions' do
+          incorrect_responses = [ {position: correct_answer[:end]},
+                                  {position: 9000}]
+          expect(card.correct_answer?(incorrect_responses)).to be_false
+          incorrect_responses = [ {position: 9000},
+                                  {position: correct_answer[:end]}]
+          expect(card.correct_answer?(incorrect_responses)).to be_false
+        end
+
+        it 'returns false if all of the responses are outside the range of solutions' do
+          incorrect_responses = [ {position: 9001},
+                                  {position: 9000}]
+          expect(card.correct_answer?(incorrect_responses)).to be_false
+        end
       end
     end
   end

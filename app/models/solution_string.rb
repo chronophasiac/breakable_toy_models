@@ -18,6 +18,6 @@ class SolutionString < ActiveRecord::Base
   attr_accessible :card_id, :regex
 
   def correct_response?(response)
-    !response.downcase.match(regex).nil?
+    response.present? ? !response.downcase.match(regex).nil? : false
   end
 end

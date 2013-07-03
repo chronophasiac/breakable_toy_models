@@ -59,6 +59,10 @@ describe SolutionString do
       it "returns false if the response includes part of the correct answer" do
         expect(solution.correct_response?("this is")).to be_false
       end
+
+      it "returns false if the response is nil" do
+        expect(solution.correct_response?(nil)).to be_false
+      end
     end
 
     context "with a fuzzy regex" do

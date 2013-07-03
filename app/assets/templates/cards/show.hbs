@@ -6,18 +6,25 @@
   <code>
   {{#each card.tokenized_snippet}}
     {{#each .}}
-      <span class="click-response">{{.}}</span>
+      <span id="position{{@index}}" class="click-response">{{.}}</span>
     {{/each}}
   {{/each}}
   </code>
+  {{#if card.responded}}
+    {{#unless card.submitted}}
+      <button id="position-submit">Submit</button>
+    {{/unless}}
+  {{else}}
+    <button id="position-submit" class="disabled">Submit</button>
+  {{/if}}
 {{/if}}
-{{#unless card.responded}}
+{{#unless card.submitted}}
   <form id="text-response-form">
     <input type="text" name="user-answer" id="string-response">
     <input type="submit" id="string-submit" value="Submit">
   </form>
 {{/unless}}
-{{#if card.responded}}
+{{#if card.submitted}}
   {{#if card.correct_answer}}
     <div class="correct-indicator">
       <h4>Correct!</h4>

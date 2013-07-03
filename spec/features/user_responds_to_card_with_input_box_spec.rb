@@ -80,4 +80,6 @@ feature "User responds to challenge card with an input box", %{
     expect(page).to_not have_content(Card.find(card_id).title)
   end
 
+  scenario "User sees a submit button that is not activated until they have typed in the input field"
+
 end

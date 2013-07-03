@@ -21,4 +21,9 @@ class SolutionPosition < ActiveRecord::Base
   validates :end_position, numericality: { only_integer: true, greater_than_or_equal_to: :start_position }
 
   attr_accessible :card_id, :end_position, :start_position
+
+  def response_match?(response)
+    range = start_position..end_position
+    range.include?(response[:position].to_i)
+  end
 end

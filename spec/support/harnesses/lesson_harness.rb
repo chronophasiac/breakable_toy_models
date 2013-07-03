@@ -10,15 +10,6 @@ module LessonHarness
     given(:card2)      { FactoryGirl.create(:card_string_solution) }
   end
 
-  def setup_lesson_and_cards_with_position_solutions
-    given(:answer)      { {start: 0, end: 1} }
-    given(:lesson)     { FactoryGirl.create(:lesson) }
-    given(:challenge)  { FactoryGirl.create(:challenge)}
-    given(:card1)      { FactoryGirl.create(:card_position_solution) }
-    given(:answer1)    { card1.solution_positions.first }
-    given(:card2)      { FactoryGirl.create(:card_position_solution) }
-  end
-
   def associate_string_solution_cards_with_challenge_and_init
     answer1.regex = regex
     answer1.save
@@ -29,6 +20,15 @@ module LessonHarness
     within first(".challenge") do
       click_button("Start")
     end
+  end
+
+  def setup_lesson_and_cards_with_position_solutions
+    given(:answer)     { {start: 0, end: 1} }
+    given(:lesson)     { FactoryGirl.create(:lesson) }
+    given(:challenge)  { FactoryGirl.create(:challenge)}
+    given(:card1)      { FactoryGirl.create(:card_position_solution) }
+    given(:answer1)    { card1.solution_positions.first }
+    given(:card2)      { FactoryGirl.create(:card_position_solution) }
   end
 
   def associate_position_solution_cards_with_challenge_and_init

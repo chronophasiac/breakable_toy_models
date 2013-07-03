@@ -44,11 +44,38 @@ class Card < ActiveRecord::Base
 
   attr_accessible :instructions, :problem, :snippet, :solution_type, :title
 
+  def kind_map
+    {
+      "position" => "click",
+      "string" =>   "type"
+    }
+  end
+
+  def kind
+    kind_map[solution_type]
+  end
+
   def correct_answer?(response)
-    if solution_type == "string"
+    if kind == "type"
       solution_strings.each do |solution|
         return true if solution.correct_response?(response)
       end
+      return false
+
+    elsif kind == "click"
+      response.each do |position|
+        return false unless valid_response?(position)
+      end
+      return true
+
+    else
+      return false
+    end
+  end
+
+  def valid_response?(response)
+    solution_positions.each do |solution|
+      return true if solution.response_match?(response)
     end
     return false
   end
