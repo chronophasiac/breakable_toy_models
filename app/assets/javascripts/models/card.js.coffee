@@ -1,8 +1,16 @@
-class Memworks.Models.Position extends Backbone.Model
-
-class Memworks.Collections.Positions extends Backbone.Collection
-
 class Memworks.Models.Card extends Backbone.Model
 
   initialize: ->
-    @positions = new Memworks.Collections.Positions()
+
+  clickPosition: (index) ->
+    snippet = @.get('tokenized_snippet')
+    snippet[index].selected = !snippet[index].selected
+    @.set('tokenized_snippet', snippet)
+    @.trigger('change:tokenized_snippet')
+
+  selectedPositions: ->
+    positions = []
+    snippet = @.get('tokenized_snippet')
+    for token, i in snippet
+      positions.push({position: i}) if token.selected
+    positions

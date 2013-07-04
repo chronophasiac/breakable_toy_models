@@ -63,10 +63,13 @@ class Card < ActiveRecord::Base
       return false
 
     elsif kind == "click"
-      response.each do |position|
-        return false unless valid_response?(position)
+      if response.present?
+        response.each do |position|
+          return false unless valid_response?(position)
+        end
+        return true
+      else false
       end
-      return true
 
     else
       return false

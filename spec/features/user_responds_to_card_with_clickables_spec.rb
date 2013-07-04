@@ -97,6 +97,12 @@ feature "User responds to challenge card by clicking on the card", %{
     expect(page).to have_css('.selected-position')
   end
 
-  scenario "User de-selects a clicked token"
+  scenario "User sees that the clicked token has been de-selected", js: true do
+    expect(page).to_not have_css('.selected-position')
+    find('#position0').click
+    expect(page).to have_css('.selected-position')
+    find('#position0').click
+    expect(page).to_not have_css('.selected-position')
+  end
 
 end

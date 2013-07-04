@@ -18,20 +18,14 @@ class Memworks.Views.CardsShow extends Backbone.View
     @cardChanged()
 
   render: =>
-    $(@el).html(@template(card: @card.toJSON(), positions: @positions.toJSON()))
+    $(@el).html(@template(card: @card.toJSON()))
     @elapsedTime = 0
     this
 
   snippetClick: (event) ->
     @card.set({'responded': true})
-    position = new Memworks.Models.Position()
-    index = $(event.currentTarget).attr("id")
-    index = index.substring(8)
-    a = @card.get('tokenized_snippet')
-    a[index].selected = true
-    @card.set('tokenized_snippet', a)
-    position.set({'position': index})
-    @positions.add(position)
+    index = $(event.currentTarget).attr("id").substring(8)
+    @card.clickPosition(index)
 
   incrementElapsedTime: =>
     @elapsedTime++
@@ -47,7 +41,7 @@ class Memworks.Views.CardsShow extends Backbone.View
     if @card.get('kind') == "type"
       $("#string-response").val()
     else
-      @positions
+      @card.selectedPositions()
 
   submitAnswer: (event) ->
     event.preventDefault()
@@ -72,12 +66,10 @@ class Memworks.Views.CardsShow extends Backbone.View
 
   cardChanged: =>
     @card = @collection.at(@collection.currentCard)
-    @card.on('positionAdded', @render)
     @card.on('change:correct_answer', @render)
     @card.on('change:submitted', @render)
     @card.on('change:responded', @render)
-    @positions = @card.positions
-    @positions.on('add', @render)
+    @card.on('change:tokenized_snippet', @render)
     @render()
 
   resetCurrentCard: =>
