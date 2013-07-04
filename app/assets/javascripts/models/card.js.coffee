@@ -1,7 +1,5 @@
 class Memworks.Models.Card extends Backbone.Model
 
-  initialize: ->
-
   clickPosition: (index) ->
     snippet = @.get('tokenized_snippet')
     snippet[index].selected = !snippet[index].selected

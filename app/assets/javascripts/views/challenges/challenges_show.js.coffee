@@ -1,6 +1,6 @@
-class Memworks.Views.CardsShow extends Backbone.View
+class Memworks.Views.ChallengesShow extends Backbone.View
 
-  template: HandlebarsTemplates['cards/show']
+  template: HandlebarsTemplates['challenges/show']
 
   events:
     'submit #text-response-form': 'submitAnswer'
@@ -18,7 +18,7 @@ class Memworks.Views.CardsShow extends Backbone.View
     @cardChanged()
 
   render: =>
-    $(@el).html(@template(card: @card.toJSON()))
+    $(@el).html(@template(card: @card.toJSON(), score: @model.get('score')))
     @elapsedTime = 0
     this
 
@@ -59,6 +59,8 @@ class Memworks.Views.CardsShow extends Backbone.View
       errors = $.parseJSON(response.responseText).errors
       for attribute, messages of errors
         $(@el).append("#{attribute} #{message}") for message in messages
+    else
+      $(@el).html("An error has occurred")
 
   advanceCard: (event) ->
     event.preventDefault()

@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="large-2 columns">
+    <h3>Score:</h3>
+    <h3 class="subheader" id="current-score">{{score}}</h3>
+  </div>
+  <div class="large-10 columns">
+    <h4>{{card.title}}</h4>
+    <h4 class="subheader">Instructions: {{card.instructions}}</h4>
+    <p>{{card.problem}}</p>
+
+    {{#if card.tokenized_snippet}}
+      <pre><code class="clickable-snippet">{{#each card.tokenized_snippet}}<span id="position{{@index}}" class="click-response {{selected_position this}}">{{this.text}}</span>{{/each}}</code></pre>
+      {{#if card.responded}}
+        {{#unless card.submitted}}
+          <button id="position-submit">Submit</button>
+        {{/unless}}
+      {{else}}
+        <button id="position-submit" class="disabled">Submit</button>
+      {{/if}}
+    {{else}}
+      {{#unless card.submitted}}
+        <form id="text-response-form">
+          <input type="text" name="user-answer" id="string-response">
+          <input type="submit" id="string-submit" value="Submit">
+        </form>
+      {{/unless}}
+    {{/if}}
+    {{#if card.submitted}}
+      {{#if card.correct_answer}}
+        <div class="correct-indicator">
+          <h4>Correct!</h4>
+        </div>
+      {{else}}
+        <div class="incorrect-indicator">
+          <h4>Incorrect</h4>
+        </div>
+      {{/if}}
+      <button id="next">Next</button>
+    {{/if}}
+  </div>
+</div>

@@ -23,12 +23,15 @@ module LessonHarness
   end
 
   def setup_lesson_and_cards_with_position_solutions
-    given(:answer)     { {start: 0, end: 1} }
-    given(:lesson)     { FactoryGirl.create(:lesson) }
-    given(:challenge)  { FactoryGirl.create(:challenge)}
-    given(:card1)      { FactoryGirl.create(:card_position_solution) }
-    given(:answer1)    { card1.solution_positions.first }
-    given(:card2)      { FactoryGirl.create(:card_position_solution) }
+    given(:answer)      { {start: 0, end: 2} }
+    given(:snippet)     { "Test code snippet goes here." }
+    given(:lesson)      { FactoryGirl.create(:lesson) }
+    given(:challenge)   { FactoryGirl.create(:challenge)}
+    given(:card1)       { FactoryGirl.create(:card_position_solution, snippet: snippet) }
+    given(:answer1)     { card1.solution_positions.first }
+    given(:card2)       { FactoryGirl.create(:card_position_solution) }
+    given(:correct_ID)  { "#position#{answer[:end]}" }
+    given(:wrong_ID)    { "#position#{answer[:end] + 1}" }
   end
 
   def associate_position_solution_cards_with_challenge_and_init
@@ -45,15 +48,17 @@ module LessonHarness
   end
 
   def setup_lesson_and_cards_with_mixed_solutions
-    given(:string_answer)      {"correctitude"}
-    given(:regex)       {"^#{string_answer}$"}
+    given(:string_answer)   {"correctitude"}
+    given(:regex)           {"^#{string_answer}$"}
     given(:position_answer) { {start: 0, end: 1} }
-    given(:lesson)     { FactoryGirl.create(:lesson) }
-    given(:challenge)  { FactoryGirl.create(:challenge)}
-    given(:card1)      { FactoryGirl.create(:card_position_solution) }
-    given(:answer1)    { card1.solution_positions.first }
-    given(:card2)      { FactoryGirl.create(:card_string_solution) }
-    given(:answer2)    { card2.solution_strings.first }
+    given(:lesson)          { FactoryGirl.create(:lesson) }
+    given(:challenge)       { FactoryGirl.create(:challenge)}
+    given(:card1)           { FactoryGirl.create(:card_position_solution) }
+    given(:answer1)         { card1.solution_positions.first }
+    given(:card2)           { FactoryGirl.create(:card_string_solution) }
+    given(:answer2)         { card2.solution_strings.first }
+    given(:correct_ID)      { "#position#{position_answer[:end]}" }
+    given(:wrong_ID)        { "#position#{position_answer[:end] + 1}" }
   end
 
   def associate_mixed_solution_cards_with_challenge_and_init

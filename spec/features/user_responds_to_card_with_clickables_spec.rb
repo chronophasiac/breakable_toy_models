@@ -36,7 +36,7 @@ feature "User responds to challenge card by clicking on the card", %{
   scenario %{User sees a submit button that is not activated 
     until at least one area is clicked}, js: true do
     expect(page).to have_css('#position-submit.disabled')
-    first('.click-response').click
+    find("#{correct_ID}").click
     expect(page).to_not have_css('#position-submit.disabled')
     expect(page).to have_css('#position-submit')
   end
@@ -45,8 +45,7 @@ feature "User responds to challenge card by clicking on the card", %{
     user_card_associations = user.cards.length
     expect(page).to_not have_css(".incorrect-indicator")
     expect(page).to_not have_button("Next")
-    target_ID = "#position#{answer[:end] + 1}"
-    find("#{target_ID}").click
+    find("#{wrong_ID}").click
     click_button('position-submit')
     expect(page).to_not have_css(".correct-indicator")
     expect(page).to have_css(".incorrect-indicator")
@@ -62,8 +61,7 @@ feature "User responds to challenge card by clicking on the card", %{
     user_card_associations = user.cards.length
     expect(page).to_not have_css(".correct-indicator")
     expect(page).to_not have_button("Next")
-    target_ID = "#position#{answer[:start]}"
-    find("#{target_ID}").click
+    find("#{correct_ID}").click
     click_button('position-submit')
     expect(page).to_not have_css(".incorrect-indicator")
     expect(page).to have_css(".correct-indicator")
@@ -76,13 +74,13 @@ feature "User responds to challenge card by clicking on the card", %{
   end
 
   scenario "User does not see a submit button after providing a response", js: true do
-    find('#position0').click
+    find("#{correct_ID}").click
     click_button('position-submit')
     expect(page).to_not have_button('position-submit')
   end
 
   scenario "User advances to the next card", js: true do
-    find('#position0').click
+    find("#{correct_ID}").click
     click_button('position-submit')
     click_button("Next")
     expect(page).to have_content(card1.instructions)
@@ -93,15 +91,15 @@ feature "User responds to challenge card by clicking on the card", %{
 
   scenario "User sees that the clicked token has been selected", js: true do
     expect(page).to_not have_css('.selected-position')
-    find('#position0').click
+    find("#{correct_ID}").click
     expect(page).to have_css('.selected-position')
   end
 
   scenario "User sees that the clicked token has been de-selected", js: true do
     expect(page).to_not have_css('.selected-position')
-    find('#position0').click
+    find("#{correct_ID}").click
     expect(page).to have_css('.selected-position')
-    find('#position0').click
+    find("#{correct_ID}").click
     expect(page).to_not have_css('.selected-position')
   end
 
