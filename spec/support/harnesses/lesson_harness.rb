@@ -44,4 +44,31 @@ module LessonHarness
     end
   end
 
+  def setup_lesson_and_cards_with_mixed_solutions
+    given(:string_answer)      {"correctitude"}
+    given(:regex)       {"^#{string_answer}$"}
+    given(:position_answer) { {start: 0, end: 1} }
+    given(:lesson)     { FactoryGirl.create(:lesson) }
+    given(:challenge)  { FactoryGirl.create(:challenge)}
+    given(:card1)      { FactoryGirl.create(:card_position_solution) }
+    given(:answer1)    { card1.solution_positions.first }
+    given(:card2)      { FactoryGirl.create(:card_string_solution) }
+    given(:answer2)    { card2.solution_strings.first }
+  end
+
+  def associate_mixed_solution_cards_with_challenge_and_init
+    answer1.start_position = position_answer[:start]
+    answer1.end_position = position_answer[:end]
+    answer1.save
+    answer2.regex = regex
+    answer2.save
+    FactoryGirl.create(:challenge_deck, card: card1, challenge: challenge)
+    FactoryGirl.create(:challenge_deck, card: card2, challenge: challenge)
+    FactoryGirl.create(:activity, lesson: lesson, completable: challenge)
+    visit lesson_path(lesson)
+    within first(".challenge") do
+      click_button("Start")
+    end
+  end
+
 end

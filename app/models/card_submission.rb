@@ -22,4 +22,20 @@ class CardSubmission < ActiveRecord::Base
   validates_presence_of :user, :card
 
   attr_accessible :card, :helpful
+
+  class << self
+    def update_submission(user, card)
+      submission = user.card_submissions.where(card_id: card.id).first
+
+      if submission.present?
+        submission.touch
+      else
+        submission = user.card_submissions.new(card: card)
+        submission.save
+      end
+
+      submission
+    end
+  end
+  
 end
