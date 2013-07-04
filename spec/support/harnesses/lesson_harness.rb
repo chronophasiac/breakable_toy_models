@@ -51,9 +51,10 @@ module LessonHarness
     given(:string_answer)   {"correctitude"}
     given(:regex)           {"^#{string_answer}$"}
     given(:position_answer) { {start: 0, end: 1} }
+    given(:snippet)         { "Test code snippet goes here." }
     given(:lesson)          { FactoryGirl.create(:lesson) }
     given(:challenge)       { FactoryGirl.create(:challenge)}
-    given(:card1)           { FactoryGirl.create(:card_position_solution) }
+    given(:card1)           { FactoryGirl.create(:card_position_solution, snippet: snippet) }
     given(:answer1)         { card1.solution_positions.first }
     given(:card2)           { FactoryGirl.create(:card_string_solution) }
     given(:answer2)         { card2.solution_strings.first }

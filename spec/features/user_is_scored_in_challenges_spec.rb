@@ -21,9 +21,23 @@ feature "User is scored based on responses to challenge cards", %Q{
     expect(page).to have_css('#current-score', text: 0)
   end
 
-  scenario "User sees their score go up when they supply a correct response"
+  scenario "User sees their score go up when they supply a correct response", js: true do
+    expect(page).to have_css('#current-score', text: 0)
+    find("#{correct_ID}").click
+    click_button('position-submit')
+    expect(page).to have_css('#current-score', text: 1)
+  end
 
-  scenario "User does not see their score go up when they supply an incorrect response"
+  scenario "User does not see their score go up when they supply an incorrect response", js: true do
+    expect(page).to have_css('#current-score', text: 0)
+    find("#{wrong_ID}").click
+    click_button('position-submit')
+    expect(page).to have_css('#current-score', text: 0)
+    click_button('Next')
+    fill_in("string-response", with: string_answer)
+    click_button("Submit")
+    expect(page).to have_css('#current-score', text: 1)
+  end
 
   scenario "User sees a final score at the end of the challenge"
 

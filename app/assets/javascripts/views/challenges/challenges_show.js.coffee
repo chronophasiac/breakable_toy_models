@@ -33,6 +33,7 @@ class Memworks.Views.ChallengesShow extends Backbone.View
   displayFeedback: (cardSubmissionLog) =>
     @card.set({'submitted': true})
     if cardSubmissionLog.get('correct')
+      @model.incrementScore()
       @card.set({'correct_answer': true})
     else
       @card.set({'correct_answer': false})

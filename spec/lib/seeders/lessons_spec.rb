@@ -42,8 +42,14 @@ describe Seeders::Lessons do
 
   it 'seeds cards with text and clickable responses' do
     seeder.seed
-    expect(cards[0].solution_type).to eql("string")
-    expect(cards[1].solution_type).to eql("position")
+    str = false
+    pos = false
+    cards.each do |card|
+      str = true if card.solution_type == "string"
+      pos = true if card.solution_type == "position"
+    end
+    expect(str).to be_true
+    expect(pos).to be_true
   end
 
   it 'can be run multiple times without duplication' do
