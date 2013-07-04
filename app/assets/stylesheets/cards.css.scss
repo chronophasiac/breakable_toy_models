@@ -1,11 +1,17 @@
-span.click-response {
-  margin: 0 1px;
-  &:hover {
-    margin: 0;
-    border: 1px solid black;
-    border-radius: 2px;
-  }
-  &:active {
-    background-color: green;
+code.clickable-snippet {
+  line-height: 1.1em;
+  span.click-response {
+    margin: 1px;
+    &.selected-position {
+      background-color: green;
+    }
+    &:hover {
+      margin: 0;
+      border: 1px solid black;
+      border-radius: 2px;
+    }
+    &:active {
+      background-color: green;
+    }
   }
 }

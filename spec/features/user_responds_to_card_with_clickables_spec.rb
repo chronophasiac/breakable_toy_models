@@ -45,7 +45,8 @@ feature "User responds to challenge card by clicking on the card", %{
     user_card_associations = user.cards.length
     expect(page).to_not have_css(".incorrect-indicator")
     expect(page).to_not have_button("Next")
-    find('#position4').click
+    target_ID = "#position#{answer[:end] + 1}"
+    find("#{target_ID}").click
     click_button('position-submit')
     expect(page).to_not have_css(".correct-indicator")
     expect(page).to have_css(".incorrect-indicator")
@@ -61,7 +62,8 @@ feature "User responds to challenge card by clicking on the card", %{
     user_card_associations = user.cards.length
     expect(page).to_not have_css(".correct-indicator")
     expect(page).to_not have_button("Next")
-    find('#position0').click
+    target_ID = "#position#{answer[:start]}"
+    find("#{target_ID}").click
     click_button('position-submit')
     expect(page).to_not have_css(".incorrect-indicator")
     expect(page).to have_css(".correct-indicator")
@@ -88,5 +90,13 @@ feature "User responds to challenge card by clicking on the card", %{
     card_id = CardSubmission.last.card_id
     expect(page).to_not have_content(Card.find(card_id).title)
   end
+
+  scenario "User sees that the clicked token has been selected", js: true do
+    expect(page).to_not have_css('.selected-position')
+    find('#position0').click
+    expect(page).to have_css('.selected-position')
+  end
+
+  scenario "User de-selects a clicked token"
 
 end

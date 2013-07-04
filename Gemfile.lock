@@ -310,6 +310,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   database_cleaner
   devise
+  eco
   factory_girl_rails
   fivemat
   foreigner

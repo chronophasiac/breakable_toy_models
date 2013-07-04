@@ -17,7 +17,19 @@ FactoryGirl.define do
     sequence(:title)  { |n| "This is a #{n} card title" }
     instructions      "These are card instructions"
     problem           "This is a card problem"
-    snippet           "This is a card snippet"
+    snippet           <<-ENDEND
+class Activity < ActiveRecord::Base
+  belongs_to  :completable,
+              polymorphic: true,
+              inverse_of: :activities
+
+  class << self
+    def descending_position
+      order('position')
+    end
+  end
+end
+ENDEND
     solution_type     "position"
 
     before(:create) do |card|

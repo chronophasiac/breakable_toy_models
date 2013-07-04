@@ -4,24 +4,21 @@ class Memworks.Views.CardsShow extends Backbone.View
 
   events:
     'submit #text-response-form': 'submitAnswer'
+    'click #position-submit':     'submitAnswer'
     'click #next':                'advanceCard'
     'click .click-response':      'snippetClick'
-    'click #position-submit':     'submitAnswer'
 
   initialize: ->
     @collection.on('sync', @render)
     @collection.on('sync', @resetCurrentCard)
-    @collection.on('showNewCard', @render)
+    @collection.on('showNewCard', @cardChanged)
     @logs = new Memworks.Collections.CardSubmissionLogs()
     @logs.on('add', @displayFeedback)
     setInterval(@incrementElapsedTime, 1000)
+    @cardChanged()
 
   render: =>
-    @card = @collection.at(@collection.currentCard)
-    @card.on("change:correct_answer", @render)
-    @card.on("change:submitted", @render)
-    @card.on("change:responded", @render)
-    $(@el).html(@template(card: @card.toJSON()))
+    $(@el).html(@template(card: @card.toJSON(), positions: @positions.toJSON()))
     @elapsedTime = 0
     this
 
@@ -30,8 +27,11 @@ class Memworks.Views.CardsShow extends Backbone.View
     position = new Memworks.Models.Position()
     index = $(event.currentTarget).attr("id")
     index = index.substring(8)
+    a = @card.get('tokenized_snippet')
+    a[index].selected = true
+    @card.set('tokenized_snippet', a)
     position.set({'position': index})
-    @card.positions.add(position)
+    @positions.add(position)
 
   incrementElapsedTime: =>
     @elapsedTime++
@@ -47,7 +47,7 @@ class Memworks.Views.CardsShow extends Backbone.View
     if @card.get('kind') == "type"
       $("#string-response").val()
     else
-      @card.positions
+      @positions
 
   submitAnswer: (event) ->
     event.preventDefault()
@@ -69,6 +69,16 @@ class Memworks.Views.CardsShow extends Backbone.View
   advanceCard: (event) ->
     event.preventDefault()
     @collection.nextCard()
+
+  cardChanged: =>
+    @card = @collection.at(@collection.currentCard)
+    @card.on('positionAdded', @render)
+    @card.on('change:correct_answer', @render)
+    @card.on('change:submitted', @render)
+    @card.on('change:responded', @render)
+    @positions = @card.positions
+    @positions.on('add', @render)
+    @render()
 
   resetCurrentCard: =>
     if @collection?

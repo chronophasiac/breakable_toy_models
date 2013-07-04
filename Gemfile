@@ -48,6 +48,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation'
   gem 'handlebars_assets'
+  gem 'eco'
 end
 
 gem 'jquery-rails'

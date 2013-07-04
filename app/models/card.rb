@@ -89,7 +89,9 @@ class Card < ActiveRecord::Base
 
     if snippet.present?
       snippet_lines.each do |line|
-        tokenized_snippet << Card.tokenized_line(line)
+        Card.tokenized_line(line).each do |token|
+          tokenized_snippet << {text: token}
+        end
       end
     end
 
