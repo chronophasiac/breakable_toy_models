@@ -15,3 +15,6 @@ class Memworks.Collections.Cards extends Backbone.Collection
 
   resetCardIndex: ->
     @currentCard = 0
+
+  remainingCards: ->
+    @length - @currentCard

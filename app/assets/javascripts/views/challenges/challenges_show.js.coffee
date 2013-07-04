@@ -18,7 +18,10 @@ class Memworks.Views.ChallengesShow extends Backbone.View
     @cardChanged()
 
   render: =>
-    $(@el).html(@template(card: @card.toJSON(), score: @model.get('score')))
+    $(@el).html(@template(
+                card: @card.toJSON()
+                score: @model.get('score')
+                remaining: @collection.remainingCards()))
     @elapsedTime = 0
     this
 
