@@ -39,6 +39,4 @@ feature "User is scored based on responses to challenge cards", %Q{
     expect(page).to have_css('#current-score', text: 1)
   end
 
-  scenario "User sees a final score at the end of the challenge"
-
 end
