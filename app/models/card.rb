@@ -100,4 +100,16 @@ class Card < ActiveRecord::Base
     tokenized_snippet
   end
 
+  def canonical_solution
+    solution = ""
+
+    if kind == "type"
+      solution = solution_strings.first.regex
+      solution.slice!(0)
+      solution.slice!(solution.length-1)
+    end
+
+    solution
+  end
+
 end

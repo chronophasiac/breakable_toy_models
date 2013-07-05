@@ -26,4 +26,15 @@ feature "User sees solution", %Q{
     expect(page).to have_css('.solution-position')
   end
 
+  scenario "User sees the solution to cards with a string solution", js: true do
+    find("#{correct_ID}").click
+    click_button('position-submit')
+    click_button('Next')
+    expect(page).to_not have_css('.solution-string')
+    fill_in("string-response", with: "so wrong")
+    click_button("Submit")
+    expect(page).to have_content("The correct answer was")
+    expect(page).to have_css('.solution-string', text: string_answer)
+  end
+
 end

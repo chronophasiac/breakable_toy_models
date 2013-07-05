@@ -41,6 +41,17 @@ describe Card do
     end
   end
 
+  context 'with a string solution' do
+    let(:correct_answer)  { "this is correct" }
+    let(:solution)        { FactoryGirl.create(:solution_string,
+                            regex: "^#{correct_answer}$") }
+    let(:card)            { solution.card }
+
+    it 'has a canonical solution' do
+      expect(card.canonical_solution).to eql(correct_answer)
+    end
+  end
+
   describe 'has a kind' do
     let(:card_string)   { FactoryGirl.create(:card_string_solution) }
     let(:card_position) { FactoryGirl.create(:card_position_solution) }
@@ -150,5 +161,6 @@ describe Card do
     end
 
   end
+
 
 end
