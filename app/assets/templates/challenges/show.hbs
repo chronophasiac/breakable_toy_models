@@ -38,6 +38,8 @@
       {{#if card.incorrect_answer}}
         <div class="incorrect-indicator">
           <h4>Incorrect</h4>
+          <h4 class="subheader">The correct answer was:</h4>
+          <pre><code class="solution-snippet">{{#each card.tokenized_snippet}}<span class="{{solution_position this}}">{{this.text}}</span>{{/each}}</code></pre>
         </div>
       {{/if}}
       <button id="next">Next</button>

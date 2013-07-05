@@ -83,28 +83,21 @@ class Card < ActiveRecord::Base
     return false
   end
 
-  def snippet_lines
-    snippet.split(/\r\n/) 
+  def tokenizer
+    snippet.split(/(\W)|(\s)/)
   end
 
   def tokenized_snippet
     tokenized_snippet = []
 
     if snippet.present?
-      snippet_lines.each do |line|
-        Card.tokenized_line(line).each do |token|
-          tokenized_snippet << {text: token}
-        end
+      tokenizer.each_with_index do |token, index|
+        solution = correct_answer?([{position: index}])
+        tokenized_snippet << {text: token, solution: solution}
       end
     end
 
     tokenized_snippet
-  end
-
-  class << self
-    def tokenized_line(line)
-      line.split(/(\W)|(\s)/)
-    end
   end
 
 end

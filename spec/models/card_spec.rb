@@ -136,6 +136,19 @@ describe Card do
       expect(card.tokenized_snippet[0][:text]).to include("Test")
       expect(card.tokenized_snippet[0][:text]).to_not include("for")
     end
+
+    describe 'with the solutions indicated' do
+      let(:solution) { card.solution_positions.first }
+
+      it 'returns true for correct positions' do
+        expect(card.tokenized_snippet[solution.start_position][:solution]).to be_true
+      end
+
+      it 'returns false for incorrect positions' do
+        expect(card.tokenized_snippet[solution.end_position + 1][:solution]).to be_false
+      end
+    end
+
   end
 
 end

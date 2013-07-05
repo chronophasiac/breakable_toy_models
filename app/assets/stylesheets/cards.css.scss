@@ -15,3 +15,10 @@ code.clickable-snippet {
     }
   }
 }
+
+code.solution-snippet {
+  line-height: 1.1em;
+  span.solution-position {
+    background-color: green;
+  }
+}
