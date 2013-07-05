@@ -7,30 +7,37 @@ feature "User sees completed challenges", %Q{
   } do
 
   extend LoginHarness
-  extend LessonHarness
   
   login_as_user
-  setup_lesson_and_cards_with_mixed_solutions
+
+  given!(:challenge_progression)  { FactoryGirl.create(:challenge_progression, user: user) }
+  given(:challenge)               { challenge_progression.challenge }
 
   background do
-    extend LessonHarness
-    associate_mixed_solution_cards_with_challenge_and_init
-    find("#{correct_ID}").click
-    click_button('position-submit')
-    click_button('Next')
-    fill_in("string-response", with: string_answer)
-    click_button("Submit")
-    click_button('Next')
+    15.times do
+      FactoryGirl.create(:challenge_progression, user: user, updated_at: 5.minutes.ago)
+    end
+    visit(root_path)
+    click_link("My Dashboard")
   end
 
-  scenario "User sees a 'Completed Challenges' section in their dashboard", js: true do
-    click_link("My Dashboard")
+  scenario "User sees a 'Completed Challenges' section in their dashboard" do
     expect(page).to have_content("Completed Challenges")
     expect(page).to have_content(challenge.title)
   end
 
-  scenario "User sees a list of challenges they have completed, sorted by date"
+  scenario "User sees a list of challenges they have completed, sorted by date" do
+    within(first('.completed-challenge')) do
+      expect(page).to have_content(challenge.title)
+    end
+  end
 
-  scenario "User sees a score for each challenge, and the date they completed it"
+  scenario "User sees a score for each challenge, and the date they completed it" do
+    within(first('.completed-challenge')) do
+      expect(page).to have_content(challenge_progression.score)
+      completed_time = challenge_progression.updated_at.localtime.strftime("%e %b %l:%M %p")
+      expect(page).to have_content(completed_time)
+    end
+  end
 
 end
