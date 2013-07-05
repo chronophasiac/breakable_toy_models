@@ -1,3 +1,3 @@
-Handlebars.registerHelper('selected_position', (context) ->
-  if context.selected then "selected-position" else ""
+Handlebars.registerHelper('selected_position', ->
+  if @selected then "selected-position" else ""
   )

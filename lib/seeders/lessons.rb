@@ -15,7 +15,7 @@ module Seeders
           FactoryGirl.create(:activity, lesson: lesson, position: 2)
           activity = FactoryGirl.create(:activity, lesson: lesson, position: 3,
                                         completable: FactoryGirl.create(:challenge))
-          5.times do
+          2.times do
             FactoryGirl.create(:challenge_deck, challenge: activity.completable)
             FactoryGirl.create(:challenge_deck_position_solution, challenge: activity.completable)
           end

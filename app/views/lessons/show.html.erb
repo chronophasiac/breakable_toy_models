@@ -1,3 +1,4 @@
+<h2><%= @lesson.title %></h2>
 <%- @lesson.activities.descending_position.each do |activity| -%>
   <div class="row">
     <%- if activity.completable_type == "Assignment" -%>

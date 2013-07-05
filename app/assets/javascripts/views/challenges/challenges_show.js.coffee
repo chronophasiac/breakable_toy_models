@@ -12,6 +12,7 @@ class Memworks.Views.ChallengesShow extends Backbone.View
     @collection.on('sync', @render)
     @collection.on('sync', @resetCurrentCard)
     @collection.on('showNewCard', @cardChanged)
+    @collection.on('completeChallenge', @displaySummary)
     @logs = new Memworks.Collections.CardSubmissionLogs()
     @logs.on('add', @displayFeedback)
     setInterval(@incrementElapsedTime, 1000)
@@ -81,3 +82,7 @@ class Memworks.Views.ChallengesShow extends Backbone.View
   resetCurrentCard: =>
     if @collection?
       @collection.resetCardIndex
+
+  displaySummary: =>
+    summaryTemplate = HandlebarsTemplates['challenges/summary']
+    $(@el).html(summaryTemplate(score: @model.get('score'), lessonID: @collection.lessonID))

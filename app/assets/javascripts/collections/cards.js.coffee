@@ -11,7 +11,10 @@ class Memworks.Collections.Cards extends Backbone.Collection
 
   nextCard: ->
     @currentCard++
-    @trigger('showNewCard')
+    if @remainingCards() > 0
+      @trigger('showNewCard')
+    else
+      @trigger('completeChallenge')
 
   resetCardIndex: ->
     @currentCard = 0
