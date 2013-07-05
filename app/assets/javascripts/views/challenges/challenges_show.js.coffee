@@ -12,17 +12,25 @@ class Memworks.Views.ChallengesShow extends Backbone.View
     @collection.on('sync', @resetCurrentCard)
     @collection.on('showNewCard', @cardChanged)
     @collection.on('completeChallenge', @displaySummary)
-    @logs = new Memworks.Collections.CardSubmissionLogs({challengeProgression: @model})
+    if @model
+      @logs = new Memworks.Collections.CardSubmissionLogs({challengeProgression: @model})
+    else
+      @logs = new Memworks.Collections.CardSubmissionLogs()
     @logs.on('correctAnswerSupplied', @displayCorrect)
     @logs.on('incorrectAnswerSupplied', @displayIncorrect)
     setInterval(@incrementElapsedTime, 1000)
     @cardChanged()
 
   render: =>
-    $(@el).html(@template(
-                card: @card.toJSON()
-                score: @model.get('score')
-                remaining: @collection.remainingCards()))
+    if @model
+      $(@el).html(@template(
+                  card: @card.toJSON()
+                  score: @model.get('score')
+                  remaining: @collection.remainingCards()))
+    else
+      $(@el).html(@template(
+                  card: @card.toJSON()
+                  remaining: @collection.remainingCards()))
     @elapsedTime = 0
     this
 

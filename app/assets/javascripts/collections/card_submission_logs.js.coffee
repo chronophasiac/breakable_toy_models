@@ -12,7 +12,7 @@ class Memworks.Collections.CardSubmissionLogs extends Backbone.Collection
 
   updateView: (cardSubmissionLog) ->
     correct = cardSubmissionLog.get('correct')
-    @challengeProgression.updateScore(correct)
+    @challengeProgression.updateScore(correct) if @challengeProgression
     if correct
       @trigger('correctAnswerSupplied')
     else
