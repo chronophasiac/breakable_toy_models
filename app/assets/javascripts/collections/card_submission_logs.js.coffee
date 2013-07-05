@@ -2,21 +2,21 @@ class Memworks.Collections.CardSubmissionLogs extends Backbone.Collection
 
   initialize: (options={}) ->
     @cardID = options.cardID || null
-    @challengeProgression = options.challengeProgression || null
-    @.on('add', @updateProgression)
+    @ChallengeCompletion = options.ChallengeCompletion || null
+    @.on('add', @updateCompletion)
 
   model: Memworks.Models.CardSubmissionLog
 
   url: ->
    "/cards/#{@cardID}/card_submission_logs"
 
-  updateProgression: (cardSubmissionLog) ->
+  updateCompletion: (cardSubmissionLog) ->
     correct = cardSubmissionLog.get('correct')
-    @challengeProgression.updateScore(correct) if @challengeProgression
+    @ChallengeCompletion.updateScore(correct) if @ChallengeCompletion
     if correct
       @trigger('correctAnswerSupplied')
     else
       @trigger('incorrectAnswerSupplied')
 
-  postProgression: ->
-    @challengeProgression.save()
+  postCompletion: ->
+    @ChallengeCompletion.save()

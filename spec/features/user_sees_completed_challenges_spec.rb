@@ -10,12 +10,12 @@ feature "User sees completed challenges", %Q{
   
   login_as_user
 
-  given!(:challenge_progression)  { FactoryGirl.create(:challenge_progression, user: user) }
-  given(:challenge)               { challenge_progression.challenge }
+  given!(:challenge_completion)  { FactoryGirl.create(:challenge_completion, user: user) }
+  given(:challenge)               { challenge_completion.challenge }
 
   background do
     15.times do
-      FactoryGirl.create(:challenge_progression, user: user, updated_at: 5.minutes.ago)
+      FactoryGirl.create(:challenge_completion, user: user, updated_at: 5.minutes.ago)
     end
     visit(root_path)
     click_link("My Dashboard")
@@ -34,8 +34,8 @@ feature "User sees completed challenges", %Q{
 
   scenario "User sees a score for each challenge, and the date they completed it" do
     within(first('.completed-challenge')) do
-      expect(page).to have_content(challenge_progression.score)
-      completed_time = challenge_progression.updated_at.localtime.strftime("%e %b %l:%M %p")
+      expect(page).to have_content(challenge_completion.score)
+      completed_time = challenge_completion.updated_at.localtime.strftime("%e %b %l:%M %p")
       expect(page).to have_content(completed_time)
     end
   end

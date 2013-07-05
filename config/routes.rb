@@ -14,7 +14,7 @@ Memworks::Application.routes.draw do
   end
 
   resources :challenges, only: [:index] do
-    resources :challenge_progressions, only: [:create]
+    resources :challenge_completions, only: [:create]
     resources :cards, only: [:index]
   end
 

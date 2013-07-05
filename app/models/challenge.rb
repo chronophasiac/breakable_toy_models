@@ -9,11 +9,11 @@
 #
 
 class Challenge < ActiveRecord::Base
-  has_many  :challenge_progressions,
+  has_many  :challenge_completions,
             inverse_of: :challenge,
             dependent: :destroy
   has_many  :users,
-            through: :challenge_progressions,
+            through: :challenge_completions,
             inverse_of: :challenges
   has_many  :activities,
             as: :completable,

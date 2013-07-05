@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: challenge_progressions
+# Table name: challenge_completions
 #
 #  id           :integer          not null, primary key
 #  user_id      :integer          not null
@@ -10,11 +10,11 @@
 #  updated_at   :datetime         not null
 #
 
-class ChallengeProgression < ActiveRecord::Base
+class ChallengeCompletion < ActiveRecord::Base
   belongs_to  :user,
-              inverse_of: :challenge_progressions
+              inverse_of: :challenge_completions
   belongs_to  :challenge,
-              inverse_of: :challenge_progressions
+              inverse_of: :challenge_completions
 
   validates_presence_of :score, :user, :challenge
 

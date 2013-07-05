@@ -28,10 +28,10 @@ RailsAdmin.config do |config|
   # config.default_items_per_page = 20
 
   # Exclude specific models (keep the others):
-  # config.excluded_models = ['Activity', 'Assignment', 'AssignmentRating', 'Card', 'CardPrerequisite', 'CardSubmission', 'CardSubmissionLog', 'Challenge', 'ChallengeDeck', 'ChallengeProgression', 'Coursework', 'Enrollment', 'Lesson', 'SolutionPosition', 'SolutionString', 'User']
+  # config.excluded_models = ['Activity', 'Assignment', 'AssignmentRating', 'Card', 'CardPrerequisite', 'CardSubmission', 'CardSubmissionLog', 'Challenge', 'ChallengeDeck', 'ChallengeCompletion', 'Coursework', 'Enrollment', 'Lesson', 'SolutionPosition', 'SolutionString', 'User']
 
   # Include specific models (exclude the others):
-  # config.included_models = ['Activity', 'Assignment', 'AssignmentRating', 'Card', 'CardPrerequisite', 'CardSubmission', 'CardSubmissionLog', 'Challenge', 'ChallengeDeck', 'ChallengeProgression', 'Coursework', 'Enrollment', 'Lesson', 'SolutionPosition', 'SolutionString', 'User']
+  # config.included_models = ['Activity', 'Assignment', 'AssignmentRating', 'Card', 'CardPrerequisite', 'CardSubmission', 'CardSubmissionLog', 'Challenge', 'ChallengeDeck', 'ChallengeCompletion', 'Coursework', 'Enrollment', 'Lesson', 'SolutionPosition', 'SolutionString', 'User']
 
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
@@ -398,7 +398,7 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :challenge_progressions, :has_many_association 
+  #     configure :challenge_completions, :has_many_association 
   #     configure :users, :has_many_association 
   #     configure :activities, :has_many_association 
   #     configure :lessons, :has_many_association 
@@ -483,11 +483,11 @@ RailsAdmin.config do |config|
   # end
 
 
-  ###  ChallengeProgression  ###
+  ###  ChallengeCompletion  ###
 
-  # config.model 'ChallengeProgression' do
+  # config.model 'ChallengeCompletion' do
 
-  #   # You can copy this to a 'rails_admin do ... end' block inside your challenge_progression.rb model definition
+  #   # You can copy this to a 'rails_admin do ... end' block inside your challenge_completion.rb model definition
 
   #   # Found associations:
 
@@ -774,7 +774,7 @@ RailsAdmin.config do |config|
   #     configure :assignment_ratings, :has_many_association 
   #     configure :enrollments, :has_many_association 
   #     configure :lessons, :has_many_association 
-  #     configure :challenge_progressions, :has_many_association 
+  #     configure :challenge_completions, :has_many_association 
   #     configure :challenges, :has_many_association 
 
   #   # Found columns:

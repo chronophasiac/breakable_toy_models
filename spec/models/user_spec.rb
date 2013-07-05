@@ -40,7 +40,7 @@ describe User do
   it { should have_many(:enrollments).dependent(:destroy) }
   it { should have_many(:lessons) }
 
-  it { should have_many(:challenge_progressions).dependent(:destroy) }
+  it { should have_many(:challenge_completions).dependent(:destroy) }
   it { should have_many(:challenges) }
 
   it "allows multiple users to be saved" do

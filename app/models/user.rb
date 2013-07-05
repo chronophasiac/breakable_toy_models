@@ -41,11 +41,11 @@ class User < ActiveRecord::Base
   has_many  :lessons,
             through: :enrollments,
             inverse_of: :users
-  has_many  :challenge_progressions,
+  has_many  :challenge_completions,
             inverse_of: :user,
             dependent: :destroy
   has_many  :challenges,
-            through: :challenge_progressions,
+            through: :challenge_completions,
             inverse_of: :users
 
   devise :database_authenticatable, :registerable,

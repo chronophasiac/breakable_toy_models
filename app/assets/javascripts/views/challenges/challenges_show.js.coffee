@@ -12,7 +12,7 @@ class Memworks.Views.ChallengesShow extends Backbone.View
     @collection.on('showNewCard', @cardChanged)
     @collection.on('completeChallenge', @displaySummary)
     if @model
-      @logs = new Memworks.Collections.CardSubmissionLogs({challengeProgression: @model})
+      @logs = new Memworks.Collections.CardSubmissionLogs({ChallengeCompletion: @model})
     else
       @logs = new Memworks.Collections.CardSubmissionLogs()
     @logs.on('correctAnswerSupplied', @displayCorrect)
@@ -83,7 +83,7 @@ class Memworks.Views.ChallengesShow extends Backbone.View
     @render()
 
   displaySummary: =>
-    @logs.postProgression()
+    @logs.postCompletion()
     summaryTemplate = HandlebarsTemplates['challenges/summary']
     $(@el).html(summaryTemplate(
                 score: @model.get('score')

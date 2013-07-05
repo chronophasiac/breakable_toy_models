@@ -87,6 +87,17 @@ ActiveRecord::Schema.define(:version => 20130623195218) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "challenge_completions", :force => true do |t|
+    t.integer  "user_id",                     :null => false
+    t.integer  "challenge_id",                :null => false
+    t.integer  "score",        :default => 0, :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "challenge_completions", ["challenge_id"], :name => "index_challenge_completions_on_challenge_id"
+  add_index "challenge_completions", ["user_id"], :name => "index_challenge_completions_on_user_id"
+
   create_table "challenge_decks", :force => true do |t|
     t.integer  "challenge_id", :null => false
     t.integer  "card_id",      :null => false
@@ -96,17 +107,6 @@ ActiveRecord::Schema.define(:version => 20130623195218) do
 
   add_index "challenge_decks", ["card_id"], :name => "index_challenge_decks_on_card_id"
   add_index "challenge_decks", ["challenge_id"], :name => "index_challenge_decks_on_challenge_id"
-
-  create_table "challenge_progressions", :force => true do |t|
-    t.integer  "user_id",                     :null => false
-    t.integer  "challenge_id",                :null => false
-    t.integer  "score",        :default => 0, :null => false
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
-  add_index "challenge_progressions", ["challenge_id"], :name => "index_challenge_progressions_on_challenge_id"
-  add_index "challenge_progressions", ["user_id"], :name => "index_challenge_progressions_on_user_id"
 
   create_table "challenges", :force => true do |t|
     t.string   "title",      :null => false
@@ -215,11 +215,11 @@ ActiveRecord::Schema.define(:version => 20130623195218) do
   add_foreign_key "card_submissions", "cards", :name => "card_submissions_card_id_fk"
   add_foreign_key "card_submissions", "users", :name => "card_submissions_user_id_fk"
 
+  add_foreign_key "challenge_completions", "challenges", :name => "challenge_completions_challenge_id_fk"
+  add_foreign_key "challenge_completions", "users", :name => "challenge_completions_user_id_fk"
+
   add_foreign_key "challenge_decks", "cards", :name => "challenge_decks_card_id_fk"
   add_foreign_key "challenge_decks", "challenges", :name => "challenge_decks_challenge_id_fk"
-
-  add_foreign_key "challenge_progressions", "challenges", :name => "challenge_progressions_challenge_id_fk"
-  add_foreign_key "challenge_progressions", "users", :name => "challenge_progressions_user_id_fk"
 
   add_foreign_key "courseworks", "assignments", :name => "courseworks_assignment_id_fk"
   add_foreign_key "courseworks", "lessons", :name => "courseworks_lesson_id_fk"

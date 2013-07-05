@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: challenge_progressions
+# Table name: challenge_completions
 #
 #  id           :integer          not null, primary key
 #  user_id      :integer          not null
@@ -12,7 +12,7 @@
 
 require 'spec_helper'
 
-describe ChallengeProgression do
+describe ChallengeCompletion do
   it { should validate_presence_of(:score) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:challenge) }

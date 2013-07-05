@@ -8,7 +8,7 @@ class ChallengesController < ApplicationController
   def show
     show! do |format|
       @lesson = Lesson.where(id: params[:lesson_id]).first
-      @challenge_progression = current_user.challenge_progressions.where(challenge_id: @challenge_id).first
+      @challenge_completion = current_user.challenge_completions.where(challenge_id: @challenge_id).first
       #TODO use resource
       format.json { render json: resource  }
     end

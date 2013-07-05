@@ -76,7 +76,7 @@ end
     factory :challenge_deck_position_solution, traits: [:position]
   end
 
-  factory :challenge_progression do
+  factory :challenge_completion do
     user
     challenge
   end

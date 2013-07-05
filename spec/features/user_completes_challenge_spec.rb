@@ -52,12 +52,12 @@ feature "User completes challenge", %Q{
   end
 
   scenario "User sees a 'Replay' button next to the challenge on the lesson page", js: true do
-    progressions = user.challenge_progressions.length
+    completions = user.challenge_completions.length
     click_button('Next')
     visit lesson_path(lesson)
     expect(page.first(".challenge")).to have_button("Replay")
     user.reload
-    expect(user.challenge_progressions.length).to eql(progressions + 1)
+    expect(user.challenge_completions.length).to eql(completions + 1)
     expect(user.challenges).to include(challenge)
   end
 
