@@ -73,10 +73,7 @@ class Memworks.Views.ChallengesShow extends Backbone.View
 
   cardChanged: =>
     @card = @collection.at(@collection.currentCard)
-    @card.on('change:correct_answer', @render)
-    @card.on('change:submitted', @render)
-    @card.on('change:responded', @render)
-    @card.on('change:tokenized_snippet', @render)
+    @card.on('change', @render)
     @render()
 
   resetCurrentCard: =>

@@ -4,7 +4,7 @@ class Memworks.Models.Card extends Backbone.Model
     snippet = @.get('tokenized_snippet')
     snippet[index].selected = !snippet[index].selected
     @.set('tokenized_snippet', snippet)
-    @.trigger('change:tokenized_snippet')
+    @.trigger('change')
 
   selectedPositions: ->
     positions = []
