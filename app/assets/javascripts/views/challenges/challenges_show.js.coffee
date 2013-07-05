@@ -9,12 +9,12 @@ class Memworks.Views.ChallengesShow extends Backbone.View
     'click .click-response':      'snippetClick'
 
   initialize: ->
-    @collection.on('sync', @render)
     @collection.on('sync', @resetCurrentCard)
     @collection.on('showNewCard', @cardChanged)
     @collection.on('completeChallenge', @displaySummary)
-    @logs = new Memworks.Collections.CardSubmissionLogs()
-    @logs.on('add', @displayFeedback)
+    @logs = new Memworks.Collections.CardSubmissionLogs({challengeProgression: @model})
+    @logs.on('correctAnswerSupplied', @displayCorrect)
+    @logs.on('incorrectAnswerSupplied', @displayIncorrect)
     setInterval(@incrementElapsedTime, 1000)
     @cardChanged()
 
@@ -34,13 +34,11 @@ class Memworks.Views.ChallengesShow extends Backbone.View
   incrementElapsedTime: =>
     @elapsedTime++
 
-  displayFeedback: (cardSubmissionLog) =>
-    @card.set({'submitted': true})
-    if cardSubmissionLog.get('correct')
-      @model.incrementScore()
-      @card.set({'correct_answer': true})
-    else
-      @card.set({'correct_answer': false})
+  displayCorrect: =>
+    @card.set({'correct_answer': true})
+
+  displayIncorrect: =>
+    @card.set({'incorrect_answer': true})
 
   getAnswer: =>
     if @card.get('kind') == "type"

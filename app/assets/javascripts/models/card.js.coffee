@@ -1,5 +1,15 @@
 class Memworks.Models.Card extends Backbone.Model
 
+  initialize: ->
+    @.set({'submitted': false})
+    @.set({'correct_answer': false})
+    @.set({'incorrect_answer': false})
+    @.on('change:correct_answer', @cardSubmitted)
+    @.on('change:incorrect_answer', @cardSubmitted)
+
+  cardSubmitted: ->
+    @.set({'submitted': true})
+
   clickPosition: (index) ->
     snippet = @.get('tokenized_snippet')
     snippet[index].selected = !snippet[index].selected
