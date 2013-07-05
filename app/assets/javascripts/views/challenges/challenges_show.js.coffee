@@ -3,10 +3,10 @@ class Memworks.Views.ChallengesShow extends Backbone.View
   template: HandlebarsTemplates['challenges/show']
 
   events:
-    'submit #text-response-form': 'submitAnswer'
-    'click #position-submit':     'submitAnswer'
-    'click #next':                'advanceCard'
-    'click .click-response':      'snippetClick'
+    'submit #text-response-form':   'submitAnswer'
+    'click #position-submit':       'submitAnswer'
+    'click #next':                  'advanceCard'
+    'click .click-response':        'snippetClick'
 
   initialize: ->
     @collection.on('showNewCard', @cardChanged)
@@ -31,6 +31,7 @@ class Memworks.Views.ChallengesShow extends Backbone.View
                   card: @card.toJSON()
                   remaining: @collection.remainingCards()))
     @elapsedTime = 0
+    $('input#string-response').focus()
     this
 
   snippetClick: (event) ->

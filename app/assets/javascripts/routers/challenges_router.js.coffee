@@ -14,4 +14,5 @@ class Memworks.Routers.Challenges extends Backbone.Router
       success: =>
         view = new Memworks.Views.ChallengesShow(collection: @cards, model: @progression)
         $('.card-container').html(view.render().el)
+        $('#string-response').focus()
       })
