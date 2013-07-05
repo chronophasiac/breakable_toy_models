@@ -20,31 +20,45 @@ feature "User completes challenge", %Q{
     click_button('Next')
     fill_in("string-response", with: string_answer)
     click_button("Submit")
-    click_button('Next')
   end
 
   scenario "User sees a message that the challenge is over", js: true do
+    click_button('Next')
     expect(page).to have_content("Challenge completed")
   end
 
   scenario "User sees final score for the challenge", js: true do
+    click_button('Next')
     expect(page).to have_css('#final-score', text: 2)
   end
 
   scenario "User sees 'Continue Lesson' button", js: true do
+    click_button('Next')
     click_link('Continue Lesson')
     expect(page).to have_content(lesson.title)
   end
 
   scenario "User sees 'Repeat challenge' button", js: true do
-    click_link('Repeat Challenge')
+    click_button('Next')
+    click_link('Replay Challenge')
     expect(page).to have_content(challenge.title)
     expect(page).to have_content(card1.title)
   end
 
   scenario "User sees 'Return to Home' button", js: true do
+    click_button('Next')
     click_link('Return to Home')
     expect(page).to have_content('Learn stuff')
+  end
+
+  scenario "User sees a 'Replay' button next to the challenge on the lesson page", js: true do
+    progressions = user.challenge_progressions.length
+    click_button('Next')
+    visit lesson_path(lesson)
+    expect(page.first(".challenge")).to have_button("Replay")
+    user.reload
+    expect(user.challenge_progressions.length).to eql(progressions + 1)
+    expect(user.challenges).to include(challenge)
   end
 
 end

@@ -5,9 +5,9 @@ class Memworks.Routers.Challenges extends Backbone.Router
 
   initialize: =>
     @cards = new Memworks.Collections.Cards()
-    @progression = new Memworks.Models.ChallengeProgression()
 
   show: (lessonID, challengeID) =>
+    @progression = new Memworks.Models.ChallengeProgression({challenge_id: challengeID})
     @cards.challengeID = challengeID
     @cards.lessonID = lessonID
     @cards.fetch({

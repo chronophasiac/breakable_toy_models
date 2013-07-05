@@ -3,6 +3,7 @@ class Memworks.Collections.Cards extends Backbone.Collection
   initialize: (options={}) ->
     @challengeID = options.challengeID || null
     @currentCard = 0
+    @.on('sync', @resetCardIndex)
 
   model: Memworks.Models.Card
 

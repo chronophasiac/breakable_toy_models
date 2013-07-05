@@ -1,7 +1,13 @@
 class Memworks.Models.ChallengeProgression extends Backbone.Model
 
-  initialize: ->
+  initialize: (options={}) ->
+    @challenge_id = options.challenge_id || null
     @.set({'score': 0})
+
+  paramRoot: 'challenge_progression'
+
+  url: ->
+   "/challenges/#{@challenge_id}/challenge_progressions"
 
   updateScore: (correct) ->
     if correct

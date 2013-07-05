@@ -76,6 +76,11 @@ end
     factory :challenge_deck_position_solution, traits: [:position]
   end
 
+  factory :challenge_progression do
+    user
+    challenge
+  end
+
   factory :coursework do
     user
     assignment

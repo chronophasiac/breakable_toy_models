@@ -9,7 +9,6 @@ class Memworks.Views.ChallengesShow extends Backbone.View
     'click .click-response':      'snippetClick'
 
   initialize: ->
-    @collection.on('sync', @resetCurrentCard)
     @collection.on('showNewCard', @cardChanged)
     @collection.on('completeChallenge', @displaySummary)
     if @model
@@ -82,11 +81,8 @@ class Memworks.Views.ChallengesShow extends Backbone.View
     @card.on('change', @render)
     @render()
 
-  resetCurrentCard: =>
-    if @collection?
-      @collection.resetCardIndex
-
   displaySummary: =>
+    @logs.postProgression()
     summaryTemplate = HandlebarsTemplates['challenges/summary']
     $(@el).html(summaryTemplate(
                 score: @model.get('score')

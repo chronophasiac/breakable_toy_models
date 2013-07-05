@@ -14,6 +14,7 @@ Memworks::Application.routes.draw do
   end
 
   resources :challenges, only: [:index] do
+    resources :challenge_progressions, only: [:create]
     resources :cards, only: [:index]
   end
 
@@ -22,7 +23,8 @@ Memworks::Application.routes.draw do
   end
 
   root to: 'main_pages#home'
-  match '/about' => 'main_pages#about'
+  match '/about'      => 'main_pages#about'
+  match '/dashboard'  => 'main_pages#dashboard'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -37,7 +37,15 @@
           <h5 class="challenge-title"><%= "#{challenge.title} " %></h5><span class="secondary label">Challenge</span> 
         </div>
         <div class="large-3 columns">
-          <%= button_to("Start", lesson_challenge_path(@lesson, challenge), class: "large button success", method: "get") %>
+          <%- if user_signed_in? -%>
+            <%- if current_user.challenges.include?(challenge) -%>
+              <%= button_to("Replay", lesson_challenge_path(@lesson, challenge), class: "button secondary", method: "get") %>
+            <%- else -%>
+              <%= button_to("Start", lesson_challenge_path(@lesson, challenge), class: "large button success", method: "get") %>
+            <%- end -%>
+          <%- else -%>
+            <%= button_to("Start", lesson_challenge_path(@lesson, challenge), class: "large button success", method: "get") %>
+          <%- end -%>
         </div>
       </div>
     <%- end -%>
