@@ -31,19 +31,20 @@ feature "User completes challenge", %Q{
     expect(page).to have_css('#final-score', text: 2)
   end
 
-  scenario "User sees 'Continue lesson' button", js: true do
+  scenario "User sees 'Continue Lesson' button", js: true do
     click_link('Continue Lesson')
     expect(page).to have_content(lesson.title)
   end
 
-  scenario "User is returned to lesson page on next assignment if button is clicked"
+  scenario "User sees 'Repeat challenge' button", js: true do
+    click_link('Repeat Challenge')
+    expect(page).to have_content(challenge.title)
+    expect(page).to have_content(card1.title)
+  end
 
-  scenario "User sees 'Repeat challenge' button"
-
-  scenario "User is returned to start of challenge if button is clicked"
-
-  scenario "User sees 'Exit' button"
-
-  scenario "User is returned to main page if button is clicked"
+  scenario "User sees 'Return to Home' button", js: true do
+    click_link('Return to Home')
+    expect(page).to have_content('Learn stuff')
+  end
 
 end
