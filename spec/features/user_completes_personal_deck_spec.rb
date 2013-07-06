@@ -28,4 +28,10 @@ feature "User completes personal deck", %Q{
     expect(page).to have_content(card.title)
   end
 
+  scenario "User sees an 'Explore Lessons' button", js: true do
+    within('.card-container') do
+      click_link('Explore Lessons')
+    end
+    expect(current_path).to include('lessons')
+  end
 end
