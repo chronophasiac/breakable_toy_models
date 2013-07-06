@@ -24,6 +24,8 @@ Memworks::Application.routes.draw do
 
   resource :dashboard, only: [:show]
 
+  resource :my_deck, only: [:show]
+
   root to: 'main_pages#home'
 
   match '/about' => 'main_pages#about'

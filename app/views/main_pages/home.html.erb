@@ -4,6 +4,9 @@
     <h3 class="subheader">We make learning easy by repeatedly injecting content into your brain</h3>
   </div>
 </div>
+<%- if user_signed_in? %>
+  <%= link_to("Train Now", my_deck_path) %>
+<%- end -%>
 <div class="row">
   <div class="large-4 columns panel">
     <p>Dis scelerisque, tortor amet, ultrices augue adipiscing etiam tortor magna mauris augue! Magna nunc ac tincidunt a facilisis, porta pellentesque, lectus! Dapibus in, porttitor sed, ac natoque urna phasellus et a non et scelerisque. Adipiscing integer. Quis tristique. Pid! Auctor ultrices lectus ac placerat? Lundium vut sit mattis et, elementum nunc a? Eros placerat? Aenean sit a cras tincidunt, dis, phasellus cum quis, porttitor lundium parturient, scelerisque urna magnis porttitor montes lacus, porttitor in porttitor nascetur tortor pellentesque adipiscing pid, penatibus montes pellentesque nascetur. Ac porttitor nec augue lacus in ac amet tortor mus elementum, in? A phasellus enim vel, etiam dictumst! Magna auctor aliquam adipiscing magna aliquet urna ultricies ac ut? Turpis et enim lectus pellentesque rhoncus porta platea.</p>
