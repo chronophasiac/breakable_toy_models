@@ -14,6 +14,10 @@
 class CardSubmissionLog < ActiveRecord::Base
   belongs_to  :card_submission,
               inverse_of: :card_submission_logs
+  has_one     :user,
+              through: :card_submission,
+              inverse_of: :card_submission_logs,
+              readonly: true
 
   validates_presence_of :time_taken, :card_submission
 

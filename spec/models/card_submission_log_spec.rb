@@ -29,6 +29,7 @@ describe CardSubmissionLog do
   it { should_not allow_value(-30).for(:time_taken) }
 
   it { should belong_to(:card_submission) }
+  it { should have_one(:user) }
 
   context 'with valid attributes' do
     let(:card_submission_log) { FactoryGirl.build(:card_submission_log) }

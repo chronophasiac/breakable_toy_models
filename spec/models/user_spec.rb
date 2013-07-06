@@ -30,6 +30,7 @@ describe User do
   it { should_not allow_value("notarole").for(:role) }
 
   it { should have_many(:card_submissions).dependent(:destroy) }
+  it { should have_many(:card_submission_logs) }
   it { should have_many(:cards) }
 
   it { should have_many(:courseworks).dependent(:destroy) }
