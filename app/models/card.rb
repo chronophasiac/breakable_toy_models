@@ -23,7 +23,12 @@ class Card < ActiveRecord::Base
             dependent: :destroy
   has_many  :users,
             through: :card_submissions,
-            inverse_of: :cards
+            inverse_of: :cards,
+            readonly: true
+  has_many  :card_submission_logs,
+            through: :card_submissions,
+            inverse_of: :card,
+            readonly: true
   has_many  :card_prerequisites,
             inverse_of: :card,
             dependent: :destroy

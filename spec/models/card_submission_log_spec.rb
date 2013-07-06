@@ -14,6 +14,10 @@
 require 'spec_helper'
 
 describe CardSubmissionLog do
+  it { should belong_to(:card_submission) }
+  it { should have_one(:user) }
+  it { should have_one(:card) }
+
   it { should validate_presence_of(:time_taken) }
   it { should validate_presence_of(:card_submission) }
 
@@ -27,9 +31,6 @@ describe CardSubmissionLog do
   it { should allow_value(30).for(:time_taken) }
   it { should allow_value(0).for(:time_taken) }
   it { should_not allow_value(-30).for(:time_taken) }
-
-  it { should belong_to(:card_submission) }
-  it { should have_one(:user) }
 
   context 'with valid attributes' do
     let(:card_submission_log) { FactoryGirl.build(:card_submission_log) }
