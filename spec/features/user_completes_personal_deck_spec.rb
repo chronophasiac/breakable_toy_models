@@ -14,13 +14,18 @@ feature "User completes personal deck", %Q{
 
   background do
     visit(user_my_deck_path(user))
-  end
-
-  scenario "User sees a message that the deck is completed", js: true do
     fill_in("string-response", with: "foo")
     click_button("Submit")
     click_button("Next")
+  end
+
+  scenario "User sees a message that the deck is completed", js: true do
     expect(page).to have_content("Deck completed")
+  end
+
+  scenario "User sees a 'Replay' button", js: true do
+    click_link("Replay Deck")
+    expect(page).to have_content(card.title)
   end
 
 end
