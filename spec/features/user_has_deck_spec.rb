@@ -25,4 +25,13 @@ feature "User has a deck of cards", %Q{
     end
   end
 
+  scenario "User sees a card they've experienced before", js: true do
+    submission = FactoryGirl.create(:card_submission, user: user)
+    log = FactoryGirl.create(:card_submission_log, card_submission: submission)
+    card = log.card
+    visit(root_path)
+    click_link('Train Now')
+    expect(page).to have_content(card.title)
+  end
+
 end

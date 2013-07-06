@@ -87,5 +87,5 @@ class Memworks.Views.ChallengesShow extends Backbone.View
     summaryTemplate = HandlebarsTemplates['challenges/summary']
     $(@el).html(summaryTemplate(
                 score: @model.get('score')
-                lessonID: @collection.lessonID
-                challengeID: @collection.challengeID))
+                lesson_id: @collection.lesson_id
+                challenge_id: @collection.challenge_id))

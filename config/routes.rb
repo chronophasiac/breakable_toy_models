@@ -6,6 +6,8 @@ Memworks::Application.routes.draw do
   resources :users do
     resources :enrollments, only: [:create]
     resources :courseworks, only: [:create, :update]
+    resources :cards, controller: :user_cards, only: [:index]
+    resource  :my_deck, only: [:show]
   end
 
   resources :lessons, only: [:index, :show] do
@@ -23,8 +25,6 @@ Memworks::Application.routes.draw do
   end
 
   resource :dashboard, only: [:show]
-
-  resource :my_deck, only: [:show]
 
   root to: 'main_pages#home'
 

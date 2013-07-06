@@ -14,7 +14,7 @@
           <li class="divider"></li>
           <%- if user_signed_in? -%>
             <li><%= link_to("My Dashboard", dashboard_path) %></li>
-            <li><%= link_to("Train", my_deck_path) %></li>
+            <li><%= link_to("Train", user_my_deck_path(current_user)) %></li>
             <li class="has-dropdown">
               <a href="#"><%= current_user.email %></a>
               <ul class="dropdown">

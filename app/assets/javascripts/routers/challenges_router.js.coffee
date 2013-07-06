@@ -1,15 +1,11 @@
 class Memworks.Routers.Challenges extends Backbone.Router
 
   routes:
-    'lessons/:lessonID/challenges/:challengeID': 'show'
+    'lessons/:lesson_id/challenges/:challenge_id': 'show'
 
-  initialize: =>
-    @cards = new Memworks.Collections.Cards()
-
-  show: (lessonID, challengeID) =>
-    @completion = new Memworks.Models.ChallengeCompletion({challenge_id: challengeID})
-    @cards.challengeID = challengeID
-    @cards.lessonID = lessonID
+  show: (lesson_id, challenge_id) =>
+    @cards = new Memworks.Collections.Cards({challenge_id: challenge_id, lesson_id: lesson_id})
+    @completion = new Memworks.Models.ChallengeCompletion({challenge_id: challenge_id})
     @cards.fetch({
       success: =>
         view = new Memworks.Views.ChallengesShow(collection: @cards, model: @completion)
