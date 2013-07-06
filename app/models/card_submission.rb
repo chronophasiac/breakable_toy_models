@@ -18,6 +18,9 @@ class CardSubmission < ActiveRecord::Base
   has_many    :card_submission_logs,
               inverse_of: :card_submission,
               dependent: :destroy
+  has_one     :sm2_instance,
+              inverse_of: :card_submission,
+              dependent: :destroy
 
   validates_presence_of :user, :card
 

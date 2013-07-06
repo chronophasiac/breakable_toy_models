@@ -13,12 +13,13 @@
 require 'spec_helper'
 
 describe CardSubmission do
-  it { should validate_presence_of(:user) }
-  it { should validate_presence_of(:card) }
-
   it { should belong_to(:user) }
   it { should belong_to(:card) }
   it { should have_many(:card_submission_logs).dependent(:destroy) }
+  it { should have_one(:sm2_instance).dependent(:destroy) }
+
+  it { should validate_presence_of(:user) }
+  it { should validate_presence_of(:card) }
 
   describe 'updates submissions based on new submission logs' do
     let(:user) { FactoryGirl.create(:user) }

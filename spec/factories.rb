@@ -109,6 +109,10 @@ end
     regex "^correct answer$"
   end
 
+  factory :sm2_instance do
+    card_submission
+  end
+
   factory :user do
     sequence(:email)      {|n| "email#{n}@memworks.com" }
     password              "123qweasd"

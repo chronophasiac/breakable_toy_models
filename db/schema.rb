@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130623195218) do
+ActiveRecord::Schema.define(:version => 20130706211800) do
 
   create_table "activities", :force => true do |t|
     t.integer  "lesson_id",        :null => false
@@ -158,6 +158,20 @@ ActiveRecord::Schema.define(:version => 20130623195218) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
+  create_table "sm2_instances", :force => true do |t|
+    t.float    "easiness_factor"
+    t.integer  "number_repetitions"
+    t.integer  "quality_of_last_recall"
+    t.date     "next_repetition"
+    t.integer  "repetition_interval"
+    t.date     "last_studied"
+    t.integer  "card_submission_id",     :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  add_index "sm2_instances", ["card_submission_id"], :name => "index_sm2_instances_on_card_submission_id"
+
   create_table "solution_positions", :force => true do |t|
     t.integer  "start_position", :null => false
     t.integer  "end_position",   :null => false
@@ -227,6 +241,8 @@ ActiveRecord::Schema.define(:version => 20130623195218) do
 
   add_foreign_key "enrollments", "lessons", :name => "enrollments_lesson_id_fk"
   add_foreign_key "enrollments", "users", :name => "enrollments_user_id_fk"
+
+  add_foreign_key "sm2_instances", "card_submissions", :name => "sm2_instances_card_submission_id_fk"
 
   add_foreign_key "solution_positions", "cards", :name => "solution_positions_card_id_fk"
 

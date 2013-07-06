@@ -14,10 +14,11 @@ gem 'cancan'
 gem 'rails_admin'
 gem 'active_model_serializers'
 gem 'backbone-on-rails'
+gem 'tworgy-spaced-repetition', github: 'tannerburson/tworgy-spaced-repetition'
 
 group :development do
   gem 'annotate'
-  gem 'guard-rspec', git: 'git@github.com:chronophasiac/guard-rspec.git'
+  gem 'guard-rspec', github: 'chronophasiac/guard-rspec'
   gem 'guard-livereload'
   gem 'zeus', "~> 0.13.3.rc2"
   gem 'launchy'
