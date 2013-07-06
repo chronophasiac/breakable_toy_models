@@ -22,9 +22,11 @@ Memworks::Application.routes.draw do
     resources :card_submission_logs, only: [:create]
   end
 
+  resource :dashboard, only: [:show]
+
   root to: 'main_pages#home'
-  match '/about'      => 'main_pages#about'
-  match '/dashboard'  => 'main_pages#dashboard'
+
+  match '/about' => 'main_pages#about'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
