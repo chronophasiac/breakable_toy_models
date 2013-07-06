@@ -1,6 +1,6 @@
-class Memworks.Views.ChallengesShow extends Backbone.View
+class Memworks.Views.CardsShow extends Backbone.View
 
-  template: HandlebarsTemplates['challenges/show']
+  template: HandlebarsTemplates['cards/show']
 
   events:
     'submit #text-response-form':   'submitAnswer'

@@ -10,7 +10,7 @@ class Memworks.Routers.MyDeck extends Backbone.Router
         if @cards.length == 0
           view = new Memworks.Views.CardsError()
         else
-          view = new Memworks.Views.ChallengesShow(collection: @cards)
+          view = new Memworks.Views.CardsShow(collection: @cards)
         $('.card-container').html(view.render().el)
         $('#string-response').focus()
       })

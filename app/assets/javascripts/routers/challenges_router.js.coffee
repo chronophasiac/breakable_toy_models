@@ -8,7 +8,7 @@ class Memworks.Routers.Challenges extends Backbone.Router
     @completion = new Memworks.Models.ChallengeCompletion({challenge_id: challenge_id})
     @cards.fetch({
       success: =>
-        view = new Memworks.Views.ChallengesShow(collection: @cards, model: @completion)
+        view = new Memworks.Views.CardsShow(collection: @cards, model: @completion)
         $('.card-container').html(view.render().el)
         $('#string-response').focus()
       })
