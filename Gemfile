@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails'
 
 gem 'pg'
 gem 'devise'
@@ -17,7 +17,6 @@ gem 'backbone-on-rails'
 gem 'tworgy-spaced-repetition', github: 'tannerburson/tworgy-spaced-repetition'
 
 group :development do
-  gem 'annotate'
   gem 'guard-rspec', github: 'chronophasiac/guard-rspec'
   gem 'guard-livereload'
   gem 'zeus', "~> 0.13.3.rc2"

@@ -1,14 +1,3 @@
-# == Schema Information
-#
-# Table name: card_prerequisites
-#
-#  id            :integer          not null, primary key
-#  card_id       :integer          not null
-#  assignment_id :integer          not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#
-
 class CardPrerequisite < ActiveRecord::Base
   belongs_to  :card,
               inverse_of: :card_prerequisites

@@ -1,17 +1,3 @@
-# == Schema Information
-#
-# Table name: assignments
-#
-#  id              :integer          not null, primary key
-#  title           :string(255)      not null
-#  instructions    :text             not null
-#  url             :string(255)
-#  assignment_type :string(255)      not null
-#  summary         :text             not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#
-
 class Assignment < ActiveRecord::Base
   has_many  :card_prerequisites,
             inverse_of: :assignment,

@@ -1,15 +1,3 @@
-# == Schema Information
-#
-# Table name: assignment_ratings
-#
-#  id            :integer          not null, primary key
-#  user_id       :integer          not null
-#  assignment_id :integer          not null
-#  helpful       :boolean          default(FALSE), not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#
-
 require 'spec_helper'
 
 describe AssignmentRating do

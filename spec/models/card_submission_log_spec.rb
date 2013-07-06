@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: card_submission_logs
-#
-#  id                 :integer          not null, primary key
-#  correct            :boolean          default(FALSE), not null
-#  rated_difficulty   :integer
-#  time_taken         :integer          not null
-#  card_submission_id :integer          not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#
-
 require 'spec_helper'
 
 describe CardSubmissionLog do

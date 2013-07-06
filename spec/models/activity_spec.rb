@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: activities
-#
-#  id               :integer          not null, primary key
-#  lesson_id        :integer          not null
-#  completable_id   :integer          not null
-#  completable_type :string(255)      not null
-#  position         :integer          not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#
-
 require 'spec_helper'
 
 describe Activity do
