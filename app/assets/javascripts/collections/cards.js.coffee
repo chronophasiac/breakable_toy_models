@@ -22,7 +22,10 @@ class Memworks.Collections.Cards extends Backbone.Collection
     if @remainingCards() > 0
       @trigger('showNewCard')
     else
-      @trigger('completeChallenge')
+      if @challenge_id?
+        @trigger('completeChallenge')
+      else
+        @trigger('completeDeck')
 
   resetCardIndex: ->
     @currentCard = 0

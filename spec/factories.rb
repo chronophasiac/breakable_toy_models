@@ -52,7 +52,7 @@ end
 
   factory :card_submission do
     user
-    association :card, factory: :card_position_solution
+    association :card, factory: :card_string_solution
   end
 
   factory :card_submission_log do

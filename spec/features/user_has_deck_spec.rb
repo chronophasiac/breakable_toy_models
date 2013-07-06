@@ -7,13 +7,10 @@ feature "User has a deck of cards", %Q{
   } do
 
   extend LoginHarness
+  extend UserDeckHarness
   
   login_as_user
-
-  let(:submission)  { FactoryGirl.create(:card_submission, user: user) }
-  let(:log)         { FactoryGirl.create(:card_submission_log,
-                      card_submission: submission) }
-  let!(:card)       { log.card }
+  associate_user_with_cards
 
   background do
     visit(root_path)
