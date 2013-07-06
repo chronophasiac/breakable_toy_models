@@ -30,7 +30,6 @@ class Memworks.Views.ChallengesShow extends Backbone.View
       $(@el).html(@template(
                   card: @card.toJSON()
                   remaining: @collection.remainingCards()))
-    @elapsedTime = 0
     $('input#string-response').focus()
     this
 
@@ -80,6 +79,7 @@ class Memworks.Views.ChallengesShow extends Backbone.View
   cardChanged: =>
     @card = @collection.at(@collection.currentCard)
     @card.on('change', @render)
+    @elapsedTime = 0
     @render()
 
   displaySummary: =>
