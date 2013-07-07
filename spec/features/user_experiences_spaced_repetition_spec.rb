@@ -17,4 +17,10 @@ feature "User experiences spaced repetition", %Q{
     expect(page).to have_content(incorrect_submission.card.title)
   end
 
+  scenario "User sees a card they've not studied for a long time", js: true do
+    old_submission
+    visit(user_my_deck_path(user))
+    expect(page).to have_content(old_submission.card.title)
+  end
+
 end
