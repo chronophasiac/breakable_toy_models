@@ -53,10 +53,10 @@ describe User do
   end
 
   describe 'has a lesson completion status' do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:lesson) { FactoryGirl.create(:lesson) }
-    let(:assignment) { FactoryGirl.create(:assignment) }
-    let(:challenge) { FactoryGirl.create(:challenge) }
+    let(:user)        { FactoryGirl.create(:user) }
+    let(:lesson)      { FactoryGirl.create(:lesson) }
+    let(:assignment)  { FactoryGirl.create(:assignment) }
+    let(:challenge)   { FactoryGirl.create(:challenge) }
 
     before(:each) do
       FactoryGirl.create(:activity, completable: assignment, position: 1)

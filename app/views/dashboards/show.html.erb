@@ -1,5 +1,16 @@
 <h2>Dashboard</h2>
 
+<section class="in-progress">
+  <%- if @dashboard.lessons_in_progress.length > 0 -%>
+    <h3>Lessons in progress</h3>
+    <ul class="lessons-in-progress panel">
+      <%- @dashboard.lessons_in_progress.each do |lesson| -%>
+        <li><%= link_to(lesson.title, lesson_path(lesson)) %></li>
+      <%- end -%>
+    </ul>
+  <%- end -%>
+</section>
+
 <div class="completed-challenges-container">
   <h3>Completed Challenges</h3>
   <ul class="completed-challenges panel">
