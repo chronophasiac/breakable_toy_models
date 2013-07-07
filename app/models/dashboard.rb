@@ -27,5 +27,6 @@ class Dashboard
 
   def card_queue
     submissions = CardSubmission.by_next_repetition(@user)
+    submissions[0..9]
   end
 end

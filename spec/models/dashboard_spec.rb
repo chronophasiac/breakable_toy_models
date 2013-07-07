@@ -109,6 +109,14 @@ describe Dashboard do
     it "has incorrectly answered cards first" do
       expect(dashboard.card_queue.first).to eql(incorrect_submission)
     end
+
+    it "returns no more than 10 items" do
+      20.times do
+        submission = FactoryGirl.create(:card_submission, user: user)
+        FactoryGirl.create(:card_submission_log, card_submission: submission)
+      end
+      expect(dashboard.card_queue.length).to eql(10)
+    end
   end
 
 end
