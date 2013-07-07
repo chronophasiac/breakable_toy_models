@@ -10,15 +10,28 @@ feature "User has a dashboard", %Q{
   
   login_as_user
 
-  scenario "User sees lessons in progress" do
-    enrollment = FactoryGirl.create(:enrollment, user: user)
+  let!(:enrollment) { FactoryGirl.create(:enrollment, user: user) }
+  let!(:coursework) { FactoryGirl.create(:coursework, user: user) }
+
+  background do
     FactoryGirl.create(:activity, lesson: enrollment.lesson)
     visit(root_path)
     within('nav.top-bar') do
       click_link('Dashboard')
     end
+  end
+
+  scenario "User sees lessons in progress" do
     within('.in-progress') do
-      expect(page).to have_content(enrollment.lesson.title)
+      click_link(enrollment.lesson.title)
     end
+    expect(page).to have_content(enrollment.lesson.title)
+  end
+
+  scenario "User sees assignments in progress" do
+    within('.in-progress') do
+      click_link(coursework.assignment.title)
+    end
+    expect(page).to have_content(coursework.assignment.title)
   end
 end

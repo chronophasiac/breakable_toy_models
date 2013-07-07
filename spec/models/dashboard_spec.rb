@@ -51,4 +51,25 @@ describe Dashboard do
       expect(dashboard.lessons_in_progress.length).to eql(5)
     end
   end
+
+  describe "returning a user's in progress assignments" do
+    let!(:coursework) { FactoryGirl.create(:coursework, user: user) }
+
+    it "contains an assignment in progress" do
+      expect(dashboard.assignments_in_progress.first.assignment).to eql(coursework.assignment)
+    end
+
+    it "returns no more than 5 assignments" do
+      15.times do
+        additional_coursework = FactoryGirl.create(:coursework, user: user)
+      end
+      expect(dashboard.assignments_in_progress.length).to eql(5)
+    end
+
+    it "does not return completed assignments" do
+      coursework.completed = true
+      coursework.save!
+      expect(dashboard.assignments_in_progress).to_not include(coursework)
+    end
+  end
 end

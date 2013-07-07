@@ -9,6 +9,14 @@
       <%- end -%>
     </ul>
   <%- end -%>
+  <%- if @dashboard.assignments_in_progress.length > 0 -%>
+    <h3>Assignments in progress</h3>
+    <ul class="assignments-in-progress panel">
+      <%- @dashboard.assignments_in_progress.each do |coursework| -%>
+        <li><%= link_to(coursework.assignment.title, lesson_assignment_path(coursework.lesson, coursework.assignment)) %></li>
+      <%- end -%>
+    </ul>
+  <%- end -%>
 </section>
 
 <div class="completed-challenges-container">
