@@ -20,4 +20,8 @@ class Dashboard
   def assignments_in_progress
     @user.courseworks.where(completed: false).includes(:assignment).order("updated_at DESC").limit(5)
   end
+
+  def completed_assignments
+    @user.courseworks.where(completed: true).includes(:assignment).order("updated_at DESC").limit(5)
+  end
 end

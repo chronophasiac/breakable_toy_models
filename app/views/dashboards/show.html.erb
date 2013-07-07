@@ -19,6 +19,16 @@
   <%- end -%>
 </section>
 
+<section class="achievements">
+  <%- if @dashboard.completed_assignments.length > 0 -%>
+    <h3>Completed assignments</h3>
+    <ul class="completed-assignments panel">
+      <%- @dashboard.completed_assignments.each do |coursework| -%>
+        <li><%= link_to(coursework.assignment.title, lesson_assignment_path(coursework.lesson, coursework.assignment)) %></li>
+      <%- end -%>
+    </ul>
+  <%- end -%>
+</section>
 <div class="completed-challenges-container">
   <h3>Completed Challenges</h3>
   <ul class="completed-challenges panel">

@@ -10,8 +10,9 @@ feature "User has a dashboard", %Q{
   
   login_as_user
 
-  let!(:enrollment) { FactoryGirl.create(:enrollment, user: user) }
-  let!(:coursework) { FactoryGirl.create(:coursework, user: user) }
+  let!(:enrollment)           { FactoryGirl.create(:enrollment, user: user) }
+  let!(:coursework)           { FactoryGirl.create(:coursework, user: user) }
+  let!(:completed_coursework)  { FactoryGirl.create(:coursework, user: user, completed: true) }
 
   background do
     FactoryGirl.create(:activity, lesson: enrollment.lesson)
@@ -34,4 +35,12 @@ feature "User has a dashboard", %Q{
     end
     expect(page).to have_content(coursework.assignment.title)
   end
+
+  scenario "User sees completed assignments" do
+    within('.achievements') do
+      click_link(completed_coursework.assignment.title)
+    end
+    expect(page).to have_content(completed_coursework.assignment.title)
+  end
+
 end

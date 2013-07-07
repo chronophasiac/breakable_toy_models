@@ -53,7 +53,7 @@ describe Dashboard do
   end
 
   describe "returning a user's in progress assignments" do
-    let!(:coursework) { FactoryGirl.create(:coursework, user: user) }
+    let!(:coursework) { FactoryGirl.create(:coursework, user: user, completed: false) }
 
     it "contains an assignment in progress" do
       expect(dashboard.assignments_in_progress.first.assignment).to eql(coursework.assignment)
@@ -61,7 +61,8 @@ describe Dashboard do
 
     it "returns no more than 5 assignments" do
       15.times do
-        additional_coursework = FactoryGirl.create(:coursework, user: user)
+        additional_coursework = FactoryGirl.create(:coursework, user: user,
+                                                   completed: false)
       end
       expect(dashboard.assignments_in_progress.length).to eql(5)
     end
@@ -70,6 +71,28 @@ describe Dashboard do
       coursework.completed = true
       coursework.save!
       expect(dashboard.assignments_in_progress).to_not include(coursework)
+    end
+  end
+
+  describe "returning a user's completed assignments" do
+    let!(:coursework) { FactoryGirl.create(:coursework, user: user, completed: true) }
+
+    it "contains a completed assignment" do
+      expect(dashboard.completed_assignments.first.assignment).to eql(coursework.assignment)
+    end
+
+    it "returns no more than 5 assignments" do
+      15.times do
+        additional_coursework = FactoryGirl.create(:coursework, user: user,
+                                                   completed: true)
+      end
+      expect(dashboard.completed_assignments.length).to eql(5)
+    end
+
+    it "does not return in-progress assignments" do
+      coursework.completed = false
+      coursework.save!
+      expect(dashboard.completed_assignments).to_not include(coursework)
     end
   end
 end
