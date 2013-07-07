@@ -28,6 +28,38 @@ describe CardSubmission do
       submission.reload
       expect(submission.updated_at).to be >(past)
     end
-
   end
+
+  describe 'returning the next repetition' do
+    let(:log)         { FactoryGirl.create(:card_submission_log) }
+    let(:submission)  { log.card_submission }
+
+    it 'returns a date' do
+      expect(submission.sm2_next_repetition).to be_a(Date)
+    end
+
+    it 'returns a date in the future' do
+      expect(submission.sm2_next_repetition).to be >(Date.today)
+    end
+  end
+
+  describe 'sorted by next repetition' do
+    let(:user)                  { FactoryGirl.create(:user) }
+    let(:correct_submission)    { FactoryGirl.create(:card_submission, user: user) }
+    let!(:correct_log)          { FactoryGirl.create(:card_submission_log, correct: true,
+                                  card_submission: correct_submission) }
+    let(:incorrect_submission)  { FactoryGirl.create(:card_submission, user: user) }
+    let!(:incorrect_log)        { FactoryGirl.create(:card_submission_log,
+                                  correct: false,
+                                  card_submission: incorrect_submission) }
+
+    it 'returns an array' do
+      expect(CardSubmission.by_next_repetition(user)).to be_an(Array)
+    end
+
+    it 'has incorrect submissions sorted before correct submissions' do
+      expect(CardSubmission.by_next_repetition(user).first).to eql(incorrect_submission)
+    end
+  end
+
 end

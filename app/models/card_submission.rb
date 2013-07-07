@@ -11,6 +11,14 @@ class CardSubmission < ActiveRecord::Base
 
   attr_accessible :card, :helpful
 
+  def sm2_next_repetition
+    sm2 = Sm2Instance.new
+    card_submission_logs.find_each do |log|
+      sm2.process_log(log)
+    end
+    sm2.next_repetition
+  end
+
   class << self
     def update_submission(user, card)
       submission = user.card_submissions.where(card_id: card.id).first
@@ -23,6 +31,11 @@ class CardSubmission < ActiveRecord::Base
       end
 
       submission
+    end
+
+    def by_next_repetition(user)
+      #TODO this shouldn't be an in-memory sort operation
+      user.card_submissions.sort_by(&:sm2_next_repetition)
     end
   end
   

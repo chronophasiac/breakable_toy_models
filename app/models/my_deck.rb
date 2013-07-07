@@ -5,7 +5,8 @@ class MyDeck
   end
 
   def cards
-    @user.cards
+    submissions = CardSubmission.by_next_repetition(@user)
+    submissions.map(&:card)
   end
   
 end

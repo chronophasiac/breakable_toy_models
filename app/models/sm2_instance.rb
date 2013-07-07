@@ -12,15 +12,12 @@ class Sm2Instance
   end
 
   def log_quality_adapter(card_submission_log)
-    card_submission_log.correct ? 0 : 5
+    card_submission_log.correct ? 5 : 0
   end
 
-  def process_logs(card_submission_logs)
-    card_submission_logs.each do |log|
-      process_recall_result(log_quality_adapter(log), log.created_at.to_date)
-    end
+  def process_log(log)
+    process_recall_result(log_quality_adapter(log), log.created_at.to_date)
   end
-
 
   def process_recall_result(quality_of_recall, date = Date.today)
     ## Don't process a result if we already scored this card today

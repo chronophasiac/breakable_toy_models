@@ -67,19 +67,23 @@ describe Sm2Instance do
       sm2.next_repetition.should == Date.today + 1
     end
 
-    context 'when processing logs' do
-      let(:logs) { [FactoryGirl.create(:card_submission_log)] }
-
-      before(:each) do
-        sm2.process_logs(logs)
-      end
+    context 'when processing a card submission log' do
+      let(:correct_log) { FactoryGirl.create(:card_submission_log, correct: true) }
+      let(:incorrect_log) { FactoryGirl.create(:card_submission_log, correct: false) }
 
       it "returns a next repetition date" do
+        sm2.process_log(correct_log)
         expect(sm2.next_repetition).to be_a(Date)
       end
 
-      it "returns a date in the future" do
+      it "returns a date in the future if the log indicated a correct response" do
+        sm2.process_log(correct_log)
         expect(sm2.next_repetition).to be >(Date.today)
+      end
+
+      it "returns today's date if the log indicated an incorrect response" do
+        sm2.process_log(incorrect_log)
+        expect(sm2.next_repetition).to eql(Date.today)
       end
     end
   end
