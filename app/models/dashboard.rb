@@ -24,4 +24,8 @@ class Dashboard
   def completed_assignments
     @user.courseworks.where(completed: true).includes(:assignment).order("updated_at DESC").limit(5)
   end
+
+  def card_queue
+    submissions = CardSubmission.by_next_repetition(@user)
+  end
 end

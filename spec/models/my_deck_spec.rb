@@ -24,6 +24,7 @@ describe MyDeck do
                                     card_submission: submission1, correct: true) }
     let!(:incorrect_submission)  { FactoryGirl.create(:card_submission_log,
                                     card_submission: submission2, correct: false) }
+    
     it "has incorrectly answered cards first" do
       expect(deck.cards.first).to eql(incorrect_submission.card)
     end

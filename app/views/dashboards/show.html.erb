@@ -19,6 +19,21 @@
   <%- end -%>
 </section>
 
+<section class="card-queue">
+  <%- if @dashboard.card_queue.length > 0 -%>
+    <h3>Training queue</h3>
+    <ul class="card-queue-list panel">
+      <%- @dashboard.card_queue.each do |submission| -%>
+        <li class="card-queue-item">
+          <h5><%= submission.card.title %></h5>
+          <h5 class="subheader">Next repetition:
+            <%= submission.sm2_next_repetition %></h5>
+        </li>
+      <%- end -%>
+    </ul>
+  <%- end -%>
+</section>
+
 <section class="achievements">
   <%- if @dashboard.completed_assignments.length > 0 -%>
     <h3>Completed assignments</h3>

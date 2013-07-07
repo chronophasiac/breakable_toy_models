@@ -95,4 +95,20 @@ describe Dashboard do
       expect(dashboard.completed_assignments).to_not include(coursework)
     end
   end
+
+  describe "returning a user's card queue" do
+    let(:correct_submission)        { FactoryGirl.create(:card_submission, user: user) }
+    let(:incorrect_submission)      { FactoryGirl.create(:card_submission, user: user) }
+    let!(:correct_submission_log)   { FactoryGirl.create(:card_submission_log,
+                                      card_submission: correct_submission, 
+                                      correct: true) }
+    let!(:incorrect_submission_log) { FactoryGirl.create(:card_submission_log,
+                                      card_submission: incorrect_submission,
+                                      correct: false) }
+
+    it "has incorrectly answered cards first" do
+      expect(dashboard.card_queue.first).to eql(incorrect_submission)
+    end
+  end
+
 end

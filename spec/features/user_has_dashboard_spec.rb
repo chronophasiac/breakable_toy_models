@@ -7,8 +7,10 @@ feature "User has a dashboard", %Q{
   } do
 
   extend LoginHarness
+  extend UserDeckHarness
   
   login_as_user
+  associate_user_with_varying_responses
 
   let!(:enrollment)           { FactoryGirl.create(:enrollment, user: user) }
   let!(:coursework)           { FactoryGirl.create(:coursework, user: user) }
@@ -41,6 +43,13 @@ feature "User has a dashboard", %Q{
       click_link(completed_coursework.assignment.title)
     end
     expect(page).to have_content(completed_coursework.assignment.title)
+  end
+
+  scenario "User sees list of cards with next repetition for each one" do
+    within('.card-queue') do
+      expect(page).to have_content(submission1.card.title)
+      expect(page).to have_content(submission1.sm2_next_repetition)
+    end
   end
 
 end
