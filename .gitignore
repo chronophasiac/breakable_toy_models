@@ -20,3 +20,6 @@
 # Ignore RVM support files
 .ruby-version
 .ruby-gemset
+
+# Ignore Heroku environment files
+.env
