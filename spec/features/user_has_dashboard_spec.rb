@@ -52,4 +52,10 @@ feature "User has a dashboard", %Q{
     end
   end
 
+  scenario "User sees a button to train" do
+    within('.card-queue') do
+      expect(page).to have_button("Train Now")
+    end
+  end
+
 end

@@ -23,6 +23,7 @@
   <%- if @dashboard.card_queue.length > 0 -%>
     <h3>Training queue</h3>
     <ul class="card-queue-list panel">
+      <%= button_to("Train Now", user_my_deck_path(current_user), class: "button", method: "get") %>
       <%- @dashboard.card_queue.each do |submission| -%>
         <li class="card-queue-item">
           <h5><%= submission.card.title %></h5>
