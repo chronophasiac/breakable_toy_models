@@ -14,6 +14,9 @@ feature "User explores lessons", %{
   given(:user)      { FactoryGirl.create(:user) }
 
   background do
+    FactoryGirl.create(:activity, lesson: lesson1)
+    FactoryGirl.create(:activity, lesson: lesson2)
+    FactoryGirl.create(:activity, lesson: lesson3)
     Warden.test_mode!
     login_as(user, scope: :user)
     visit lessons_path

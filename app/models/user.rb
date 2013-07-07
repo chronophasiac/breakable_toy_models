@@ -52,6 +52,25 @@ class User < ActiveRecord::Base
     courseworks.where(assignment_id: assignment.id).first
   end
 
+  def lesson_completed?(lesson)
+    myLesson = lessons.where(id: lesson.id).first
+    if myLesson.present?
+      myLesson.activities.each do |activity|
+        if activity.completable_type == "Assignment"
+          coursework = courseworks.where(assignment_id: activity.completable.id).first
+          if coursework.present?
+            return false unless coursework.completed
+          else return false
+          end
+        elsif activity.completable_type == "Challenge"
+          return false unless challenges.include?(activity.completable)
+        end
+      end
+      return true
+    else return false
+    end
+  end
+
   def superadmin?
     role == "superadmin"
   end

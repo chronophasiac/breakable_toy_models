@@ -51,4 +51,30 @@ describe User do
       expect(superadmin.superadmin?).to be_true
     end
   end
+
+  describe 'has a lesson completion status' do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:lesson) { FactoryGirl.create(:lesson) }
+    let(:assignment) { FactoryGirl.create(:assignment) }
+    let(:challenge) { FactoryGirl.create(:challenge) }
+
+    before(:each) do
+      FactoryGirl.create(:activity, completable: assignment, position: 1)
+      FactoryGirl.create(:activity, completable: challenge, position: 2)
+    end
+
+    it 'returns false if not completed' do
+      expect(user.lesson_completed?(lesson)).to be_false
+    end
+
+    it 'returns true if completed' do
+      FactoryGirl.create(:enrollment, user: user, lesson: lesson)
+      FactoryGirl.create(:coursework, user: user, assignment: assignment,
+                         completed: true)
+      FactoryGirl.create(:challenge_completion, user: user, challenge: challenge)
+      user.reload
+      expect(user.lesson_completed?(lesson)).to be_true
+    end
+  end
+
 end

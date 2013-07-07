@@ -17,8 +17,7 @@ feature "User sees completed challenges", %Q{
     15.times do
       FactoryGirl.create(:challenge_completion, user: user, updated_at: 5.minutes.ago)
     end
-    visit(root_path)
-    click_link("My Dashboard")
+    visit(dashboard_path)
   end
 
   scenario "User sees a 'Completed Challenges' section in their dashboard" do
