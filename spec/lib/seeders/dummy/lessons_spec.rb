@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Seeders::Lessons do
+describe Seeders::Dummy::Lessons do
 
-  let(:seeder)      { Seeders::Lessons }
+  let(:seeder)      { Seeders::Dummy::Lessons }
   let(:lessons)     { seeder.seed }
   let(:challenges)  { lessons.first.activities.where(completable_type: "Challenge") }
   let(:cards)       { challenges.first.completable.cards }

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Seeders::Users do
+describe Seeders::Dummy::Users do
 
-  let(:seeder) { Seeders::Users }
+  let(:seeder) { Seeders::Dummy::Users }
 
   it 'seeds users' do
     user_count = User.count

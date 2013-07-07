@@ -7,14 +7,19 @@ require 'rspec/core/rake_task'
 
 Memworks::Application.load_tasks
 
-RSpec::Core::RakeTask.new(:spec)
-
-task default: :spec
-
 task :dbclean do
   Rake::Task['db:drop'].invoke
   Rake::Task['db:create'].invoke
   Rake::Task['db:migrate'].invoke
   Rake::Task['db:seed'].invoke
+  Rake::Task['db:test:prepare'].invoke
+end
+
+task :dbdummy do
+  Rake::Task['db:drop'].invoke
+  Rake::Task['db:create'].invoke
+  Rake::Task['db:migrate'].invoke
+  Seeders::Dummy::Users.seed(count:5)
+  Seeders::Dummy::Lessons.seed(count:20)
   Rake::Task['db:test:prepare'].invoke
 end
