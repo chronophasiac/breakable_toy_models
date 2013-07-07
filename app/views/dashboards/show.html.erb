@@ -28,17 +28,17 @@
       <%- end -%>
     </ul>
   <%- end -%>
-</section>
-<div class="completed-challenges-container">
-  <h3>Completed Challenges</h3>
-  <ul class="completed-challenges panel">
-  <%- @dashboard.completed_challenges.each do |completion| -%>
-    <li class="completed-challenge">
-      <h5><%= completion.challenge.title %></h5>
-      <h5 class="subheader">Score: <%= completion.score %></h5>
-      <h5 class="subheader">Completed:
-        <%= completion.updated_at.localtime.strftime("%e %b %l:%M %p") %></h5>
-    </li>
+  <%- if @dashboard.completed_challenges.length > 0 -%>
+    <h3>Completed Challenges</h3>
+    <ul class="completed-challenges panel">
+      <%- @dashboard.completed_challenges.each do |completion| -%>
+        <li class="completed-challenge">
+          <h5><%= completion.challenge.title %></h5>
+          <h5 class="subheader">Score: <%= completion.score %></h5>
+          <h5 class="subheader">Completed:
+            <%= completion.updated_at.localtime.strftime("%e %b %l:%M %p") %></h5>
+        </li>
+      <%- end -%>
+    </ul>
   <%- end -%>
-  </ul>
-</div>
+</section>
