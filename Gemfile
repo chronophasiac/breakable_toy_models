@@ -14,7 +14,6 @@ gem 'cancan'
 gem 'rails_admin'
 gem 'active_model_serializers'
 gem 'backbone-on-rails'
-gem 'tworgy-spaced-repetition', github: 'tannerburson/tworgy-spaced-repetition'
 
 group :development do
   gem 'guard-rspec', github: 'chronophasiac/guard-rspec'

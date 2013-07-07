@@ -6,12 +6,6 @@ GIT
       guard (>= 1.8)
       rspec (~> 2.14.0.rc1)
 
-GIT
-  remote: git://github.com/tannerburson/tworgy-spaced-repetition.git
-  revision: 188132de6e6dd969b5e4439bebbe0ce43847bdeb
-  specs:
-    tworgy-spaced-repetition (0.4.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -336,7 +330,6 @@ DEPENDENCIES
   show_me_the_cookies
   simple_form
   thin
-  tworgy-spaced-repetition!
   uglifier (>= 1.0.3)
   validate_url
   validates_timeliness
