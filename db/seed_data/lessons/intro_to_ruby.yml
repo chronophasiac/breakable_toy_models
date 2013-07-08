@@ -6,9 +6,11 @@ summary: >
 activities:
 -
   type: 'Assignment'
-  title: 'Code School "Try Ruby"'
-  summary: 'Elementary Ruby'
-  instructions: 'Follow this link and do all the exercises.'
+  title: '"Try Ruby" from Code School'
+  summary: >
+    This assignment will get you started with Ruby.
+     No prior programming experience is required.
+  instructions: 'Complete "Try Ruby"'
   url: 'http://tryruby.org/'
   assignment_type: 'text'
 -
