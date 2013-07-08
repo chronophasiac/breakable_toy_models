@@ -15,6 +15,7 @@ gem 'cancan'
 gem 'rails_admin'
 gem 'active_model_serializers'
 gem 'backbone-on-rails'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'guard-rspec', github: 'chronophasiac/guard-rspec'
