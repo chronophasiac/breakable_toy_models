@@ -1,5 +1,7 @@
 title: 'Intro to Ruby'
-summary: 'Ruby is a beginner-friendly programming language. In this lesson, you will learn the fundamentals of Ruby.'
+summary: >
+  Ruby is a beginner-friendly programming language.
+   In this lesson, you will learn the fundamentals of Ruby.
 
 activities:
 -
@@ -11,7 +13,7 @@ activities:
   assignment_type: 'text'
 -
   type: 'Challenge'
-  title: 'Basic Ruby Methods'
+  title: 'Intro to Ruby Challenge I'
   cards:
   -
     solution_type: 'string'
@@ -20,6 +22,242 @@ activities:
     problem: 'In Ruby, what do we call a set of characters?'
     solutions:
     -
+      canonical: true
       regex: '^String$'
     -
       regex: '^Strings$'
+    -
+      regex: '^A String$'
+  -
+    solution_type: 'position'
+    title: 'Introducing ".reverse"'
+    instructions: >
+      Click on the appropriate piece of code below to select it.
+       Click again to deselect. When you are done, click "Submit"'
+    problem: 'Select the method in this expression.'
+    snippet: >
+      "Vampire".reverse
+    solutions:
+    -
+      start_position: 6
+      end_position: 6
+  -
+    solution_type: 'string'
+    title: 'Ruby Conversions I'
+    instructions: 'Enter your answer below and click "Submit"'
+    problem: 'In Ruby, what is the method to convert an object to a String?'
+    solutions:
+    -
+      canonical: true
+      regex: '^to_s$'
+    -
+      regex: '^\.to_s$'
+  -
+    solution_type: 'position'
+    title: 'Introducing Arrays'
+    instructions: >
+      Click anywhere in the appropriate line to select that line.
+       Click again to deselect. When you are done, click "Submit"
+    problem: 'Select the array'
+    snippet: |
+      [80, 55, 9]
+      "80, 55, 9"
+      {80, 55, 9}
+    solutions:
+    -
+      start_position: 0
+      end_position: 13
+  -
+    solution_type: 'string'
+    title: 'Expressing Arrays'
+    instructions: 'Enter your answer below and click "Submit"'
+    problem: >
+      In Ruby, how can we express the numbers "33" and "20" as a single array?
+    solutions:
+    -
+      canonical: true
+      regex: '^\[33\, 20\]$'
+    -
+      regex: '^\[33\,\s*20\]$'
+    -
+      regex: '^\[20\,\s*33\]$'
+  -
+    solution_type: 'position'
+    title: 'Introducing ".max"'
+    instructions: >
+      Click on the appropriate piece of code below to select it.
+       Click again to deselect. When you are done, click "Submit"
+    problem: 'Select the number that will be returned by this Ruby expression.'
+    snippet: >
+      [1, 9, 3].max
+    solutions:
+    -
+      start_position: 6
+      end_position: 6
+  -
+    solution_type: 'position'
+    title: 'Introducing variables'
+    instructions: >
+      Click on the appropriate piece of code below to select it.
+       Click again to deselect. When you are done, click "Submit"
+    problem: 'Select the variable in this Ruby expression.'
+    snippet: >
+      name = "Bill"
+    solutions:
+    -
+      start_position: 0
+      end_position: 0
+  -
+    solution_type: 'string'
+    title: 'Variable string replacement'
+    instructions: 'Enter your answer below and click "Submit"'
+    problem: |
+      Given the following Ruby code:
+        warning = "Look out for that rock!"
+      If we then type:
+        warning['rock'] = 'cat'
+      What is the value of "warning"?
+    solutions:
+    -
+      canonical: true
+      regex: '^Look out for that cat!$'
+    -
+      canonical: true
+      regex: '^"Look out for that cat!"$'
+  -
+    solution_type: 'position'
+    title: 'Introducing method chaining'
+    instructions: >
+      Click on the appropriate piece of code below to select it. 
+       Click again to deselect. When you are done, click "Submit"'
+    problem: 'In this Ruby expression, select the method that returns an array'
+    snippet: >
+      document.lines.to_a
+    solutions:
+    -
+      start_position: 4
+      end_position: 4
+  -
+    solution_type: 'string'
+    title: 'Ruby Types II'
+    instructions: 'Enter your answer below and click "Submit"'
+    problem: |
+      Given the following Ruby code:
+        empty = {}
+      What is the type of the object assigned to the variable 'empty'?
+    solutions:
+    -
+      canonical: true
+      regex: '^Hash$'
+    -
+      regex: '^A Hash$'
+  -
+    solution_type: 'string'
+    title: 'Accessing Hashes'
+    instructions: 'Enter your answer below and click "Submit"'
+    problem: |
+      Given the following Ruby code:
+        colors = {}
+        colors["green"] = :go
+      What would we type to return ":go"?
+    solutions:
+    -
+      canonical: true
+      regex: '^colors\["green"\]$'
+    -
+      regex: '^colors\s*\[\s*"green"\s*\]$'
+  -
+    solution_type: 'position'
+    title: 'Introducing Blocks'
+    instructions: >
+      Click on the appropriate piece of code below to select it. 
+       Click again to deselect. When you are done, click "Submit"'
+    problem: 'In this Ruby expression, select any part of the "block"'
+    snippet: |
+      10.times { puts "Hello!" }
+    solutions:
+    -
+      start_position: 5
+      end_position: 19
+  -
+    solution_type: 'position'
+    title: 'Method Arguments I'
+    instructions: >
+      Click on the appropriate piece of code below to select it. 
+       Click again to deselect. When you are done, click "Submit"'
+    problem: 'In this Ruby expression, select the method.'
+    snippet: |
+      puts "My mind!"
+    solutions:
+    -
+      start_position: 0
+      end_position: 0
+  -
+    solution_type: 'position'
+    title: 'Method Arguments II'
+    instructions: >
+      Click on the appropriate piece of code below to select it. 
+       Click again to deselect. When you are done, click "Submit"'
+    problem: 'In this Ruby expression, select the argument.'
+    snippet: |
+      Dir.entries '/movies'
+    solutions:
+    -
+      start_position: 5
+      end_position: 9
+  -
+    solution_type: 'string'
+    title: 'Defining New Methods'
+    instructions: 'Enter your answer below and click "Submit"'
+    problem: |
+      If we wanted to define a new method called "do_something" in Ruby,
+      what would be the first line we would type?
+    solutions:
+    -
+      canonical: true
+      regex: '^def do_something$'
+  -
+    solution_type: 'string'
+    title: 'Custom Classes'
+    instructions: 'Enter your answer below and click "Submit"'
+    problem: |
+      Given that we have defined a class called "Owl"
+      What would we type to create a new instance of that class,
+      and assign to a variable "this_owl"?
+    solutions:
+    -
+      canonical: true
+      regex: '^this_owl = Owl.new$'
+    -
+      regex: '^this_owl\s*=\s*Owl.new$'
+  -
+    solution_type: 'string'
+    title: 'Modifying Class Attributes'
+    instructions: 'Enter your answer below and click "Submit"'
+    problem: |
+      What would be the value of owl.plumage, after executing the following:
+      owl.plumage = "soft"
+      owl.plumage = "gray"
+    solutions:
+    -
+      canonical: true
+      regex: '^"gray"$'
+    -
+      regex: '^gray$'
+  -
+    solution_type: 'position'
+    title: 'Introducing Instance Variables'
+    instructions: >
+      Click on the appropriate piece of code below to select it. 
+       Click again to deselect. When you are done, click "Submit"'
+    problem: 'In this Ruby expression, select the instance variable.'
+    snippet: |
+      class Car
+        def initialize( model )
+          @model = model
+        end
+      end
+    solutions:
+    -
+      start_position: 29
+      end_position: 30
