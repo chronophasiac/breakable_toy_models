@@ -21,6 +21,7 @@ describe Seeders::Lessons do
   it 'seeds associated challenges' do
     challenges_count = Challenge.count
     seeder.seed
+    challenges = lessons.first.activities.where(completable_type: "Challenge")
     expect(Challenge.count).to be >(challenges_count)
     expect(challenges.count).to be >(0)
   end

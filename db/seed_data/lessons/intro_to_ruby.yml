@@ -9,3 +9,6 @@ activities:
   instructions: 'Follow this link and do all the exercises.'
   url: 'http://tryruby.org/'
   assignment_type: 'text'
+-
+  type: 'Challenge'
+  title: 'Basic Ruby Methods'

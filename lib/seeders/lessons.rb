@@ -12,6 +12,7 @@ module Seeders
           lessons << this_lesson
           lesson['activities'].each_with_index do |activity, index|
             completable = []
+
             if activity['type'] == 'Assignment'
               completable = Assignment.create do |assignment|
                 assignment.title = activity['title']
@@ -20,11 +21,16 @@ module Seeders
                 assignment.url = activity['url']
                 assignment.assignment_type = activity['assignment_type']
               end
+            elsif activity['type'] == 'Challenge'
+              completable = Challenge.create do |challenge|
+                challenge.title = activity['title']
+              end
             end
-            Activity.create do |activity|
-              activity.completable = completable
-              activity.lesson = this_lesson
-              activity.position = index + 1
+
+            Activity.create do |lesson_activity|
+              lesson_activity.completable = completable
+              lesson_activity.lesson = this_lesson
+              lesson_activity.position = index + 1
             end
           end
         end
