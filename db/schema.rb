@@ -169,10 +169,11 @@ ActiveRecord::Schema.define(:version => 20130623195218) do
   add_index "solution_positions", ["card_id"], :name => "index_solution_positions_on_card_id"
 
   create_table "solution_strings", :force => true do |t|
-    t.string   "regex",      :null => false
-    t.integer  "card_id",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "regex",                         :null => false
+    t.boolean  "canonical",  :default => false, :null => false
+    t.integer  "card_id",                       :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   add_index "solution_strings", ["card_id"], :name => "index_solution_strings_on_card_id"

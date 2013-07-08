@@ -31,11 +31,18 @@ describe Card do
   context 'with a string solution' do
     let(:correct_answer)  { "this is correct" }
     let(:solution)        { FactoryGirl.create(:solution_string,
-                            regex: "^#{correct_answer}$") }
+                            regex: "^#{correct_answer}$",
+                            canonical: true) }
     let(:card)            { solution.card }
 
     it 'has a canonical solution' do
       expect(card.canonical_solution).to eql(correct_answer)
+    end
+
+    it 'returns an empty string if it does not' do
+      solution.canonical = false
+      solution.save!
+      expect(card.canonical_solution).to eql("")
     end
   end
 
@@ -146,7 +153,6 @@ describe Card do
         expect(card.tokenized_snippet[solution.end_position + 1][:solution]).to be_false
       end
     end
-
   end
 
 

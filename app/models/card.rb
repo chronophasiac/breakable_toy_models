@@ -34,7 +34,7 @@ class Card < ActiveRecord::Base
 
   validates_inclusion_of :solution_type, :in => SOLUTION_TYPES
 
-  attr_accessible :instructions, :problem, :snippet, :solution_type, :title
+  attr_accessible :canonical, :instructions, :problem, :snippet, :solution_type, :title
 
   def kind_map
     {
@@ -96,9 +96,12 @@ class Card < ActiveRecord::Base
     solution = ""
 
     if kind == "type"
-      solution = solution_strings.first.regex
-      solution.slice!(0)
-      solution.slice!(solution.length-1)
+      solution_string = solution_strings.where(canonical: true).first
+      if solution_string.present?
+        solution = solution_string.regex
+        solution.slice!(0)
+        solution.slice!(solution.length-1)
+      end
     end
 
     solution
