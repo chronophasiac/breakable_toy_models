@@ -3,23 +3,20 @@
     <h4><%= @assignment.title %></h4>
     <h4 class="subheader"><%= @assignment.summary %></h4>
     <p><%= @assignment.instructions %></p>
+    <a class="button" href=<%= @assignment.url %> target="_blank">Start</a>
   </div>
 </div>
-<%- if user_signed_in? -%>
+<div class="row panel">
   <%- unless @coursework.completed? %>
-    <div class="row">
-      <div class="large-2 large-offset-10 columns panel">
-        <%= simple_form_for([current_user, @coursework]) do |f| %>
-          <%= f.hidden_field :completed, value: true %>
-          <%= f.hidden_field :lesson_id, value: params[:lesson_id] %>
-          <%= f.submit "Done", class: "button success" %>
-        <%- end -%>
-      </div>
+    <div class="large-2 columns">
+      <%= simple_form_for([current_user, @coursework]) do |f| %>
+        <%= f.hidden_field :completed, value: true %>
+        <%= f.hidden_field :lesson_id, value: params[:lesson_id] %>
+        <%= f.submit "Done", class: "button success" %>
+      <%- end -%>
     </div>
   <%- end -%>
-<%- end -%>
-<div class="row">
-  <div class="large-2 columns panel">
+  <div class="large-2 columns">
     <%= link_to("Back to lesson", lesson_path(@lesson), class: "button") %>
   </div>
 </div>
