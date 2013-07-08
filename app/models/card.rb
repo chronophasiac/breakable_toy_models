@@ -98,9 +98,8 @@ class Card < ActiveRecord::Base
     if kind == "type"
       solution_string = solution_strings.where(canonical: true).first
       if solution_string.present?
-        solution = solution_string.regex
-        solution.slice!(0)
-        solution.slice!(solution.length-1)
+        regex = solution_string.regex
+        solution = regex[1..(regex.length-2)]
       end
     end
 
