@@ -1,2 +1,11 @@
-title: "Intro to Ruby"
-summary: "Ruby is a beginner-friendly programming language. In this lesson, you will learn the fundamentals of Ruby."
+title: 'Intro to Ruby'
+summary: 'Ruby is a beginner-friendly programming language. In this lesson, you will learn the fundamentals of Ruby.'
+
+activities:
+-
+  type: 'Assignment'
+  title: 'Code School "Try Ruby"'
+  summary: 'Elementary Ruby'
+  instructions: 'Follow this link and do all the exercises.'
+  url: 'http://tryruby.org/'
+  assignment_type: 'text'
