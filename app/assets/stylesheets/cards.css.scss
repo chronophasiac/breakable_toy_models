@@ -1,17 +1,20 @@
-code.clickable-snippet {
-  line-height: 1.1em;
-  span.click-response {
-    margin: 1px;
-    &.selected-position {
-      background-color: gray;
-    }
-    &:hover {
-      margin: 0;
-      border: 1px solid black;
-      border-radius: 2px;
-    }
-    &:active {
-      background-color: green;
+pre.clickable-snippet-container {
+  margin: 10px;
+  code.clickable-snippet {
+    line-height: 1.1em;
+    span.click-response {
+      margin: 1px;
+      &.selected-position {
+        background-color: gray;
+      }
+      &:hover {
+        margin: 0;
+        border: 1px solid black;
+        border-radius: 2px;
+      }
+      &:active {
+        background-color: green;
+      }
     }
   }
 }
@@ -24,5 +27,14 @@ code.solution-snippet {
 }
 
 .solution-string {
-  color: green
+  color: green;
+}
+
+.card-problem {
+  margin: 10px;
+  font-size: 1.2em;
+}
+
+form#text-response-form {
+  margin: 10px;
 }

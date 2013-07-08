@@ -6,12 +6,12 @@
   </div>
   <div class="large-10 columns">
     <h4>{{card.title}}</h4>
-    <h4 class="subheader">Instructions: {{card.instructions}}</h4>
-    <p>{{card.problem}}</p>
+    <h5 class="subheader">Instructions: {{card.instructions}}</h5>
+    <pre class="card-problem">{{card.problem}}</pre>
 
     {{#if card.tokenized_snippet}}
       {{#unless card.submitted}}
-        <pre><code class="clickable-snippet">{{#each card.tokenized_snippet}}<span id="position{{@index}}" class="click-response {{selected_position this}}">{{this.text}}</span>{{/each}}</code></pre>
+        <pre class="clickable-snippet-container"><code class="clickable-snippet">{{#each card.tokenized_snippet}}<span id="position{{@index}}" class="click-response {{selected_position this}}">{{this.text}}</span>{{/each}}</code></pre>
       {{/unless}}
       {{#if card.responded}}
         {{#unless card.submitted}}
