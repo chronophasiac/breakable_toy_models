@@ -7,6 +7,6 @@ class SolutionString < ActiveRecord::Base
   attr_accessible :card_id, :canonical, :regex
 
   def correct_response?(response)
-    response.present? ? !response.downcase.match(regex.downcase).nil? : false
+    response.present? ? !response.strip.downcase.match(regex.downcase).nil? : false
   end
 end

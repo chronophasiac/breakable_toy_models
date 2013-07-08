@@ -39,6 +39,10 @@ describe SolutionString do
         expect(solution.correct_response?(correct_answer)).to be_true
       end
 
+      it "insensitive to leading or trailing whitespace" do
+        expect(solution.correct_response?(" #{correct_answer} ")).to be_true
+      end
+
       it "returns false if the response does not include the correct answer" do
         expect(solution.correct_response?("this isn't correct")).to be_false
       end
