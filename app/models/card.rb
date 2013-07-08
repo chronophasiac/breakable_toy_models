@@ -99,7 +99,7 @@ class Card < ActiveRecord::Base
       solution_string = solution_strings.where(canonical: true).first
       if solution_string.present?
         regex = solution_string.regex
-        solution = regex[1..(regex.length-2)]
+        solution = regex[1..(regex.length-2)].gsub(/\\/, '')
       end
     end
 

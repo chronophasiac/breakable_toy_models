@@ -42,6 +42,14 @@ describe Card do
       expect(card.canonical_solution).to eql(correct_answer)
     end
 
+    it 'has a canonical solution without backslashes' do
+      backslashed_solution = 'test\ string'
+      unbackslashed_solution = 'test string'
+      solution_string.regex = "^#{backslashed_solution}$"
+      solution_string.save!
+      expect(card.canonical_solution).to eql(unbackslashed_solution)
+    end
+
     it 'returns an empty string if it does not' do
       solution_string.canonical = false
       solution_string.save!
