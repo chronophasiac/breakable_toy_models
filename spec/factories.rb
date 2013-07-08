@@ -33,7 +33,6 @@ end
     solution_type     "position"
 
     before(:create) do |card|
-      card.assignments << FactoryGirl.create(:assignment)
       card.solution_positions << FactoryGirl.create(:solution_position, card: card)
     end
   end
@@ -45,7 +44,6 @@ end
     solution_type     "string"
 
     before(:create) do |card|
-      card.assignments << FactoryGirl.create(:assignment)
       card.solution_strings << FactoryGirl.create(:solution_string, card: card)
     end
   end

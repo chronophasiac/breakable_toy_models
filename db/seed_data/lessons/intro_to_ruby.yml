@@ -12,3 +12,14 @@ activities:
 -
   type: 'Challenge'
   title: 'Basic Ruby Methods'
+  cards:
+  -
+    solution_type: 'string'
+    title: 'Ruby Types I'
+    instructions: 'Enter your answer below and click "Submit"'
+    problem: 'In Ruby, what do we call a set of characters?'
+    solutions:
+    -
+      regex: '^String$'
+    -
+      regex: '^Strings$'

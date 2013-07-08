@@ -4,6 +4,7 @@ describe Seeders::Lessons do
 
   let(:seeder)      { Seeders::Lessons }
   let(:lessons)     { seeder.seed }
+  let(:challenges)  { lessons.first.activities.where(completable_type: "Challenge") }
 
   it 'seeds lessons' do
     lesson_count = Lesson.count
@@ -21,7 +22,6 @@ describe Seeders::Lessons do
   it 'seeds associated challenges' do
     challenges_count = Challenge.count
     seeder.seed
-    challenges = lessons.first.activities.where(completable_type: "Challenge")
     expect(Challenge.count).to be >(challenges_count)
     expect(challenges.count).to be >(0)
   end
@@ -29,6 +29,7 @@ describe Seeders::Lessons do
   it 'seeds cards associated with challenges' do
     cards_count = Card.count
     seeder.seed
+    cards = challenges.first.completable.cards
     expect(Card.count).to be >(cards_count)
     expect(cards.count).to be >(0)
   end

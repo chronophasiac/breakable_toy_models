@@ -14,7 +14,6 @@ describe Card do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:instructions) }
   it { should validate_presence_of(:problem) }
-  it { should validate_presence_of(:assignments) }
   it { should validate_presence_of(:solution_type) }
 
   it { should allow_value("string").for(:solution_type) }

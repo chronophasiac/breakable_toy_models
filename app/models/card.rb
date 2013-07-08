@@ -28,7 +28,7 @@ class Card < ActiveRecord::Base
             through: :challenge_decks,
             inverse_of: :cards
 
-  validates_presence_of :title, :instructions, :problem, :assignments, :solution_type
+  validates_presence_of :title, :instructions, :problem, :solution_type
 
   SOLUTION_TYPES = %w[position string]
 

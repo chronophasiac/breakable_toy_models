@@ -25,6 +25,29 @@ module Seeders
               completable = Challenge.create do |challenge|
                 challenge.title = activity['title']
               end
+              activity['cards'].each do |card|
+                new_card = Card.create do |c|
+                  c.title = card['title']
+                  c.instructions = card['instructions']
+                  c.problem = card['problem']
+                  c.solution_type = card['solution_type']
+                end
+                card['solutions'].each do |solution|
+
+                  if card['solution_type'] == 'string'
+                    sol = new_card.solution_strings.create do |solution_string|
+                      solution_string.regex = solution['regex']
+                    end
+                  elsif card['solution_type'] == 'position'
+                    sol = new_card.solution_positions.create do |solution_position|
+                      solution_position.start_position = solution['start_position']
+                      solution_position.end_position = solution['end_position']
+                    end
+                  end
+
+                  completable.cards << new_card
+                end
+              end
             end
 
             Activity.create do |lesson_activity|
