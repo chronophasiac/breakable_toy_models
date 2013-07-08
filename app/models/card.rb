@@ -34,7 +34,7 @@ class Card < ActiveRecord::Base
 
   validates_inclusion_of :solution_type, :in => SOLUTION_TYPES
 
-  attr_accessible :canonical, :instructions, :problem, :snippet, :solution_type, :title
+  attr_accessible :instructions, :problem, :snippet, :solution_type, :title
 
   def kind_map
     {

@@ -4,7 +4,7 @@ class SolutionString < ActiveRecord::Base
 
   validates_presence_of :regex, :card
 
-  attr_accessible :card_id, :regex
+  attr_accessible :card_id, :canonical, :regex
 
   def correct_response?(response)
     response.present? ? !response.downcase.match(regex).nil? : false
