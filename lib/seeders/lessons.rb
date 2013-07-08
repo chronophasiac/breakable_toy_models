@@ -31,6 +31,7 @@ module Seeders
                   c.instructions = card['instructions']
                   c.problem = card['problem']
                   c.solution_type = card['solution_type']
+                  c.snippet = card['snippet'] if card['snippet'].present?
                 end
                 card['solutions'].each do |solution|
 
