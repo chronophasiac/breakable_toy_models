@@ -29,19 +29,22 @@ describe Card do
   end
 
   context 'with a string solution' do
+    let(:card)            { FactoryGirl.create(:card_string_solution) }
+    let(:solution_string) { card.solution_strings.first }
     let(:correct_answer)  { "this is correct" }
-    let(:solution)        { FactoryGirl.create(:solution_string,
-                            regex: "^#{correct_answer}$",
-                            canonical: true) }
-    let(:card)            { solution.card }
+
+    before(:each) do
+      solution_string.regex = "^#{correct_answer}$"
+      solution_string.save!
+    end
 
     it 'has a canonical solution' do
       expect(card.canonical_solution).to eql(correct_answer)
     end
 
     it 'returns an empty string if it does not' do
-      solution.canonical = false
-      solution.save!
+      solution_string.canonical = false
+      solution_string.save!
       expect(card.canonical_solution).to eql("")
     end
   end

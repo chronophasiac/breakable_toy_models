@@ -97,14 +97,15 @@ end
   end
 
   factory :solution_position do
-    association :card, factory: :card_position_solution
+    association     :card, factory: :card_position_solution
     start_position  1
     end_position    2
   end
 
   factory :solution_string do
     association :card, factory: :card_string_solution
-    regex "^correct answer$"
+    regex       "^correct answer$"
+    canonical   true
   end
 
   factory :sm2_instance do
