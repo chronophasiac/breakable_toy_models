@@ -35,6 +35,8 @@ describe SolutionString do
 
       it "is case insensitive" do
         expect(solution.correct_response?(correct_answer.upcase)).to be_true
+        solution.regex.upcase!
+        expect(solution.correct_response?(correct_answer)).to be_true
       end
 
       it "returns false if the response does not include the correct answer" do
