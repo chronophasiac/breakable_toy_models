@@ -37,6 +37,7 @@ module Seeders
                   if card['solution_type'] == 'string'
                     sol = new_card.solution_strings.create do |solution_string|
                       solution_string.regex = solution['regex']
+                      solution_string.canonical = true if solution['canonical']
                     end
                   elsif card['solution_type'] == 'position'
                     sol = new_card.solution_positions.create do |solution_position|
