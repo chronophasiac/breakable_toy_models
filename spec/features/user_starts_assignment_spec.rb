@@ -28,13 +28,19 @@ feature "User starts assignment", %{
     expect(page.first(".assignment")).to have_button("Start")
   end
 
-  scenario "User sees learning material after clicking start" do
+  scenario "User sees instructions" do
     within first(".assignment") do
       click_button("Start")
     end
     expect(page).to have_content(assignment1.instructions)
   end
 
+  scenario "User sees a link to learning material" do
+    within first(".assignment") do
+      click_button("Start")
+    end
+    expect(page).to have_link("Start", href: assignment1.url)
+  end
 
   scenario "User sees a start button if they haven't started an assignment" do
     expect(page.first(".assignment")).to have_button("Start")
