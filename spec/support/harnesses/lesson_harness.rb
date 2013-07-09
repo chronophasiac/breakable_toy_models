@@ -18,7 +18,7 @@ module LessonHarness
     FactoryGirl.create(:activity, lesson: lesson, completable: challenge)
     visit lesson_path(lesson)
     within first(".challenge") do
-      click_button("Start")
+      click_link("Start")
     end
   end
 
@@ -43,7 +43,7 @@ module LessonHarness
     FactoryGirl.create(:activity, lesson: lesson, completable: challenge)
     visit lesson_path(lesson)
     within first(".challenge") do
-      click_button("Start")
+      click_link("Start")
     end
   end
 
@@ -73,7 +73,7 @@ module LessonHarness
     FactoryGirl.create(:activity, lesson: lesson, completable: challenge)
     visit lesson_path(lesson)
     within first(".challenge") do
-      click_button("Start")
+      click_link("Start")
     end
   end
 

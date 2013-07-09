@@ -55,7 +55,7 @@ feature "User completes challenge", %Q{
     completions = user.challenge_completions.length
     click_button('Next')
     visit lesson_path(lesson)
-    expect(page.first(".challenge")).to have_button("Replay")
+    expect(page.first(".challenge")).to have_link("Replay")
     user.reload
     expect(user.challenge_completions.length).to eql(completions + 1)
     expect(user.challenges).to include(challenge)

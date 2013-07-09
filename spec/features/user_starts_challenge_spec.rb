@@ -30,27 +30,27 @@ feature "User starts challenge", %{
 
   scenario "User sees a 'Start' button adjacent to the title" do
     within first(".challenge") do
-      expect(page).to have_button("Start")
+      expect(page).to have_link("Start")
     end
   end
 
   scenario "User sees a card with a title", js: true do
     within first(".challenge") do
-      click_button("Start")
+      click_link("Start")
     end
     expect(page).to have_content(card.title)
   end
 
   scenario "User sees a card with instructions on how to submit a response", js: true do
     within first(".challenge") do
-      click_button("Start")
+      click_link("Start")
     end
     expect(page).to have_content("Instructions: #{card.instructions}")
   end
 
   scenario "User sees a card with a problem", js: true do
     within first(".challenge") do
-      click_button("Start")
+      click_link("Start")
     end
     expect(page).to have_content(card.problem)
   end
