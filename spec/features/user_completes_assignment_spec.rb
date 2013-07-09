@@ -33,7 +33,8 @@ feature "User completes assignment", %{
       click_button("Start")
     end
     click_button("Done")
-    expect(page.first(".assignment")).to have_button("Repeat")
+    click_button("Repeat")
+    expect(page).to have_content("Notice: you completed this assignment")
     Warden.test_reset!
   end
 
