@@ -2,8 +2,13 @@ h5.assignment-title {
   display: inline;
 }
 
-h5.challenge-title {
-  display: inline;
+div.challenge {
+  h5.challenge-title {
+    display: inline;
+  }
+  a.button {
+    margin-bottom: 0;
+  }
 }
 
 li.lesson-entry {

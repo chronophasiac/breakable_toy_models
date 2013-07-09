@@ -44,12 +44,12 @@
         <div class="large-3 columns">
           <%- if user_signed_in? -%>
             <%- if current_user.challenges.include?(challenge) -%>
-              <%= button_to("Replay", lesson_challenge_path(@lesson, challenge), class: "button secondary", method: "get") %>
+              <%= link_to("Replay", lesson_challenge_path(@lesson, challenge), class: "button secondary") %>
             <%- else -%>
-              <%= button_to("Start", lesson_challenge_path(@lesson, challenge), class: "large button success", method: "get") %>
+              <%= link_to("Start", lesson_challenge_path(@lesson, challenge), class: "button success") %>
             <%- end -%>
           <%- else -%>
-            <%= button_to("Start", lesson_challenge_path(@lesson, challenge), class: "large button success", method: "get") %>
+            <%= link_to("Start", lesson_challenge_path(@lesson, challenge), class: "button success") %>
           <%- end -%>
         </div>
       </div>
