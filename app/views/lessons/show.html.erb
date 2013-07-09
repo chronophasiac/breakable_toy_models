@@ -1,3 +1,8 @@
+<ul class="breadcrumbs">
+  <li><%= link_to("Home", root_path) %></li>
+  <li><%= link_to("Lessons", lessons_path) %></li>
+  <li class="current"><%= link_to(@lesson.title, lesson_path(@lesson)) %></li>
+</ul>
 <h2><%= @lesson.title %></h2>
 <%- @lesson.activities.descending_position.each do |activity| -%>
   <div class="row">
