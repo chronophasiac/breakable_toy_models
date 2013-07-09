@@ -28,9 +28,9 @@ feature "User reviews assignment completed in other lesson", %{
     Warden.test_reset!
   end
 
-  scenario "User sees a 'Review' button on assignments if they've already completed that assignment in another lesson" do
+  scenario "User sees a 'Repeat' button on assignments if they've already completed that assignment in another lesson" do
     visit lesson_path(lesson2)
-    expect(page.first(".assignment")).to have_button("Review")
+    expect(page.first(".assignment")).to have_button("Repeat")
   end
 
   scenario "User sees the title of the lesson in which they originally completed the assignment" do
