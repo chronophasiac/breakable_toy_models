@@ -7,14 +7,16 @@
   </div>
 </div>
 <div class="row panel">
-  <%- unless @coursework.completed? %>
-    <div class="large-2 columns">
-      <%= simple_form_for([current_user, @coursework]) do |f| %>
-        <%= f.hidden_field :completed, value: true %>
-        <%= f.hidden_field :lesson_id, value: params[:lesson_id] %>
-        <%= f.submit "Done", class: "button success" %>
-      <%- end -%>
-    </div>
+  <%- if @coursework.present? -%>
+    <%- unless @coursework.completed? %>
+      <div class="large-2 columns">
+        <%= simple_form_for([current_user, @coursework]) do |f| %>
+          <%= f.hidden_field :completed, value: true %>
+          <%= f.hidden_field :lesson_id, value: params[:lesson_id] %>
+          <%= f.submit "Done", class: "button success" %>
+        <%- end -%>
+      </div>
+    <%- end -%>
   <%- end -%>
   <div class="large-2 columns">
     <%= link_to("Back to lesson", lesson_path(@lesson), class: "button") %>
