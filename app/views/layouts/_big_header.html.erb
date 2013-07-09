@@ -1,6 +1,10 @@
 <div class="masthead">
-  <h1 class="logo"><%= link_to("Memworks ", root_path) %></h1><h2 class="logo subheader">Ceaseless Learning</h2>
-  <%= link_to("Get Started", new_user_registration_path, :class =>"button success radius right get-started") %>
+  <h1 class="logo"><%= link_to("Memworks ", root_path) %></h1><h2 class="logo subheader">Boosted Learning</h2>
+  <%- if user_signed_in? -%>
+    <%= link_to("Get Started", lessons_path, :class =>"button success right get-started") %>
+  <%- else -%>
+    <%= link_to("Get Started", new_user_registration_path, :class =>"button success right get-started") %>
+  <%- end -%>
 </div>
 <div class="panel callout" id="main-banner">
   <div class="row">
