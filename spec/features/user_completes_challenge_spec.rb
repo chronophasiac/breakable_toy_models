@@ -48,7 +48,7 @@ feature "User completes challenge", %Q{
   scenario "User sees 'Return to Home' button", js: true do
     click_button('Next')
     click_link('Return to Home')
-    expect(page).to have_content('Learn stuff')
+    expect(current_path).to eql(root_path)
   end
 
   scenario "User sees a 'Replay' button next to the challenge on the lesson page", js: true do
