@@ -3,14 +3,14 @@
     <h2>Memworks is a better way of learning</h2>
     <h3 class="subheader">We leverage the power of spaced repetition to help you retain knowledge and keep improving</h3>
   </div>
+  <%- if user_signed_in? %>
+    <%= link_to("Practice Now", user_my_deck_path(current_user), class: "button right") %>
+  <%- end -%>
 </div>
-<%- if user_signed_in? %>
-  <%= link_to("Train Now", user_my_deck_path(current_user)) %>
-<%- end -%>
 <div class="row">
   <div class="large-4 columns">
     <h5>Learn faster</h5>
-    <p>Learning is all about retention. Memworks helps you retain information by spacing out your exposure to new knowledge. Once you've learned a new skill with Memworks, that knowledge is </p>
+    <p>Learning is all about retention. Memworks helps you retain information by spacing out your exposure to new knowledge. We make practice easy by giving you information about when and where you should focus your efforts.</p>
   </div>
   <div class="large-4 columns">
     <h5>How it works</h5>
@@ -18,6 +18,6 @@
   </div>
   <div class="large-4 columns">
     <h5>Results</h5>
-    <p>As you increase in mastery, Memworks will hone in on your areas of weakness and turn them into strengths.</p>
+    <p>As you increase in mastery, Memworks will hone in on your areas of weakness and turn them into strengths. You'll spend more time practicing skills you're unfamiliar with, and less time on established skills.</p>
   </div>
 </div>

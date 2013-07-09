@@ -7,6 +7,9 @@
       </ul>
       <section class="top-bar-section">
         <ul class="left">
+          <%- if user_signed_in? -%>
+            <li><%= link_to("Practice", user_my_deck_path(current_user), class: "small button") %></li>
+          <%- end -%>
           <li class="divider"></li>
           <li><%= link_to("Explore Lessons", lessons_path) %></li>
         </ul>
@@ -14,7 +17,6 @@
           <li class="divider"></li>
           <%- if user_signed_in? -%>
             <li><%= link_to("Dashboard", dashboard_path) %></li>
-            <li><%= link_to("Train", user_my_deck_path(current_user)) %></li>
             <li class="has-dropdown">
               <a href="#"><%= current_user.email %></a>
               <ul class="dropdown">
