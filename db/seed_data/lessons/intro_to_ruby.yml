@@ -10,7 +10,7 @@ activities:
   summary: >
     This assignment will get you started with Ruby.
      No prior programming experience is required.
-  instructions: 'Complete "Try Ruby"'
+  instructions: 'Complete "Try Ruby" Then, click "Done".'
   url: 'http://tryruby.org/'
   assignment_type: 'text'
 -
@@ -253,7 +253,7 @@ activities:
   title: 'Ruby in Twenty Minutes'
   summary: >
     This assignment will continue your introduction to Ruby
-  instructions: 'Complete "Try Ruby"'
+  instructions: 'Complete "Try Ruby" Then, click "Done".'
   url: 'http://tryruby.org/'
   assignment_type: 'text'
 -
@@ -262,7 +262,7 @@ activities:
   summary: >
     This assignment will introduce you to testing in Ruby,
      as well as a deeper understanding of methods an types.
-  instructions: 'Complete "Try Ruby"'
+  instructions: 'Complete "Try Ruby" Then, click "Done"'
   url: 'http://tryruby.org/'
   assignment_type: 'text'
 -

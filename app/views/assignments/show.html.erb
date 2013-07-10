@@ -20,23 +20,20 @@
   <%- end -%>
 <%- end -%>
 <div class="row">
-  <div class="large-12 columns panel">
-    <h4><%= @assignment.title %></h4>
+  <div class="large-12 columns">
+    <h2><%= @assignment.title %></h2>
     <h4 class="subheader"><%= @assignment.summary %></h4>
+    <h5>Instructions:</h5>
     <p><%= @assignment.instructions %></p>
     <a class="button" href=<%= @assignment.url %> target="_blank">Start</a>
-  </div>
-</div>
-<div class="row panel">
-  <%- if @coursework.present? -%>
-    <%- unless @coursework.completed? %>
-      <div class="large-2 columns">
+    <%- if @coursework.present? -%>
+      <%- unless @coursework.completed? %>
         <%= simple_form_for([current_user, @coursework]) do |f| %>
           <%= f.hidden_field :completed, value: true %>
           <%= f.hidden_field :lesson_id, value: params[:lesson_id] %>
           <%= f.submit "Done", class: "button success" %>
         <%- end -%>
-      </div>
+      <%- end -%>
     <%- end -%>
-  <%- end -%>
+  </div>
 </div>
