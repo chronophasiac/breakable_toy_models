@@ -12,6 +12,7 @@ class Memworks.Collections.CardSubmissionLogs extends Backbone.Collection
 
   updateCompletion: (cardSubmissionLog) ->
     correct = cardSubmissionLog.get('correct')
+    @average = cardSubmissionLog.get('average')
     @ChallengeCompletion.updateScore(correct) if @ChallengeCompletion
     if correct
       @trigger('correctAnswerSupplied')

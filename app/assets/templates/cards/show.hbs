@@ -4,48 +4,51 @@
     <h3>Remaining:</h3>
     <h3 class="subheader" id="cards-remaining">{{remaining}}</h3>
   </div>
-  <div class="large-10 columns">
-    <h4>{{card.title}}</h4>
-    <h5 class="subheader">Instructions: {{card.instructions}}</h5>
-    <pre class="card-problem">{{card.problem}}</pre>
+  <div class="large-9 columns">
+    <div class="row">
+      <h4>{{card.title}}</h4>
+      <h5 class="subheader">Instructions: {{card.instructions}}</h5>
+      <pre class="card-problem">{{card.problem}}</pre>
 
-    {{#if card.tokenized_snippet}}
-      {{#unless card.submitted}}
-        <pre class="clickable-snippet-container"><code class="clickable-snippet">{{#each card.tokenized_snippet}}<span id="position{{@index}}" class="click-response {{selected_position this}}">{{this.text}}</span>{{/each}}</code></pre>
-      {{/unless}}
-      {{#if card.responded}}
+      {{#if card.tokenized_snippet}}
         {{#unless card.submitted}}
-          <button id="position-submit">Submit</button>
+          <pre class="clickable-snippet-container"><code class="clickable-snippet">{{#each card.tokenized_snippet}}<span id="position{{@index}}" class="click-response {{selected_position this}}">{{this.text}}</span>{{/each}}</code></pre>
         {{/unless}}
+        {{#if card.responded}}
+          {{#unless card.submitted}}
+            <button id="position-submit">Submit</button>
+          {{/unless}}
+        {{else}}
+          <button id="position-submit" class="disabled" disabled="disabled">Submit</button>
+        {{/if}}
       {{else}}
-        <button id="position-submit" class="disabled" disabled="disabled">Submit</button>
+        {{#unless card.submitted}}
+          <form id="text-response-form">
+            <input type="text" name="user-answer" id="string-response">
+            <input type="submit" class="button" id="string-submit" value="Submit">
+          </form>
+        {{/unless}}
       {{/if}}
-    {{else}}
-      {{#unless card.submitted}}
-        <form id="text-response-form">
-          <input type="text" name="user-answer" id="string-response">
-          <input type="submit" class="button" id="string-submit" value="Submit">
-        </form>
-      {{/unless}}
-    {{/if}}
-    {{#if card.submitted}}
-      {{#if card.correct_answer}}
-        <div class="correct-indicator">
-          <h4>Correct!</h4>
-        </div>
+      {{#if card.submitted}}
+        {{#if card.correct_answer}}
+          <div class="correct-indicator">
+            <h4>Correct!</h4>
+          </div>
+        {{/if}}
+        {{#if card.incorrect_answer}}
+          <div class="incorrect-indicator">
+            <h4>Incorrect</h4>
+            <h4 class="subheader">The correct answer was:</h4>
+            {{#if card.tokenized_snippet}}
+              <pre><code class="solution-snippet">{{#each card.tokenized_snippet}}<span class="{{solution_position this}}">{{this.text}}</span>{{/each}}</code></pre>
+            {{else}}
+              <h3 class="subheader solution-string">{{card.canonical_solution}}</h3>
+            {{/if}}
+          </div>
+        {{/if}}
+        <button id="next">Next</button>
       {{/if}}
-      {{#if card.incorrect_answer}}
-        <div class="incorrect-indicator">
-          <h4>Incorrect</h4>
-          <h4 class="subheader">The correct answer was:</h4>
-          {{#if card.tokenized_snippet}}
-            <pre><code class="solution-snippet">{{#each card.tokenized_snippet}}<span class="{{solution_position this}}">{{this.text}}</span>{{/each}}</code></pre>
-          {{else}}
-            <h3 class="subheader solution-string">{{card.canonical_solution}}</h3>
-          {{/if}}
-        </div>
-      {{/if}}
-      <button id="next">Next</button>
-    {{/if}}
+    </div>
+  {{render_average}}
   </div>
 </div>

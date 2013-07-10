@@ -30,7 +30,8 @@ class Memworks.Views.CardsShow extends Backbone.View
     else
       $(@el).html(@template(
                   card: @card.toJSON()
-                  remaining: @collection.remainingCards()))
+                  remaining: @collection.remainingCards()
+                  average: @logs.average))
     $('input#string-response').focus()
     this
 
