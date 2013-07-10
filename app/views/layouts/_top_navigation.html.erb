@@ -10,7 +10,11 @@
         <ul class="left">
           <%- if user_signed_in? -%>
             <li class="divider"></li>
-            <li><%= link_to("Practice", user_my_deck_path(current_user)) %></li>
+            <%- if current_user.has_cards? -%>
+              <li><%= link_to("Practice", user_my_deck_path(current_user), id: "practice-call") %></li>
+            <%- else -%>
+              <li><%= link_to("Practice", user_my_deck_path(current_user)) %></li>
+            <%- end -%>
           <%- end -%>
           <li class="divider"></li>
           <li><%= link_to("Explore Lessons", lessons_path) %></li>

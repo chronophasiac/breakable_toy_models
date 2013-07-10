@@ -74,4 +74,8 @@ class User < ActiveRecord::Base
   def superadmin?
     role == "superadmin"
   end
+
+  def has_cards?
+    card_submissions.length > 0
+  end
 end
