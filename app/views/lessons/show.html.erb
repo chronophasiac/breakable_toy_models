@@ -30,7 +30,7 @@
               <%= simple_form_for([current_user, @coursework]) do |f| %>
                 <%= f.hidden_field :assignment_id, value: assignment.id %>
                 <%= f.hidden_field :lesson_id, value: @lesson.id %>
-                <%= f.submit "Start", class: "button completable-start" %>
+                <%= f.submit "Start", class: "button completable-start success" %>
               <%- end -%>
             <%- end -%>
           <%- else -%>

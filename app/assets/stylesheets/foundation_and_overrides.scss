@@ -348,7 +348,7 @@ $header-font-weight: 600;
 
 // Button border styles.
 
-$button-border-width: 0;
+$button-border-width: 1;
 // $button-border-style: solid;
 // $button-border-color: darken($primary-color, $button-function-factor);
 
@@ -850,7 +850,7 @@ $button-border-width: 0;
 
 // Background and border styles
 
-// $panel-bg: darken(#fff, 5%);
+$panel-bg: darken(#fff, 5%);
 // $panel-border-style: solid;
 // $panel-border-size: 1px;
 
