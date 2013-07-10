@@ -48,13 +48,13 @@ feature "User has a dashboard", %Q{
   scenario "User sees list of cards with next repetition for each one" do
     within('.card-queue') do
       expect(page).to have_content(submission1.card.title)
-      expect(page).to have_content(submission1.sm2_next_repetition.to_formatted_s(:short))
+      expect(page).to have_content("Next repetition")
     end
   end
 
   scenario "User sees a button to train" do
     within('.card-queue') do
-      expect(page).to have_button("Train Now")
+      expect(page).to have_button("Practice Now")
     end
   end
 

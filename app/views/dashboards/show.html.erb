@@ -26,13 +26,20 @@
   <section class="card-queue large-4 columns">
     <%- if @dashboard.card_queue.length > 0 -%>
       <h3>Training queue</h3>
+      <h5 class="subheader">All challenges you've done, with our suggested next repetition</h5>
       <ul class="card-queue-list panel">
-        <%= button_to("Train Now", user_my_deck_path(current_user), class: "button", method: "get") %>
+        <%= button_to("Practice Now", user_my_deck_path(current_user), class: "button", method: "get") %>
         <%- @dashboard.card_queue.each do |submission| -%>
           <li class="card-queue-item">
             <h5><%= submission.card.title %></h5>
             <h5 class="subheader">Next repetition:
-              <%= submission.sm2_next_repetition.to_formatted_s(:short) %></h5>
+              <%- if submission.sm2_next_repetition.today? -%>
+                Today
+              <%- elsif submission.sm2_next_repetition == Date.tomorrow -%>
+                Tomorrow
+              <%- else -%>
+                <%= submission.sm2_next_repetition.to_formatted_s(:short) %></h5>
+              <%- end -%>
           </li>
         <%- end -%>
       </ul>
