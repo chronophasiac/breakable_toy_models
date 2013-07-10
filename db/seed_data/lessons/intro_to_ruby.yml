@@ -55,21 +55,6 @@ activities:
     -
       regex: '^\.to_s$'
   -
-    solution_type: 'position'
-    title: 'Introducing Arrays'
-    instructions: >
-      Click anywhere in the appropriate line to select that line.
-       Click again to deselect. When you are done, click "Submit"
-    problem: 'Select the array'
-    snippet: |
-      [80, 55, 9]
-      "80, 55, 9"
-      {80, 55, 9}
-    solutions:
-    -
-      start_position: 0
-      end_position: 13
-  -
     solution_type: 'string'
     title: 'Expressing Arrays'
     instructions: 'Enter your answer below and click "Submit"'
@@ -321,21 +306,6 @@ activities:
       regex: '^to_s$'
     -
       regex: '^\.to_s$'
-  -
-    solution_type: 'position'
-    title: 'Introducing Arrays'
-    instructions: >
-      Click anywhere in the appropriate line to select that line.
-       Click again to deselect. When you are done, click "Submit"
-    problem: 'Select the array'
-    snippet: |
-      [80, 55, 9]
-      "80, 55, 9"
-      {80, 55, 9}
-    solutions:
-    -
-      start_position: 0
-      end_position: 13
   -
     solution_type: 'string'
     title: 'Expressing Arrays'
