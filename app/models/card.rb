@@ -68,11 +68,18 @@ class Card < ActiveRecord::Base
     end
   end
 
-  def valid_response?(response)
-    solution_positions.each do |solution|
-      return true if solution.response_match?(response)
+  def canonical_solution
+    solution = ""
+
+    if kind == "type"
+      solution_string = solution_strings.where(canonical: true).first
+      if solution_string.present?
+        regex = solution_string.regex
+        solution = regex[1..(regex.length-2)].gsub(/\\/, '')
+      end
     end
-    return false
+
+    solution
   end
 
   def tokenizer
@@ -92,18 +99,13 @@ class Card < ActiveRecord::Base
     tokenized_snippet
   end
 
-  def canonical_solution
-    solution = ""
+  private
 
-    if kind == "type"
-      solution_string = solution_strings.where(canonical: true).first
-      if solution_string.present?
-        regex = solution_string.regex
-        solution = regex[1..(regex.length-2)].gsub(/\\/, '')
-      end
+  def valid_response?(response)
+    solution_positions.each do |solution|
+      return true if solution.response_match?(response)
     end
-
-    solution
+    return false
   end
 
 end
