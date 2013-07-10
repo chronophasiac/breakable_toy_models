@@ -1,9 +1,13 @@
-<ul class="breadcrumbs">
-  <li><%= link_to("Home", root_path) %></li>
-  <li><%= link_to("Lessons", lessons_path) %></li>
-  <li><%= link_to(@lesson.title, lesson_path(@lesson)) %></li>
-  <li class="current"><%= link_to(@assignment.title, lesson_assignment_path(@lesson, @assignment)) %></li>
-</ul>
+<div class="row">
+  <div class="large-12 columns">
+    <ul class="breadcrumbs">
+      <li><%= link_to("Home", root_path) %></li>
+      <li><%= link_to("Lessons", lessons_path) %></li>
+      <li><%= link_to(@lesson.title, lesson_path(@lesson)) %></li>
+      <li class="current"><%= link_to(@assignment.title, lesson_assignment_path(@lesson, @assignment)) %></li>
+    </ul>
+  </div>
+</div>
 <%- if @coursework.present? -%>
   <%- if @coursework.completed? %>
     <div class="row">

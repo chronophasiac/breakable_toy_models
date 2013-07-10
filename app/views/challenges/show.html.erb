@@ -1,9 +1,13 @@
-<ul class="breadcrumbs">
-  <li><%= link_to("Home", root_path) %></li>
-  <li><%= link_to("Lessons", lessons_path) %></li>
-  <li><%= link_to(@lesson.title, lesson_path(@lesson)) %></li>
-  <li class="current"><%= link_to(@challenge.title, lesson_challenge_path(@lesson, @challenge)) %></li>
-</ul>
+<div class="row">
+  <div class="large-12 columns">
+    <ul class="breadcrumbs">
+      <li><%= link_to("Home", root_path) %></li>
+      <li><%= link_to("Lessons", lessons_path) %></li>
+      <li><%= link_to(@lesson.title, lesson_path(@lesson)) %></li>
+      <li class="current"><%= link_to(@challenge.title, lesson_challenge_path(@lesson, @challenge)) %></li>
+    </ul>
+  </div>
+</div>
 <div class="panel">
   <h2 ><%= @challenge.title %></h2>
 </div>

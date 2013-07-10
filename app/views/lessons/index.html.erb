@@ -1,7 +1,11 @@
-<ul class="breadcrumbs">
-  <li><%= link_to("Home", root_path) %></li>
-  <li class="current"><%= link_to("Lessons", lessons_path) %></li>
-</ul>
+<div class="row">
+  <div class="large-12 columns">
+    <ul class="breadcrumbs">
+      <li><%= link_to("Home", root_path) %></li>
+      <li class="current"><%= link_to("Lessons", lessons_path) %></li>
+    </ul>
+  </div>
+</div>
 <ul class="lesson-list">
   <%- @lessons.ascending_by_title.each do |lesson| -%>
     <div class="row">
