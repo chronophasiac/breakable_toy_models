@@ -24,7 +24,7 @@
                 <%= button_to("Repeat", lesson_assignment_path(@lesson, assignment), class: "button completable-start secondary", method: "get") %>
                 <small><%= "Completed in #{coursework.lesson.title}" unless coursework.lesson == @lesson %></small>
               <%- else -%>
-                <%= button_to("Continue", lesson_assignment_path(@lesson, assignment), class: "button completable-start success", method: "get") %>
+                <%= button_to("Continue", lesson_assignment_path(@lesson, assignment), class: "button completable-start", method: "get") %>
               <%- end -%>
             <%- else -%>
               <%= simple_form_for([current_user, @coursework]) do |f| %>
@@ -59,8 +59,3 @@
     <%- end -%>
   </div>
 <%- end -%>
-<div class="row">
-  <div class="large-2 columns panel">
-    <%= link_to("Back to lessons", lessons_path, class: "button completable-start") %>
-  </div>
-</div>
