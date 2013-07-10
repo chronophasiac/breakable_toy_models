@@ -13,7 +13,7 @@
       <%- assignment = activity.completable -%>
       <div class="large-12 columns assignment panel">
         <div class="large-8 columns">
-          <h5 class="assignment-title"><%= "#{activity.completable.title} " %></h5><span class="label">Assignment</span>
+          <span class="label">Assignment</span><h5 class="assignment-title"><%= "#{activity.completable.title} " %></h5>
           <h5 class="subheader"><%= assignment.summary %></h5>
         </div>
         <div class="large-3 columns">
@@ -21,38 +21,38 @@
             <%- if current_user.assignments.include?(assignment) -%>
               <%- coursework = current_user.assignment_progress(assignment) -%>
               <%- if coursework.completed? %> 
-                <%= button_to("Repeat", lesson_assignment_path(@lesson, assignment), class: "button secondary", method: "get") %>
+                <%= button_to("Repeat", lesson_assignment_path(@lesson, assignment), class: "button completable-start secondary", method: "get") %>
                 <small><%= "Completed in #{coursework.lesson.title}" unless coursework.lesson == @lesson %></small>
               <%- else -%>
-                <%= button_to("Continue", lesson_assignment_path(@lesson, assignment), class: "button success", method: "get") %>
+                <%= button_to("Continue", lesson_assignment_path(@lesson, assignment), class: "button completable-start success", method: "get") %>
               <%- end -%>
             <%- else -%>
               <%= simple_form_for([current_user, @coursework]) do |f| %>
                 <%= f.hidden_field :assignment_id, value: assignment.id %>
                 <%= f.hidden_field :lesson_id, value: @lesson.id %>
-                <%= f.submit "Start", class: "large button" %>
+                <%= f.submit "Start", class: "button completable-start" %>
               <%- end -%>
             <%- end -%>
           <%- else -%>
-            <%= button_to("Start", lesson_assignment_path(@lesson, assignment), class: "button success", method: "get") %>
+            <%= button_to("Start", lesson_assignment_path(@lesson, assignment), class: "button completable-start success", method: "get") %>
           <%- end -%>
         </div>
       </div>
     <%- elsif activity.completable_type == "Challenge" -%>
       <%- challenge = activity.completable -%>
-      <div class="large-12 columns challenge panel callout">
+      <div class="large-12 columns challenge panel">
         <div class="large-8 columns">
-          <h5 class="challenge-title"><%= "#{challenge.title} " %></h5><span class="secondary label">Challenge</span> 
+          <span class="label">Challenge</span><h5 class="challenge-title"><%= "#{challenge.title} " %></h5>
         </div>
         <div class="large-3 columns">
           <%- if user_signed_in? -%>
             <%- if current_user.challenges.include?(challenge) -%>
-              <%= link_to("Replay", lesson_challenge_path(@lesson, challenge), class: "button secondary") %>
+              <%= link_to("Replay", lesson_challenge_path(@lesson, challenge), class: "button completable-start secondary") %>
             <%- else -%>
-              <%= link_to("Start", lesson_challenge_path(@lesson, challenge), class: "button success") %>
+              <%= link_to("Start", lesson_challenge_path(@lesson, challenge), class: "button completable-start success") %>
             <%- end -%>
           <%- else -%>
-            <%= link_to("Start", lesson_challenge_path(@lesson, challenge), class: "button success") %>
+            <%= link_to("Start", lesson_challenge_path(@lesson, challenge), class: "button completable-start success") %>
           <%- end -%>
         </div>
       </div>
@@ -61,6 +61,6 @@
 <%- end -%>
 <div class="row">
   <div class="large-2 columns panel">
-    <%= link_to("Back to lessons", lessons_path, class: "button") %>
+    <%= link_to("Back to lessons", lessons_path, class: "button completable-start") %>
   </div>
 </div>
