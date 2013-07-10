@@ -8,13 +8,13 @@ module Seeders
         base_path = 'db/seed_data'
         Dir.glob(Rails.root.join(base_path, 'lessons', '*.yml')) do |file|
           lesson = YAML.load_file(file)
-          this_lesson = Lesson.create(title: lesson['title'], summary: lesson['summary'])
+          this_lesson = Lesson.create!(title: lesson['title'], summary: lesson['summary'])
           lessons << this_lesson
           lesson['activities'].each_with_index do |activity, index|
             completable = []
 
             if activity['type'] == 'Assignment'
-              completable = Assignment.create do |assignment|
+              completable = Assignment.create! do |assignment|
                 assignment.title = activity['title']
                 assignment.summary = activity['summary']
                 assignment.instructions = activity['instructions']
@@ -22,11 +22,11 @@ module Seeders
                 assignment.assignment_type = activity['assignment_type']
               end
             elsif activity['type'] == 'Challenge'
-              completable = Challenge.create do |challenge|
+              completable = Challenge.create! do |challenge|
                 challenge.title = activity['title']
               end
               activity['cards'].each do |card|
-                new_card = Card.create do |c|
+                new_card = Card.create! do |c|
                   c.title = card['title']
                   c.instructions = card['instructions']
                   c.problem = card['problem']
@@ -36,12 +36,12 @@ module Seeders
                 card['solutions'].each do |solution|
 
                   if card['solution_type'] == 'string'
-                    sol = new_card.solution_strings.create do |solution_string|
+                    sol = new_card.solution_strings.create! do |solution_string|
                       solution_string.regex = solution['regex']
                       solution_string.canonical = true if solution['canonical']
                     end
                   elsif card['solution_type'] == 'position'
-                    sol = new_card.solution_positions.create do |solution_position|
+                    sol = new_card.solution_positions.create! do |solution_position|
                       solution_position.start_position = solution['start_position']
                       solution_position.end_position = solution['end_position']
                     end
@@ -52,7 +52,7 @@ module Seeders
               end
             end
 
-            Activity.create do |lesson_activity|
+            Activity.create! do |lesson_activity|
               lesson_activity.completable = completable
               lesson_activity.lesson = this_lesson
               lesson_activity.position = index + 1
