@@ -12,7 +12,12 @@ class Sm2Instance
   end
 
   def log_quality_adapter(card_submission_log)
-    card_submission_log.correct ? 5 : 0
+    quality = card_submission_log.correct ? 5 : 0
+
+    quality -= 1 if card_submission_log.time_taken > 20
+    quality = 0 if quality < 0
+
+    quality
   end
 
   def process_log(log)
