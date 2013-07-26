@@ -55,7 +55,7 @@ end
 
   factory :card_submission_log do
     correct         true
-    time_taken      30
+    time_taken      10
     card_submission
   end
 
