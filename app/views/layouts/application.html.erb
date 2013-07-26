@@ -13,9 +13,8 @@
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
-
   	<title><%= content_for?(:title) ? yield(:title) : "Memworks" %></title>
+    
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
@@ -25,31 +24,40 @@
     <%= @big_header ? render('layouts/big_header') : render('layouts/small_header') %>
     <%= render 'layouts/top_navigation' %>
 
-      <%- if flash[:error] -%>
-        <div class="row">
-          <div class="large-12 columns">
-            <div data-alert class="large-12 columns alert-box alert"><%= flash[:error] %><a href="#" class="close">&times;</a></div>
-          </div>
+    <%- if flash[:error] -%>
+      <div class="row">
+        <div class="large-12 columns">
+          <div data-alert class="large-12 columns alert-box alert"><%= flash[:error] %><a href="#" class="close">&times;</a></div>
         </div>
-      <%- end %>
+      </div>
+    <%- end %>
 
-      <%- if flash[:notice] -%>
-        <div class="row">
-          <div class="large-12 columns">
-            <div data-alert class="large-12 columns alert-box success"><%= flash[:notice] %><a href="#" class="close">&times;</a></div>
-          </div>
+    <%- if flash[:notice] -%>
+      <div class="row">
+        <div class="large-12 columns">
+          <div data-alert class="large-12 columns alert-box success"><%= flash[:notice] %><a href="#" class="close">&times;</a></div>
         </div>
-      <%- end %>
+      </div>
+    <%- end %>
 
-      <%- if flash[:alert] -%>
-        <div class="row">
-          <div class="large-12 columns">
-            <div data-alert class="large-12 columns alert-box"><%= flash[:alert] %><a href="#" class="close">&times;</a></div>
-          </div>
+    <%- if flash[:alert] -%>
+      <div class="row">
+        <div class="large-12 columns">
+          <div data-alert class="large-12 columns alert-box"><%= flash[:alert] %><a href="#" class="close">&times;</a></div>
         </div>
-      <%- end -%>
-    
-      <%= yield %>
+      </div>
+    <%- end -%>
+
+    <%= yield %>
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+    <script>
+      WebFont.load({
+        google: {
+          families: ['Open Sans:400italic,400,300,600,700']
+        }
+      });
+    </script>
 
     <%= javascript_include_tag "application" %>
   </body>
